@@ -1,81 +1,48 @@
-# Feature: Content Briefs for Rufus
-
-**Status:** Planned (unbuilt)  
-**Owner:** Faber  
-**Scope:** Create standardized content briefs for production
-
-## Description
-
-Develop standardized content brief format that translates strategy into specific production assignments for Rufus.
-
-## Capability
-
-**What:** Create detailed content briefs that specify what to produce, for whom, key messages, success criteria
-
-**For whom:** Rufus (primary consumer)
-
-**Inputs needed:**
-- Strategic priorities from STRATEGY.md
-- Audience segments and messaging from AUDIENCE_SEGMENTS.md
-- Channel performance data from Mercury
-
-**Output:**
-- Content briefs (GitHub issues or markdown documents)
-- Briefing template (BRIEFING_TEMPLATE.md)
-- Production queue with priorities
-
-## Brief Structure
-
-```
-# Brief: [Content Title]
-
-## Context
-- Why this content now?
-- Strategic goal
-- Target audience
-- Key constraint (deadline, format, scope)
-
-## What to Produce
-- Format (doc, video, demo, tweet thread, etc.)
-- Key messages (3-5 bullets)
-- Success criteria (audience, engagement, leads)
-
-## Audience
-- Who is this for?
-- What do they care about?
-- Where do they hang out?
-
-## Acceptance Criteria
-- Drafted by: [date]
-- Review deadline: [date]
-- Production deadline: [date]
-- Approval: [Faber/Iris]
-
-## Notes
-- Constraints
-- Reference materials
-- Similar past work
-```
-
-## How It Works
-
-1. Identify priority content from STRATEGY.md
-2. Write brief using template
-3. File issue on koad/rufus with brief
-4. Rufus starts production, asks clarifying questions
-5. Iterate on brief based on feedback
-6. Rufus delivers, links back to issue
-7. Archive brief + output in LOGS
-
-## Implementation Plan
-
-- [ ] Design brief template
-- [ ] Build brief generator (CLI command)
-- [ ] Create first 3 briefs
-- [ ] Set up feedback loop with Rufus
-- [ ] Document approval workflow
-- [ ] Create brief archive system
-
+---
+status: draft
+owner: faber
+priority: high
+description: Create standardized brief format for assigning content production work to Rufus
+started: 2026-04-03
 ---
 
-**Issue:** [koad/faber#2](https://github.com/koad/faber/issues/2) — Implement content brief system
+## Purpose
+
+Faber must translate high-level strategy into specific, actionable production assignments for Rufus. A standardized brief format ensures clarity about what to produce, for whom, why, and how success is measured.
+
+## Specification
+
+**Output:** BRIEFING_TEMPLATE.md with standardized sections
+
+**Brief structure:**
+- **Context** — Why this content, strategic goal, target audience, timing
+- **What to Produce** — Format, key messages (3-5), success criteria
+- **Audience** — Who, what they care about, where they engage
+- **Acceptance Criteria** — Draft date, review deadline, production deadline
+- **Constraints** — Resource limits, dependencies, approval requirements
+- **Reference Materials** — Similar past work, competitive examples, research
+
+**Delivery mechanism:**
+- Briefs filed as GitHub issues on koad/rufus
+- Cross-linked to STRATEGY.md and CALENDAR.md
+- Tracked in LOGS/ directory once delivered
+
+## Dependencies
+
+- STRATEGY.md (provides strategic context)
+- AUDIENCE_SEGMENTS.md (audience targeting)
+- CALENDAR.md (timing and sequencing)
+- Rufus entity (execution partner)
+
+## Testing
+
+Acceptance criteria:
+- [ ] Brief template defined and documented
+- [ ] First 3 briefs created and filed with Rufus
+- [ ] Rufus provides feedback on clarity and completeness
+- [ ] Archive system established for completed briefs
+- [ ] Feedback loop cycle documented
+
+## Status Note
+
+Depends on STRATEGY.md and AUDIENCE_SEGMENTS.md features being completed first.

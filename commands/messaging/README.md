@@ -1,41 +1,58 @@
-# Command: faber messaging
+---
+status: draft
+owner: faber
+priority: high
+description: Develop or update messaging framework for a specific audience segment aligned with brand
+---
 
-**Status:** Planned (unbuilt)
+## Purpose
 
-Develop messaging framework for target audience.
+The `faber messaging` command creates tailored messaging strategies for specific audience segments. It ensures consistent, resonant messaging across all content targeting that segment and aligns with Iris brand direction.
 
-## Usage
+## Interface
 
 ```bash
-faber messaging [audience_segment]
+faber messaging <segment>
 ```
 
-## Description
+**Arguments:**
+- `segment` (required): Audience segment (e.g., "platform-adopters", "developers", "enterprises")
 
-Creates or updates messaging framework for a specific audience segment:
-- Pain points and goals
-- Key messages (3-5)
-- Tone and voice
-- Content angles
-- Success criteria
+**Output:** Creates or updates segment-specific messaging document with brand alignment
 
-Aligns with Iris brand direction.
+## Specification
 
-## Example
+**Messaging framework includes:**
+- Segment description (who they are, what they do)
+- Pain points and goals (what problems they face)
+- Key messages (3-5 core messages resonating with segment)
+- Tone and voice (how to talk to this segment)
+- Content angles (how to frame koad:io for this segment)
+- Success criteria (how to measure if messaging lands)
+- Iris brand alignment (approval status)
 
+**Example:**
 ```bash
 faber messaging "platform-adopters"
-faber messaging "developers"
 ```
 
-Output: Creates/updates messaging framework document
+Creates/updates `MESSAGING_platform-adopters.md` with tailored framework
 
-## Implementation
+## Dependencies
 
-- [ ] Build messaging template
-- [ ] Pull audience segment data
-- [ ] Synthesize Iris brand guidelines
-- [ ] Create message mapping
-- [ ] Generate content angle recommendations
-- [ ] Request Iris alignment review
-- [ ] Document feedback and iterations
+- AUDIENCE_SEGMENTS.md (segment definitions)
+- Iris brand entity (brand voice and positioning)
+- STRATEGY.md (strategic context)
+
+## Testing
+
+Acceptance criteria:
+- [ ] Messaging framework clearly articulates segment pain points
+- [ ] Key messages are distinct from other segments
+- [ ] Iris approves brand voice alignment
+- [ ] Rufus confirms messaging is clear and actionable
+- [ ] Content angles enable brief generation
+
+## Status Note
+
+Blocked on AUDIENCE_SEGMENTS.md and Iris brand input.

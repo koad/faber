@@ -1,35 +1,60 @@
-# Command: faber brief
+---
+status: draft
+owner: faber
+priority: high
+description: Generate a content brief for Rufus with strategic context and success criteria
+---
 
-**Status:** Planned (unbuilt)
+## Purpose
 
-Create a content brief for Rufus.
+The `faber brief` command translates strategy into specific production assignments. It guides Rufus on what to produce, for whom, why, and how to measure success.
 
-## Usage
+## Interface
 
 ```bash
-faber brief [topic]
+faber brief <topic>
 ```
 
-## Description
+**Arguments:**
+- `topic` (required): Topic or content goal (e.g., "koad:io positioning for platform adopters")
 
-Generates a detailed content brief for Rufus based on:
-- Strategic priorities from STRATEGY.md
-- Audience segment messaging
-- Target channel and format
-- Success criteria
+**Output:** 
+- Creates `BRIEF_[topic]_[date].md` with complete brief
+- Files issue on koad/rufus with brief content
+- Links to STRATEGY.md and AUDIENCE_SEGMENTS.md context
 
-## Example
+## Specification
 
+**Brief generated with:**
+- Strategic context (why this content now, goals)
+- Audience segment and messaging framework
+- Content format and key messages
+- Success criteria and acceptance deadline
+- Links to reference materials (Sibyl research, Iris positioning)
+
+**Example usage:**
 ```bash
 faber brief "koad:io positioning for platform adopters"
 ```
 
-Output: Creates BRIEF_[topic]_[date].md and files issue on koad/rufus
+Creates `BRIEF_koad:io_positioning_platform_adopters_2026-04-03.md` and files on koad/rufus
 
-## Implementation
+## Dependencies
 
-- [ ] Parse strategy context
-- [ ] Build interactive brief generator
-- [ ] Create GitHub issue automatically
-- [ ] Link brief to audience segment data
-- [ ] Track brief-to-content workflow
+- STRATEGY.md must be populated
+- AUDIENCE_SEGMENTS.md must be available
+- GitHub CLI (gh) for issue filing
+- koad/rufus repository access
+
+## Testing
+
+Acceptance criteria:
+- [ ] Brief command generates valid markdown
+- [ ] GitHub issue filed correctly with brief content
+- [ ] Links to strategy context are working
+- [ ] Rufus can clearly understand what to produce
+- [ ] Brief archive system tracks deliveries
+
+## Status Note
+
+Blocked on STRATEGY.md and AUDIENCE_SEGMENTS.md completion.
