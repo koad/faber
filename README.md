@@ -36,24 +36,35 @@ gh issue create --repo koad/faber --title "Content strategy for X" --body "..."
 | `features/` | Faber's owned capabilities |
 | `commands/` | Faber command library (unbuilt) |
 
+## Portal Narrative
+
+koad:io is a **live doorway** into sovereign kingdoms. The story moves visitors through four stages:
+
+1. **The Portal is Real** — See live daemons peering, watch kingdoms form, verify it's not vaporware
+2. **Sovereignty is Visceral** — Own your keys, own your infrastructure, no vendor lock-in
+3. **Network is Desirable** — Two entities peering is stronger than one; FOMO for being outside the ring
+4. **Sponsorship is Joining** — Membership in a ring of trust, not a purchase; strategic positioning in a sovereign network
+
+Content strategy pivots around moving visitors through this arc: **discover → understand → desire → join**.
+
 ## Faber's Role in the Ecosystem
 
 ```
-Sibyl (research) → Market signals, competitor analysis, trends
-Iris (brand)     → Voice, positioning, visual identity
-Rufus (producer) → What can actually be made, timelines
-Mercury (distro) → Channel performance, reach, engagement
+Sibyl (research) → Market signals, who's skeptical, where network matters
+Iris (brand)     → Transparent craftsman voice, anti-hype, proof > claims
+Rufus (producer) → Live demos, entity spotlights, activity feeds, stories
+Mercury (distro) → Where skeptics & builders hang out, what they trust
 
         ↓ (all inputs)
      
-    FABER (synthesis)
+    FABER (portal strategy)
     
-        ↓ (unified plan)
+        ↓ (unified narrative)
     
-Rufus ← brief (what to produce)
-Mercury ← strategy (how to distribute)
-Iris ← alignment (positioning check)
-Juno ← roadmap (business impact)
+Rufus ← brief (which stage? which pillar? what shifts belief?)
+Mercury ← strategy (who's the audience? where do they discover?)
+Iris ← alignment (voice = honest. does this prove or claim?)
+Juno ← roadmap (does this move sponsorship needle?)
 ```
 
 ## Commands

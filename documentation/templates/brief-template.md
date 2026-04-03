@@ -5,47 +5,58 @@ owner: faber
 
 # Brief: [Content Title]
 
-## Strategic Context
+## Portal Narrative Context
 
-**Why this content?**
-[Explain the strategic goal and why this content is needed now. Reference STRATEGY.md initiative or goal.]
+**Portal Pillar:**
+[Which pillar? Reality | Autonomy | Network | Membership]
+
+**Journey Stage:**
+[Where in visitor journey? Discover | Understand | Desire | Join]
 
 **Strategic Goal:**
-[One-sentence goal: What should this content achieve?]
+[One-sentence: What belief should shift after people see this? Example: "Show sovereignty is technical reality, not marketing."]
+
+**The Belief We're Changing:**
+[Current: "What skeptics/builders currently think"  →  Desired: "What we want them to believe"]
 
 **Target Audience:**
-[Who is this for? Reference AUDIENCE_SEGMENTS.md segment.]
+[Skeptics & Researchers | Builders & Developers | Enterprises & Teams | Platform Enthusiasts]
 
-**Key Messages:**
-[Pull from MESSAGING_[segment].md. 3-5 core messages that should appear in the content.]
+**Key Messages (3-5 proof points, not features):**
+- [Angle 1: Something shown, not just told]
+- [Angle 2: A visceral truth about autonomy/network/membership]
+- [Angle 3: A comparison or contrast that makes the alternative expensive]
 
 ## What to Produce
 
 **Format:**
-[Document | Video | Demo | Blog Post | Twitter Thread | GitHub Discussion | Other]
+[Live Demo | Case Study | Transparent Log | Entity Spotlight | Technical Explainer | Comparison | Story | Activity Feed | Discovery Tool]
 
 **Length/Scope:**
-[Estimated length, complexity, scope of work]
+[Estimated complexity, screen time, reading time, or interaction depth]
 
 **Deliverables:**
-[What exactly will be delivered? File, link, etc.]
+[What exactly will be delivered? Live demo URL? Blog post file? Video? Interactive portal page?]
 
-**Key Requirements:**
-[Must-haves for the content. Style guides, brand requirements, tone, visual style, etc.]
+**Key Requirements (Tone & Voice):**
+[Faber brand = transparent craftsman, anti-hype. Show, don't tell. Invite skepticism. Prove claims in real-time.]
 
 ## Audience Deep Dive
 
 **Who are they?**
-[Detailed description of audience: role, pain points, goals, where they spend time]
+[Profile: role, context, what they've been told before, where they spend time]
 
-**What do they care about?**
-[Why should they engage with this content? What problem does it solve?]
+**The skepticism we're addressing:**
+[What doubt are they carrying that blocks them from believing?]
+
+**What changes their mind?**
+[Proof points: What do they need to _see_, not just hear? Live activity? Working code? Real peer connections?]
 
 **Where do they find content?**
-[Which channels does this segment use? Where will Mercury distribute?]
+[Channels: Twitter/LinkedIn/GitHub/conferences/DMs? What does Mercury recommend?]
 
 **Success looks like:**
-[What would it mean if this content succeeded with this audience?]
+[Behavioral shift: Do they try the demo? Join the ring? Invite others? Start a kingdom?]
 
 ## Acceptance Criteria
 
@@ -55,49 +66,56 @@ owner: faber
 - Final delivery: [date]
 
 **Success Metrics:**
-- [Specific engagement target: Views, clicks, shares, etc.]
-- [Specific conversion target: Leads, sign-ups, etc., if applicable]
-- [Specific audience feedback or sentiment goal]
+- [Specific belief-shift signal: sentiment change, follow, signup, etc.]
+- [Specific action target: demo visits, peering, sponsor signup, etc., if applicable]
+- [Audience feedback: Did this shift doubt?]
 
 **Quality Standards:**
-[Brand alignment, tone, accuracy, completeness, style requirements]
+- **Transparency:** Proof is shown, not claimed. Logs, activity, live connections are visible.
+- **Voice:** Honest craftsman. No hype, no exaggeration. Invite questions.
+- **Accuracy:** All claims are technically verifiable. All claims match current state.
+- **Brand alignment:** Iris approves tone. Tone matches entity voice.
 
 **Approval:**
-[Who needs to approve before publication? (Faber, Iris, Juno, etc.)]
+[Who must sign off? Usually: Faber (strategy), Iris (voice), Juno (business impact)]
 
 ## References & Context
 
-**Strategic documents:**
-- [Link to STRATEGY.md section]
-- [Link to relevant AUDIENCE_SEGMENTS.md]
-- [Link to MESSAGING_[segment].md]
+**Portal narrative & pillars:**
+- [Link to features/01-content-strategy.md — Portal narrative, pillars, all four]
+- [Link to relevant section in AUDIENCE_SEGMENTS.md for this segment]
 
-**Similar past work:**
-- [Link to similar content that performed well]
-- [Link to competitor reference material]
-- [Link to past feedback on related topics]
+**Entity work this showcases:**
+- [Which entity is this spotlighting? Link to their kingdom/repo]
+- [What specific work are we showing? Link to PR, code, or demo]
+
+**Live proof points:**
+- [Link to live portal demo URL]
+- [Link to live activity logs or peer connections]
+- [Link to daemon state or governance decision this illustrates]
 
 **Resources:**
-- [Link to research/data to reference]
-- [Link to brand guidelines]
-- [Link to relevant documentation]
+- [Link to brand guidelines (Iris)]
+- [Link to any entity documentation we're referencing]
+- [Link to Mercury distribution insights for this segment]
 
 ## Constraints & Blockers
 
-**Resource constraints:**
-[Any limits on time, budget, tooling, etc.]
+**Entity coordination:**
+[Does this depend on another entity going live? Iris approving messaging? Mercury availability?]
 
-**Dependencies:**
-[Does this depend on other work? Iris approval? Mercury availability?]
+**Proof point blockers:**
+[Do we have the live demo/logs/activity needed? Or does this require waiting on Rufus/other entity?]
 
 **Known challenges:**
-[Anticipated difficulty areas or questions]
+[Hard to demonstrate? Requires explaining architecture first? Skepticism we haven't cracked yet?]
 
 **Open questions:**
-[Anything unclear about the brief? Ask here and we'll iterate.]
+[Anything unclear about the brief? Will iterate with you.]
 
 ---
 
 **Issued by:** Faber  
 **Date filed:** [date]  
+**Portal pillar:** [Reality | Autonomy | Network | Membership]  
 **Target on koad/rufus:** https://github.com/koad/rufus/issues/[N]
