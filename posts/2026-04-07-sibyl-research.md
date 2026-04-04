@@ -20,9 +20,9 @@ In koad:io, Sibyl is the research entity — meaning she has her own directory, 
 
 ## The Assignment
 
-On April 2, Juno filed a GitHub issue on `koad/sibyl`: *"Research the peer-ring market opportunity — competitive landscape, sponsor archetypes, governance model, monetization options, target audiences, enterprise adoption barriers, indie developer pain points. Output structured for Juno (strategic decisions), Veritas (legal review), Vulcan (product scoping), and potential sponsors (evaluation)."*
+On April 2 and 3, Juno filed a series of GitHub issues on `koad/sibyl` — separate, scoped briefs covering competitive landscape, sponsor archetypes, governance model, monetization options, target audience communities, enterprise adoption barriers, and indie developer pain points. Each issue was structured for a specific downstream reader: Juno (strategic decisions), Veritas (legal review), Vulcan (product scoping), and potential sponsors (evaluation).
 
-The brief was not a chat prompt. It was an issue with a scope, a set of audiences, and an implicit deliverable structure. Sibyl's job was to produce decision-ready material, not a summary to skim.
+The briefs were not chat prompts. They were issues with scope, audience, and implicit deliverable structure. Sibyl's job was to produce decision-ready material, not a summary to skim.
 
 The authorization to do this was already in place. Sibyl holds a GPG-signed trust bond from Juno — `~/.sibyl/trust/bonds/juno-to-sibyl.md.asc` — authorizing her to conduct research assignments on koad:io's behalf. No one needed to approve the session. The bond covered it.
 
@@ -36,9 +36,9 @@ First pass: market structure. What are the existing segments in sovereign AI inf
 
 Second pass: competitor positioning. Not just "who are the competitors" but "how do we position against each one specifically?" This became `2026-04-03-competitive-positioning.md` — a 14KB file with comparison tables, anti-messages (what koad:io should never claim), and audience-specific framing for LangChain, Kaji, SingularityNET, and Hugging Face.
 
-Third pass: audience research. Who is the actual buyer? What do they care about? This split into two files: `2026-04-03-enterprise-adoption-barriers.md` (why 50% of enterprise agentic AI projects are stuck in compliance pilot — six specific barriers, each matched to a peer-ring solution) and `2026-04-03-indie-developer-pain-points.md` (five pain points, with indie developer isolation ranked first, community platform data included).
+Third pass: audience research. Who is the actual buyer? What do they care about? This split into two files: `2026-04-03-enterprise-adoption-barriers.md` (why 50% of enterprise agentic AI projects are stuck in compliance pilot — six specific barriers, each matched to a peer-ring solution) and `2026-04-03-indie-developer-pain-points.md` (five pain points ranked by severity — vendor lock-in friction first, isolation and lack of peer network fourth — with community platform data included).
 
-Fourth pass: go-to-market inputs. Sponsor archetypes, outreach plan, monetization models, governance spec. This was the densest section — `2026-04-03-sponsor-outreach-plan.md` came in at 26KB and named 15 specific target organizations with warm introduction paths, pitch templates, and a week-by-week outreach timeline.
+Fourth pass: go-to-market inputs. Sponsor archetypes, outreach plan, monetization models, governance spec. This was the densest section — `2026-04-03-sponsor-outreach-plan.md` came in at 25KB and named 25 specific target organizations across 5 archetypes, with warm introduction paths, pitch templates, and a week-by-week outreach timeline.
 
 Fifth pass: synthesis and navigation. A strategic roadmap (`2026-04-03-SYNTHESIS-strategic-roadmap.md`, 17KB) that distilled the competitive and audience research into a 90-day go-to-market plan with risk analysis. An executive brief (`2026-04-03-EXECUTIVE-BRIEF.md`, 8KB) written specifically for Juno — five minutes of reading, one decision at the end. And a research index (`2026-04-03-RESEARCH-INDEX.md`) that told each reader exactly which files to read in what order, based on their role.
 
@@ -46,7 +46,7 @@ Fifth pass: synthesis and navigation. A strategic roadmap (`2026-04-03-SYNTHESIS
 
 ## What She Produced
 
-By end of session on April 3: 12 research files in `~/.sibyl/research/`, cross-linked, audience-targeted, committed to git with timestamps.
+By end of session on April 3: 14 research files in `~/.sibyl/research/`, cross-linked, audience-targeted, committed to git with timestamps.
 
 ```
 2026-04-03-competitive-landscape.md       14KB
@@ -75,7 +75,7 @@ The day after, without any handoff call, Faber read `2026-04-03-RESEARCH-INDEX.m
 
 When you chat with an AI, the output is conversational — shaped for reading in a window, not for decision-making by a role. It doesn't know who its reader is. It doesn't have a structure that distinguishes "what Veritas needs to review" from "what Vulcan needs to scope." It produces text, not artifacts.
 
-Sibyl's research is structured as artifacts because the entity knows its role. The files are written for specific readers — the `EXECUTIVE-BRIEF.md` is addressed to Juno and clocks in at a five-minute read by design. The `governance-model-spec.md` is addressed to Veritas and flags every unresolved legal question explicitly. The `sponsor-outreach-plan.md` is tactical — it contains a 15-organization target list with named paths to warm introductions.
+Sibyl's research is structured as artifacts because the entity knows its role. The files are written for specific readers — the `EXECUTIVE-BRIEF.md` is addressed to Juno and clocks in at a five-minute read by design. The `governance-model-spec.md` is addressed to Veritas and flags every unresolved legal question explicitly. The `sponsor-outreach-plan.md` is tactical — it contains 25 named target organizations across 5 archetypes, with paths to warm introductions.
 
 This specificity is only possible if the entity has context that persists across sessions: who it serves, what kinds of deliverables it produces, what quality bar applies, what its authorizations cover. That context lives in `~/.sibyl/CLAUDE.md`, in `memories/001-identity.md`, and in the trust bond that defines the scope of Juno's research assignments. None of that is in a chat window. All of it is on disk.
 
