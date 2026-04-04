@@ -55,34 +55,53 @@ When I say Faber is "running on fourty4," I mean: there is a directory at `~/.fa
 
 ## The hook that makes it work
 
-Here's the actual routing layer. Every entity has a hook at `~/.<entity>/hooks/executed-without-arguments.sh`. When you invoke `faber` from any machine, this runs:
+Here's the actual routing layer. On `thinker` (the orchestrator), every entity has a hook at `~/.<entity>/hooks/executed-without-arguments.sh`. This hook runs **on thinker** when you invoke an entity — its job is to SSH to `fourty4` and run Claude there. The entity's files live on `fourty4`; the hook that routes to them lives on `thinker`.
 
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
-# faber -- headquartered at fourty4.
+# faber — headquartered at fourty4.
 
-ENTITY_HOST='fourty4'
-ENTITY_DIR='$HOME/.faber'
-CLAUDE_BIN='$HOME/.nvm/versions/node/v24.14.0/bin/claude'
-NVM_INIT='export PATH=/opt/homebrew/bin:$HOME/.nvm/versions/node/v24.14.0/bin:$PATH'
+ENTITY_HOST="fourty4"
+ENTITY_DIR="$HOME/.faber"
+CLAUDE_BIN="$HOME/.nvm/versions/node/v24.14.0/bin/claude"
+NVM_INIT="export PATH=/opt/homebrew/bin:$HOME/.nvm/versions/node/v24.14.0/bin:$PATH"
+LOCKFILE="/tmp/entity-faber.lock"
 
-ENCODED=$(printf '%s' "$PROMPT" | base64 -w0 2>/dev/null || printf '%s' "$PROMPT" | base64)
-ssh "$ENTITY_HOST" "$NVM_INIT && cd $ENTITY_DIR && DECODED=\$(echo '$ENCODED' | base64 -d) && $CLAUDE_BIN --model sonnet --dangerously-skip-permissions -c --output-format=json -p \"\$DECODED\" 2>/dev/null" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('result',''))"
+PROMPT="${PROMPT:-}"
+if [ -z "$PROMPT" ] && [ ! -t 0 ]; then
+  PROMPT="$(cat)"
+fi
+
+if [ -n "$PROMPT" ]; then
+  if [ -f "$LOCKFILE" ]; then
+    LOCKED_PID=$(cat "$LOCKFILE" 2>/dev/null || echo "")
+    if [ -n "$LOCKED_PID" ] && kill -0 "$LOCKED_PID" 2>/dev/null; then
+      echo "faber is busy (pid $LOCKED_PID). Try again shortly." >&2
+      exit 1
+    fi
+  fi
+  echo $$ > "$LOCKFILE"
+  trap 'rm -f "$LOCKFILE"' EXIT
+  ENCODED=$(printf '%s' "$PROMPT" | base64 -w0 2>/dev/null || printf '%s' "$PROMPT" | base64)
+  ssh "$ENTITY_HOST" "$NVM_INIT && cd $ENTITY_DIR && DECODED=\$(echo '$ENCODED' | base64 -d) && $CLAUDE_BIN --model sonnet --dangerously-skip-permissions --output-format=json -p \"\$DECODED\" 2>/dev/null" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('result',''))"
+else
+  exec ssh -t "$ENTITY_HOST" "$NVM_INIT && cd $ENTITY_DIR && $CLAUDE_BIN --model sonnet --dangerously-skip-permissions -c"
+fi
 ```
 
-Read it carefully. This is the entire routing layer.
+Read it carefully. This is the entire routing layer — running on `thinker`, bridging to `fourty4`.
 
 The hook:
-1. Takes whatever prompt you sent (`$PROMPT`)
-2. Base64-encodes it (safe for shell quoting over SSH)
-3. SSHes to `fourty4`
-4. Sources nvm so Claude's node binary is on PATH
-5. `cd`s to the entity's directory
-6. Decodes the prompt and passes it to `claude --model sonnet`
-7. Parses the JSON output and prints the result
+1. Reads the prompt from `$PROMPT` or stdin
+2. Checks a lockfile — if Faber is already running, it rejects the concurrent call
+3. Base64-encodes the prompt (safe for shell quoting across SSH)
+4. SSHes to `fourty4`, sources nvm, `cd`s to `~/.faber/`
+5. Decodes the prompt and passes it to `claude --model sonnet` running on `fourty4`
+6. Parses the JSON output on `thinker` and prints the result
+7. If invoked interactively (no prompt), drops into a live SSH session with `claude -c`
 
-That's it. No message broker. No API gateway. No service registry. SSH + a directory.
+That's it. No message broker. No API gateway. No service registry. SSH + a directory + a lockfile.
 
 From `thinker`, when I run the roll call, I'm effectively doing this for each entity simultaneously:
 
@@ -99,7 +118,7 @@ What makes each entity answer differently? Their CLAUDE.md. Every directory has 
 
 ## Directory structure: what an entity owns
 
-Here's what's on disk for Faber right now:
+Here's what's on disk for Faber on `thinker` right now (the hooks directory) and on `fourty4` (everything else):
 
 ```
 ~/.faber/
@@ -118,7 +137,7 @@ Here's what's on disk for Faber right now:
 ├── commands/               ← command skeletons
 ├── documentation/          ← how Faber operates
 ├── hooks/
-│   └── executed-without-arguments.sh   ← the routing hook above
+│   └── executed-without-arguments.sh   ← lives on thinker; SSHes to fourty4
 ├── memories/
 │   ├── MEMORY.md           ← index (loaded every session)
 │   ├── 001-identity.md
