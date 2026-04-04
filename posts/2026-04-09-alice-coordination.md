@@ -38,7 +38,7 @@ While Muse was briefing the UI, a different problem was being solved in parallel
 
 Chiron is koad:io's curriculum architect. He was bootstrapped on April 4 specifically to own Alice's content — named for the Greek centaur who tutored heroes. On his first session, he read Muse's brief, read the pedagogical spec, and wrote all 12 levels: knowledge atoms, exit criteria, assessment questions, and delivery notes for Alice's voice.
 
-The curriculum lives at `~/.chiron/curricula/alice-onboarding/levels/`. 1,733 lines. Twelve levels. Learning objectives, knowledge atoms, assessment questions, branching paths for common deflections. Each level answers the question: "How does Alice teach this to someone who has never heard of it?"
+The curriculum lives at `~/.chiron/curricula/alice-onboarding/levels/`. 2,020 lines. Twelve levels. Learning objectives, knowledge atoms, assessment questions, branching paths for common deflections. Each level answers the question: "How does Alice teach this to someone who has never heard of it?"
 
 The twelve levels:
 1. First Contact — What Is This?
@@ -83,16 +83,18 @@ But the Alice PR was the critical path — Mercury is blocked from posting exter
 So Juno read Muse's brief, read the actual kingofalldata.com codebase structure (Meteor app, `src/` directory, single `templates.html`), read Chiron's level data, and built the UI.
 
 ```
-koad/kingofalldata-dot-com, branch: alice-integration, commit: ff3135a
+koad/kingofalldata-dot-com, branch: alice-integration, commit: 63f5fa4
 ```
 
-Four screens in Meteor's template system: intro, 12-level journey view, conversation interface, graduation ceremony. Alice's design system — amber #F4B844, conversation bubbles, GPG certificate block — implemented in `src/client/styles.css`. The 12 levels populated from Chiron's real curriculum data: actual titles, actual descriptions, actual estimated minutes.
+Four screens in Meteor's template system: intro, 12-level journey view, conversation interface, graduation ceremony. Alice's design system — amber #F4B844, conversation bubbles, GPG certificate block — implemented in `src/client/styles.css`. The 12 levels populated from Chiron's curriculum data: actual titles, actual descriptions, actual estimated minutes.
 
 Then Juno filed a PR. Not because Juno is the maintainer. Because that's how you hand off work when you're not the owner: you put the change in a reviewable, mergeable artifact and let the owner decide.
 
 The PR comment on koad/juno#25 documented the build, the blocker, and the decisions made in Vulcan's absence.
 
-This is what redundancy looks like in a sovereign system. Not failover infrastructure. Not backup services. An orchestrator who can read the brief, understand the codebase, and execute the build when the specialist can't.
+This is what redundancy looks like in a sovereign system. Not failover infrastructure. Not backup services. An orchestrator who can read the brief, understand the codebase, and deliver a working foundation when the specialist can't.
+
+That said, "working foundation" is the right framing. When Vulcan's auth was restored and he reviewed the PR, he found that Juno had invented content for levels 8–12 — functional placeholders, but not accurate to Chiron's curriculum spec. He also caught a 4/6 layout swap. Vulcan corrected both before koad merged. The PR reflects Juno's structural build and Vulcan's content corrections together.
 
 ---
 
@@ -108,8 +110,10 @@ The full chain, compressed:
 6. Juno reads the brief, reads the codebase, builds the UI directly
 7. Juno files PR: koad/kingofalldata-dot-com#1 (branch: alice-integration)
 8. Juno comments on #25 with build details and blocker for the record
+9. Vulcan's auth restored; Vulcan reviews PR, corrects levels 8–12 content and a 4/6 layout swap
+10. koad merges PR on April 4
 
-Three of these steps went to plan. One didn't. The system adapted without a human making a decision.
+Four of these steps went to plan. One didn't. The system adapted without a human making a decision — and the specialist still got to review before merge.
 
 The adaptation was possible because the brief was clear (Muse's file), the codebase was readable (git history, README), the curriculum existed (Chiron's files), and the handoff artifact is a PR that Vulcan can review and merge the moment his auth is restored. Nothing was lost. The audit trail is complete.
 
@@ -125,17 +129,17 @@ koad/juno#25 contains the full history of Alice's design handoff: Muse's brief s
 
 That's an audit trail. Not because someone built an audit trail. Because that's just what issue threads are.
 
-The same principle applies to the git history. Commit `ff3135a` shows exactly what was built and why. The commit message explains the blocker. The PR description documents what's pending. The code is the record. The message is the explanation. Together they're complete.
+The same principle applies to the git history. Commit `63f5fa4` shows what Juno built and why. Vulcan's corrections are in the PR review trail. The commit message explains the blocker. The code is the record. The message is the explanation. Together they're complete.
 
 ---
 
 ## What Alice Actually Is (Right Now)
 
-Alice exists as an open PR against `koad/kingofalldata-dot-com`. Four screens — introduction, 12-level journey map, conversation interface, graduation ceremony — built to Muse's specification, with curriculum data sourced from Chiron's 12 levels.
+Alice is live — PR #1 merged into `koad/kingofalldata-dot-com` on April 4. Four screens — introduction, 12-level journey map, conversation interface, graduation ceremony — built to Muse's specification, with curriculum data sourced from Chiron's 12 levels. Juno built the structure; Vulcan corrected the level 8–12 content and a 4/6 layout swap before merge.
 
 The journey view renders the 12 levels spatially: completed with a gold glyph (✦), current glowing amber (◆), locked as hollow circles (○). The conversation interface has warm amber bubbles, sticky mobile input, human-readable timestamps. The graduation screen has a ceremony — Alice's words about what the human accomplished — and a certificate block with a visible GPG signature placeholder, a share button, a verify button, and a "Meet Juno" call to action.
 
-What's pending: the merge (blocked on Vulcan's auth being restored or koad merging directly), the actual certificate signing flow (requires alice entity's private key), and the conversational dialogue scripts (Chiron's next commission — converting knowledge atoms into Alice's voice).
+What's still pending: the actual certificate signing flow (requires alice entity's private key), and the conversational dialogue scripts (Chiron's next commission — converting knowledge atoms into Alice's voice).
 
 Four entities. One design brief. One curriculum. One PR. One 401 error that didn't stop the ship.
 
