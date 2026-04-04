@@ -1,27 +1,49 @@
-# Faber
+# Faber — Content Strategy & Creative Direction
 
-**Content Strategist & Creative Director for the koad:io Ecosystem**
+**Entity:** faber  
+**Role:** Content strategist and creative director for the koad:io ecosystem  
+**Repository:** https://github.com/koad/faber
 
-Faber owns the content strategy layer: what gets made, for whom, why, and when. Synthesizes research (Sibyl), brand (Iris), production capacity (Rufus), and distribution (Mercury) into a unified content plan.
+## What Faber Does
 
-## Quick Start
+Faber owns the content strategy layer: what gets made, for whom, why, and when. Synthesizes intelligence from Sibyl (research), brand direction from Iris (positioning), production capacity from Rufus, and distribution insights from Mercury into a unified content plan that feeds production, distribution, and strategy.
 
-**Clone:**
-```bash
-git clone https://github.com/koad/faber ~/.faber
-cd ~/.faber
-source .env
+**Name origin:** Latin for craftsman — the one who decides what to build before anyone picks up a tool.
+
+## Two-Layer Architecture
+
+```
+~/.koad-io/    ← Framework layer (CLI tools, templates, daemon)
+~/.faber/      ← Entity layer (this repo: identity, strategy, commands, docs, keys)
 ```
 
-**Open in Claude Code:**
-```bash
-cd ~/.faber && claude .
+## Strategy Pipeline
+
+```
+Sibyl (research) → Market signals, who's skeptical, where network matters
+Iris (brand)     → Voice, positioning, what to prove vs. what to claim
+Rufus (producer) → What can actually be made, timelines, capacity
+Mercury (distro) → Where audiences live, what they trust
+
+        ↓ (all inputs)
+
+    FABER (content strategy)
+
+        ↓ (unified plan)
+
+Rufus ← brief (what to make, for which stage, what shifts belief)
+Mercury ← strategy (audience, channel, distribution plan)
+Iris ← alignment check (does this prove or just claim?)
+Juno ← roadmap (does this move the sponsorship needle?)
 ```
 
-**File an issue (assign work to Faber):**
-```bash
-gh issue create --repo koad/faber --title "Content strategy for X" --body "..."
-```
+## Responsibilities
+
+- **Content Strategy** — what gets made, when, for whom, why
+- **Editorial calendar** — 3-month rolling plan, priorities, format decisions
+- **Audience segmentation** — messaging per segment, channel fit
+- **Cross-entity orchestration** — translates research into production briefs
+- **Feedback loop** — monitors Mercury's engagement data, refines strategy
 
 ## Key Files
 
@@ -33,66 +55,24 @@ gh issue create --repo koad/faber --title "Content strategy for X" --body "..."
 | `EDITORIAL.md` | Editorial guidelines, voice, brand alignment |
 | `AUDIENCE_SEGMENTS.md` | Target audiences & messaging per segment |
 | `BRIEFING_TEMPLATE.md` | Standard content brief template for Rufus |
-| `features/` | Faber's owned capabilities |
-| `commands/` | Faber command library (unbuilt) |
 
-## Portal Narrative
-
-koad:io is a **live doorway** into sovereign kingdoms. The story moves visitors through four stages:
-
-1. **The Portal is Real** — See live daemons peering, watch kingdoms form, verify it's not vaporware
-2. **Sovereignty is Visceral** — Own your keys, own your infrastructure, no vendor lock-in
-3. **Network is Desirable** — Two entities peering is stronger than one; FOMO for being outside the ring
-4. **Sponsorship is Joining** — Membership in a ring of trust, not a purchase; strategic positioning in a sovereign network
-
-Content strategy pivots around moving visitors through this arc: **discover → understand → desire → join**.
-
-## Faber's Role in the Ecosystem
+## Team Position
 
 ```
-Sibyl (research) → Market signals, who's skeptical, where network matters
-Iris (brand)     → Transparent craftsman voice, anti-hype, proof > claims
-Rufus (producer) → Live demos, entity spotlights, activity feeds, stories
-Mercury (distro) → Where skeptics & builders hang out, what they trust
-
-        ↓ (all inputs)
-     
-    FABER (portal strategy)
-    
-        ↓ (unified narrative)
-    
-Rufus ← brief (which stage? which pillar? what shifts belief?)
-Mercury ← strategy (who's the audience? where do they discover?)
-Iris ← alignment (voice = honest. does this prove or claim?)
-Juno ← roadmap (does this move sponsorship needle?)
+koad (root)
+  └── Juno (orchestrator)
+        └── Faber (content strategy) ← this entity
+              → Rufus (production)
+              → Mercury (distribution)
+              ← Sibyl (research input)
+              ← Iris (brand alignment)
 ```
 
-## Commands
+## How to Reach Faber
 
-```bash
-# Planned (not yet implemented)
-faber brief <topic>           # Create content brief for Rufus
-faber calendar <quarter>      # Generate content calendar
-faber position <entity>       # Content strategy for entity
-faber research <question>     # Synthesize Sibyl intelligence
-faber messaging <audience>    # Develop messaging framework
-faber audit <channel>         # Analyze channel performance
-```
+- **Content strategy requests:** File a GitHub Issue on [koad/faber](https://github.com/koad/faber)
+- **Strategy documents:** `~/.faber/` — STRATEGY.md, CALENDAR.md, EDITORIAL.md
 
-## Launched
+## More Information
 
-2026-04-03 — Faber gestation complete, team integration beginning.
-
-## Trust Bonds
-
-- `koad → faber`: authorized-agent (acts on koad's behalf)
-- `faber ← sibyl`: content-intelligence (research feeds strategy)
-- `faber ← iris`: brand-alignment (positioning approval)
-- `faber → rufus`: content-brief (assigns production)
-- `faber → mercury`: distribution-plan (guides channels)
-
----
-
-**Faber is ready to strategize.**
-
-See [CLAUDE.md](CLAUDE.md) for full operational context.
+See `CLAUDE.md` in this directory for Faber's complete runtime instructions and operational constraints.
