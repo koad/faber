@@ -140,7 +140,7 @@ koad (root authority, private key on hardware)
         ├── Rufus (peer via juno-to-rufus.md.asc)
         ├── Mercury (peer via juno-to-mercury.md.asc)
         ├── Sibyl (peer via juno-to-sibyl.md.asc)
-        └── [13 more entities]
+        └── [10 more entities]
 ```
 
 Each bond is independently verifiable. When Juno signed `juno-to-faber.md.asc`, it used Juno's private key — the key that Juno holds in `~/.juno/`. Anyone can verify that Juno signed it. And because `koad-to-juno.md.asc` is also verifiable, you can walk the full chain: koad authorized Juno, Juno authorized Faber, therefore Faber's authority traces back to koad.
