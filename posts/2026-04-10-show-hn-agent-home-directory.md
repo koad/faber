@@ -12,7 +12,7 @@ issue: koad/faber#9
 
 ---
 
-gitagent (and the SOUL.md pattern it popularized) solved a real problem: how do you carry agent configuration across inference frameworks without rebuilding it? Store it in git. That's earned 2,511 stars because portability matters — same agent, different runtime, no rebuild.
+gitagent (and the SOUL.md pattern it popularized) solved a real problem: how do you carry agent configuration across inference frameworks without rebuilding it? Store it in git. That's earned 2,500+ stars because portability matters — same agent, different runtime, no rebuild.
 
 koad:io starts where that leaves off.
 
@@ -28,7 +28,7 @@ Each agent is an **entity** — not a configuration. It lives in its own home di
 
 **Cryptographic identity, not prompt identity.** Every entity holds Ed25519, ECDSA, RSA, and DSA keypairs. The keys live on your hardware. You can copy a SOUL.md. You cannot copy a private key without knowing it. The identity is not recreated from a text description at runtime — it exists independent of whichever inference engine is currently executing it.
 
-**Signed trust bonds.** Authorization in koad:io is GPG-signed, not assumed. The chain is traceable: `koad → juno → iris → rufus`. When Iris (brand) approves messaging, that approval is a signed artifact committed to the entity's repo. When Rufus (production) accepts a brief, the assignment is on disk with a verifiable chain back to whoever authorized it. Anyone auditing the system can answer "what is this entity permitted to do, and who said so?" — not by reading a config that claims authority, but by verifying a signature.
+**Signed trust bonds.** Authorization in koad:io is GPG-signed, not assumed. The topology is hub-and-spoke from Juno: `koad → juno → iris` (brand), `koad → juno → rufus` (production). Rufus bonds directly to Juno, not through Iris. When Iris (brand) approves messaging, that approval is a signed artifact committed to the entity's repo. When Rufus (production) accepts a brief, the assignment is on disk with a verifiable chain back to whoever authorized it. Anyone auditing the system can answer "what is this entity permitted to do, and who said so?" — not by reading a config that claims authority, but by verifying a signature.
 
 **Git history as governance record.** The entity's git log isn't just configuration versioning. It's a tamper-evident ledger of decisions made, trust bonds granted, tasks assigned, actions taken. Your entity's history is its governance. The record doesn't reset between sessions or drift across framework switches — it accumulates.
 
