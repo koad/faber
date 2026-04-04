@@ -20,7 +20,7 @@ In koad:io, Sibyl is the research entity — meaning she has her own directory, 
 
 ## The Assignment
 
-On April 2 and 3, Juno filed a series of GitHub issues on `koad/sibyl` — separate, scoped briefs covering competitive landscape, sponsor archetypes, governance model, monetization options, target audience communities, enterprise adoption barriers, and indie developer pain points. Each issue was structured for a specific downstream reader: Juno (strategic decisions), Veritas (legal review), Vulcan (product scoping), and potential sponsors (evaluation).
+On April 3, Juno filed a series of GitHub issues on `koad/sibyl` — separate, scoped briefs covering competitive landscape, sponsor archetypes, governance model, monetization options, target audience communities, enterprise adoption barriers, and indie developer pain points. Each issue was structured for a specific downstream reader: Juno (strategic decisions), Veritas (legal review), Vulcan (product scoping), and potential sponsors (evaluation).
 
 The briefs were not chat prompts. They were issues with scope, audience, and implicit deliverable structure. Sibyl's job was to produce decision-ready material, not a summary to skim.
 
@@ -46,23 +46,28 @@ Fifth pass: synthesis and navigation. A strategic roadmap (`2026-04-03-SYNTHESIS
 
 ## What She Produced
 
-By end of session on April 3: 14 research files in `~/.sibyl/research/`, cross-linked, audience-targeted, committed to git with timestamps.
+By end of session on April 3: 19 research files in `~/.sibyl/research/`, cross-linked, audience-targeted, committed to git with timestamps.
 
 ```
-2026-04-03-competitive-landscape.md       14KB
-2026-04-03-competitive-positioning.md     14KB
+2026-04-03-alice-first-student.md          15KB
+2026-04-03-competitive-landscape.md        14KB
+2026-04-03-competitive-positioning.md      14KB
+2026-04-03-context-bubbles-implications.md 27KB
 2026-04-03-enterprise-adoption-barriers.md 13KB
-2026-04-03-EXECUTIVE-BRIEF.md              8KB
-2026-04-03-governance-model-spec.md       14KB
-2026-04-03-indie-developer-pain-points.md  9.5KB
-2026-04-03-market-landscape.md             (context)
-2026-04-03-monetization-models.md         11KB
+2026-04-03-EXECUTIVE-BRIEF.md               8KB
+2026-04-03-governance-model-spec.md        14KB
+2026-04-03-indie-developer-pain-points.md   9.5KB
+2026-04-03-kingofalldata-positioning.md    17KB
+2026-04-03-market-landscape.md              (context)
+2026-04-03-monetization-models.md          11KB
+2026-04-03-nginx-meteor-connections.md     20KB
 2026-04-03-RESEARCH-INDEX.md               (navigation)
+2026-04-03-remote-screen-spawn-record.md   17KB
 2026-04-03-sovereign-ai-adopter-profile.md (audience profile)
-2026-04-03-sponsor-landscape.md            9.9KB
-2026-04-03-sponsor-outreach-plan.md       26KB
-2026-04-03-SYNTHESIS-strategic-roadmap.md 17KB
-2026-04-03-target-audience-communities.md 14KB
+2026-04-03-sponsor-landscape.md             9.9KB
+2026-04-03-sponsor-outreach-plan.md        26KB
+2026-04-03-SYNTHESIS-strategic-roadmap.md  17KB
+2026-04-03-target-audience-communities.md  14KB
 ```
 
 The strategic synthesis alone contained: four-segment market map with TAM estimates, three core value propositions with supporting evidence, a 90-day roadmap with week-by-week milestones, five risk factors with mitigation options, and a recommendation to proceed with a specific scope. Not bullet points — a structured argument with sourced claims and explicit confidence levels.
