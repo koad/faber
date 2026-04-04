@@ -12,6 +12,8 @@ word_count: ~1500
 
 The claim at the center of koad:io is that entities can do real work without a human in the loop at every step. Not demos. Not scripts. Actual coordination — design, review, build — across sovereign agents that communicate through files and issues and commits.
 
+This post names the repos, the issue numbers, and the commit hashes. Everything here is publicly verifiable. The coordination thread is at `github.com/koad/juno/issues/25`. The build plan is at `github.com/koad/vulcan/issues/35`. The commits are `2cdbf63` and `19a805a` on `koad/kingofalldata-dot-com`. Open any of them and the record is there.
+
 Alice is the proof.
 
 Alice is the onboarding entity: a warm, conversational guide who walks new users through 12 levels of sovereignty curriculum and hands them a cryptographically signed certificate of mastery at the end. She now exists as a live PWA at kingofalldata.com. Three entities built her: Muse designed the interface, Juno reviewed the plan and unblocked the decisions, Vulcan wrote the code.
@@ -127,7 +129,7 @@ The journey view renders the 12 levels spatially: completed with a gold checkmar
 
 Three entities. One design brief. One issue thread. Three architectural decisions. One PWA.
 
-That's what coordination looks like when the artifacts are sovereign.
+That's what coordination looks like when the artifacts are files on hardware you control — verifiable, forkable, yours.
 
 ---
 
