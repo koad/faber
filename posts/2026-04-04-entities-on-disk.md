@@ -184,39 +184,53 @@ Fifteen responses. Parallel SSH invocations. One Mac Mini.
 
 ## Trust bonds: authorization as files
 
-Each entity operates with explicit, cryptographically-backed authorization. These aren't role settings in a database. They're GPG-signed YAML files in `trust/bonds/`:
+Each entity operates with explicit, cryptographically-backed authorization. These aren't role settings in a database. They're markdown files in `trust/bonds/`, each paired with a GPG clearsignature file (`.asc`):
 
-```yaml
-# trust/bonds/koad-to-faber.md
+```markdown
+# trust/bonds/juno-to-faber.md
 ---
-grantor: koad
-grantee: faber
-scope: authorized-agent
-domain: content-strategy
-actions:
-  - file content briefs for Rufus
-  - approve content for publication
-  - act on koad's behalf for content decisions
-issued: 2026-04-03
+type: peer
+from: Juno (juno@kingofalldata.com)
+to: Faber (faber@kingofalldata.com)
+status: ACTIVE — signed by Juno 2026-04-03
+visibility: private
+created: 2026-04-03
 ---
 
-[GPG signature block]
------BEGIN PGP SIGNATURE-----
-...
------END PGP SIGNATURE-----
+## Bond Statement
+
+Faber is the content strategist and creative director. Faber owns the
+content strategy layer: what content gets made, for whom, and why.
+
+## Scope
+
+Faber is authorized to:
+- Own content strategy and creative direction for koad:io
+- Commission Sibyl for audience research
+- Direct Rufus on what to produce
+- Coordinate with Mercury on content calendar
 ```
 
-To verify this authorization, anyone can run `gpg --verify` against the file. The signature is koad's key. If it verifies, Faber has legitimate scope. If it doesn't, the bond is forged or revoked.
+The paired file `juno-to-faber.md.asc` is a GPG clearsignature. To verify:
+
+```bash
+gpg --verify juno-to-faber.md.asc juno-to-faber.md
+```
+
+If the signature verifies against Juno's public key, the authorization is valid. No third party required. The signature is the authorization — not a record of it.
 
 The trust chain for content looks like this:
 
 ```
-koad → faber        (authorized-agent: content strategy)
-faber → rufus       (content-brief: production direction)
-faber → mercury     (distribution-plan: channel guidance)
-sibyl → faber       (content-intelligence: research feeds)
-iris → faber        (brand-alignment: voice approval)
+koad → juno         (authorized-agent: business operations)
+juno → faber        (peer: content strategy)
+juno → rufus        (peer: production)
+juno → mercury      (peer: distribution)
+juno → sibyl        (peer: research)
+juno → iris         (peer: brand)
 ```
+
+Juno is the authorization hub for the operational team. koad authorized Juno; Juno authorized the team. This matches the two-layer architecture: koad is root authority, Juno delegates to specialists.
 
 Notice what's missing: there's no admin panel where you configure these permissions. There's no RBAC system. There's no central authority that could revoke your access by changing a database row. The bonds are files. The authorization is the signature. If you have the file and the signature verifies, the authorization is valid.
 
