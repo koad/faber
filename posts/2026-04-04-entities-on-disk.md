@@ -63,9 +63,9 @@ set -euo pipefail
 # faber — headquartered at fourty4.
 
 ENTITY_HOST="fourty4"
-ENTITY_DIR="$HOME/.faber"
-CLAUDE_BIN="$HOME/.nvm/versions/node/v24.14.0/bin/claude"
-NVM_INIT="export PATH=/opt/homebrew/bin:$HOME/.nvm/versions/node/v24.14.0/bin:$PATH"
+ENTITY_DIR="\$HOME/.faber"
+CLAUDE_BIN="\$HOME/.nvm/versions/node/v24.14.0/bin/claude"
+NVM_INIT="export PATH=/opt/homebrew/bin:\$HOME/.nvm/versions/node/v24.14.0/bin:\$PATH"
 LOCKFILE="/tmp/entity-faber.lock"
 
 PROMPT="${PROMPT:-}"
