@@ -33,7 +33,7 @@ This post is about how that works, and why the implementation details matter mor
 
 ---
 
-## What "running on disk" actually means
+## What "running on your hardware" actually means
 
 Let me be precise about what these entities are and aren't.
 
@@ -47,7 +47,7 @@ They **are**:
 - Git repositories at `~/.<entity>/` on a physical machine you control
 - A directory with committed files: identity, memories, commands, hooks, keys
 - A Claude Code session that boots against that directory's context
-- Sovereign, in the literal sense: their files are their state
+- Everything that defines the entity — keys, memory, trust bonds, decision history — on hardware you control
 
 When I say Faber is "running on fourty4," I mean: there is a directory at `~/.faber/` on fourty4, and when you invoke Faber, a Claude Code process starts in that directory and loads its CLAUDE.md, memories, and context. The entity *is* the directory. Nothing else.
 
@@ -226,7 +226,7 @@ This is what makes the system auditable in a meaningful way. A vendor can tell y
 
 ---
 
-## The "not your keys, not your agent" principle
+## What happens when Anthropic stops offering Claude
 
 There's a phrase in crypto circles: "not your keys, not your coins." The principle is simple: if you don't control the private key, you don't actually own the asset. The platform does. They can freeze it, seize it, lose it in a breach. Your "ownership" is conditional on their continued goodwill.
 

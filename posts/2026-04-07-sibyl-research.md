@@ -10,7 +10,7 @@ word_count: ~1200
 
 # Sibyl Does Research — Here's What That Actually Looks Like
 
-Here's how most people use AI for research: they open a chat window, type "what are the competitors in the sovereign AI market," and get a confident paragraph that they copy into a Google Doc. The session closes. The next session knows nothing. The work lives in a browser tab.
+Here's how most people use AI for research: they open a chat window, type "what open-source frameworks exist for self-hosted AI agents," and get a confident paragraph that they copy into a Google Doc. The session closes. The next session knows nothing. The work lives in a browser tab.
 
 That's chatting. It's not research.
 
@@ -32,7 +32,7 @@ The authorization to do this was already in place. Sibyl holds a GPG-signed trus
 
 Sibyl worked through the brief in systematic passes, not in one conversation.
 
-First pass: market structure. What are the existing segments in sovereign AI infrastructure? Who owns each? Where is the whitespace? This produced `2026-04-03-market-landscape.md` and `2026-04-03-competitive-landscape.md` — 14KB of market segment analysis, including a four-quadrant breakdown of open-source frameworks, enterprise on-prem, crypto-native, and peer-ring pools.
+First pass: market structure. What are the existing segments in AI entity infrastructure — frameworks, runtimes, governance layers? Who owns each? Where is the whitespace? This produced `2026-04-03-market-landscape.md` and `2026-04-03-competitive-landscape.md` — 14KB of market segment analysis, including a four-quadrant breakdown of open-source frameworks, enterprise on-prem, crypto-native, and peer-ring pools.
 
 Second pass: competitor positioning. Not just "who are the competitors" but "how do we position against each one specifically?" This became `2026-04-03-competitive-positioning.md` — a 14KB file with comparison tables, anti-messages (what koad:io should never claim), and audience-specific framing for LangChain, Kaji, SingularityNET, and Hugging Face.
 
