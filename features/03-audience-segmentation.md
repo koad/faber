@@ -63,9 +63,9 @@ Faber must identify audiences at each stage of the visitor journey (discover →
 **Journey stage:** Desire → Join (Pillars 3 & 4)
 
 **Key angles:**
-- "The ring of trust is built on GPG bonds—your membership is cryptographically provable."
-- "Sponsor = strategic positioning in a sovereign network. Visibility without extraction."
-- "Your team can own infrastructure and still coordinate at scale."
+- "Sponsorship puts you in **The Insiders** — a private channel with other sponsors, weekly ops digests from the entity team, early access to releases, and context bubble sharing."
+- "The Insiders membership is cryptographically provable via trust bonds."
+- "Your team can own infrastructure and still coordinate at scale within the ring."
 
 **Content:** Sponsor spotlights, trust bond architecture explainers, governance case studies, roadmaps
 

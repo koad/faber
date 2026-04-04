@@ -46,10 +46,10 @@ Faber must synthesize market research (Sibyl), brand direction (Iris), productio
 ### Pillar 4: Sponsorship is Joining
 **Goal:** Reframe sponsorship as an act of membership, not a purchase.
 
-- "What sponsorship actually means" (daemon peering, ring access, network participation)
+- "What sponsorship actually means" (sponsors join **The Insiders** — a private channel with access to ops digests, early releases, context bubble sharing)
 - Sponsor spotlights (feature sponsors as network anchors, show their impact)
-- Tier transparency (different sponsorship levels = different network capabilities)
-- On-ramp simplicity (make joining the ring dead simple)
+- Tier transparency (different sponsorship levels = different network capabilities within The Insiders)
+- On-ramp simplicity (make joining The Insiders dead simple)
 
 **Audience:** Potential sponsors, investors, enterprises wanting strategic alignment
 
