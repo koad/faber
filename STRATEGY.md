@@ -64,30 +64,37 @@ Juno helps build first entity / join peer ring
 
 ---
 
-## The Four Content Pillars (Updated)
+## The Five Content Pillars (Updated)
 
-### 1. **Alice's Character** (new)
+### 1. **Alice's Character** (funnel entry)
 - Who she is, why she exists, what her philosophy is
 - Her warmth, patience, personal nature
 - How she differs from traditional "tutors" or "guides"
 - Why she cryptographically signs certificates (trust, not authority)
 
-### 2. **The Curriculum** (new priority)
+### 2. **The Curriculum** (funnel progression)
 - Each level explained: what you learn, why it matters, how it feels
 - The progression from "curious stranger" to "sovereign operator"
 - Real examples of humans going through the levels
 - Tangible skills and understanding at each step
 
-### 3. **The Experience** (new)
+### 3. **The Experience** (funnel depth)
 - What it's like to be guided by Alice
 - The PWA as a safe, welcoming space
 - Pacing, tone, personal attention
 - How it differs from online courses, bootcamps, or self-serve learning
 
-### 4. **Reality** (deprioritized, but still important)
+### 4. **Reality** (infrastructure proof)
 - The technical infrastructure (entities, trust bonds) is *proven* by Alice's existence
 - Show that koad:io is live by demonstrating Alice working with real people
 - Let the infrastructure prove itself through the human story, not the other way around
+
+### 5. **Truth** (NEW PILLAR — knowledge as verifiable experience)
+- **Core insight**: Knowledge travels as experience, not summary. What you know can be traced back to how you came to know it.
+- **The context bubble model**: Sessions rendered as playlists. Thinking in sequence. Verifiable reasoning, not conclusions.
+- **Journalism implications**: Independent journalists as Alice's first advanced students. Stories that cannot be misquoted. Research that travels with its reasoning.
+- **The $200 laptop story as example**: koad's 7-day genesis rendered as a context bubble. Verifiable proof that something happened the way it was said to happen.
+- **Content vertical**: "What context bubbles mean for reporting," "Trust without authorities," "Knowledge you can verify yourself"
 
 ---
 
@@ -98,13 +105,15 @@ Juno helps build first entity / join peer ring
 - **People skeptical of tech solutions** but open to learning
 - **Seekers** interested in sovereignty, freedom, personal growth
 - **Builders** who want to understand the philosophy before building
+- **Independent journalists** (NEW) — the person who understands context bubbles immediately. Who feels the brokenness of platform journalism. Who wants to report stories that cannot be misquoted. Alice's most important early advanced student.
 
 ### Secondary
 - **Indie developers** who want to own their infrastructure (but this is *secondary*)
 - **Enterprise IT** concerned with governance and transparency
 - **Academics** studying decentralized systems
+- **Substack writers & newsletter creators** interested in owned distribution and verifiable narratives
 
-**Key shift**: We're not leading with tech credibility. We're leading with human connection. Tech credibility emerges *after* they've met Alice.
+**Key shift**: We're not leading with tech credibility. We're leading with human connection. Tech credibility emerges *after* they've met Alice. For journalists specifically: Truth emerges from experienced reasoning, not platform architectures.
 
 ---
 
@@ -145,16 +154,16 @@ Juno helps build first entity / join peer ring
 
 ---
 
-## Assignments (Alice-Centric)
+## Assignments (Alice-Centric + Truth Pillar)
 
 | Entity | Work | Schedule |
 |--------|------|----------|
-| **Faber** | Alice positioning pieces, level descriptions, narrative framing | Daily |
-| **Rufus** | Alice intro video, level walkthroughs, PWA screenshots, person going through levels | Weekly |
-| **Sibyl** | Research on what resonates with curious humans (not just technical audiences) | As needed |
-| **Mercury** | Social distribution (warmth > technical correctness), community engagement | Daily |
-| **Iris** | Voice alignment (Alice is warm, not corporate; personal, not performative) | Weekly |
-| **Juno** | Onboarding flow (PWA ready?), graduation process, transition to Juno intro | Blocking |
+| **Faber** | Alice positioning pieces, level descriptions, narrative framing + Truth pillar messaging for journalists | Daily |
+| **Rufus** | Alice intro video, level walkthroughs, PWA screenshots, person going through levels + $200 laptop context bubble rendering | Weekly |
+| **Sibyl** | Research on what resonates with curious humans + journalist research on context bubbles (from koad/juno) | As needed |
+| **Mercury** | Social distribution (warmth > technical correctness), community engagement + journalist outreach channels | Daily |
+| **Iris** | Voice alignment (Alice is warm, not corporate; personal, not performative) + Truth brand pillars | Weekly |
+| **Juno** | Onboarding flow (PWA ready?), graduation process, transition to Juno intro + journalist-first content strategy | Blocking |
 
 ---
 
@@ -177,10 +186,12 @@ Juno helps build first entity / join peer ring
 
 ### After Week 2 (Alice lands)
 1. **Reality Pillar** (Week 3+): Now people understand sovereignty through Alice—show the infrastructure that makes it possible
-2. **Capability Pillar** (Week 4+): What can you *build* with sovereignty? Show entities, trust bonds, networks
-3. **Community Pillar** (Week 5+): How do you *join* the sovereign network? Sponsorship, peer rings, Juno intro
+2. **Truth Pillar** (Week 3-4): Parallel vertical targeting independent journalists. How context bubbles change journalism. The $200 laptop story as a verifiable context bubble. "What does it mean when your reporting can't be edited by platforms?"
+3. **Autonomy Pillar** (Week 5+): What does it mean to be truly autonomous? Contrast with platform control, surveillance, algorithmic capture
+4. **Network Pillar** (Week 6+): How do sovereign entities collaborate? Trust bonds, peer rings, cross-entity relationships
+5. **Membership Pillar** (Week 7+): How do you join? Sponsorship, roles, advancement through the 12 levels with Alice
 
-Each pillar builds on Alice's foundation: people who care about sovereignty because they've *felt* it, not because they understand the tech.
+Each pillar builds on Alice's foundation: people who care about sovereignty because they've *felt* it, not because they understand the tech. Journalists specifically care because they've *experienced* the difference between platform journalism and verifiable truth.
 
 ---
 
