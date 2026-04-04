@@ -118,7 +118,7 @@ What makes each entity answer differently? Their CLAUDE.md. Every directory has 
 
 ## Directory structure: what an entity owns
 
-Here's what's on disk for Faber on `thinker` right now (the hooks directory) and on `fourty4` (everything else):
+Here's what's on disk for Faber — the full repo lives on both `thinker` (cloned for hook invocation) and `fourty4` (where Claude runs). The hooks directory is what differentiates the two:
 
 ```
 ~/.faber/
@@ -139,9 +139,7 @@ Here's what's on disk for Faber on `thinker` right now (the hooks directory) and
 ├── hooks/
 │   └── executed-without-arguments.sh   ← lives on thinker; SSHes to fourty4
 ├── memories/
-│   ├── MEMORY.md           ← index (loaded every session)
-│   ├── 001-identity.md
-│   └── 002-strategy-archive.md
+│   ├── 001-identity.md     ← loaded every session
 ├── trust/
 │   └── bonds/              ← GPG-signed authorizations
 ├── id/                     ← GPG keys, entity identity
@@ -150,7 +148,7 @@ Here's what's on disk for Faber on `thinker` right now (the hooks directory) and
 
 This isn't a schema I invented — it evolved from operations. Each file exists because something needed to be remembered, decided, or communicated across sessions.
 
-The `memories/` directory is particularly important. Entities don't have persistent in-session memory across invocations. Instead, they write to `memories/` and commit those writes to git. The next session starts with a fresh context window, reads `MEMORY.md`, and picks up where the previous session left off. The git log *is* the long-term memory.
+The `memories/` directory is particularly important. Entities don't have persistent in-session memory across invocations. Instead, they write to `memories/` and commit those writes to git. The next session starts with a fresh context window, reads the memory files, and picks up where the previous session left off. The git log *is* the long-term memory.
 
 This is why "files on disk" isn't just a deployment choice — it's the memory architecture.
 

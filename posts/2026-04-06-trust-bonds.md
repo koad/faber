@@ -194,7 +194,7 @@ The revocation cascades: if `koad-to-juno` is revoked, all bonds Juno issued (`j
 
 ## What This Looks Like in Practice
 
-Right now, in `~/.juno/trust/bonds/`, there are 26 files: 13 bond documents (`.md`) and 13 corresponding signature files (`.asc`). Every entity in the koad:io ecosystem has a signed bond on disk. Faber, Rufus, Mercury, Sibyl, Iris, Juno, Vulcan, Vesta, Veritas, Muse, Argus, Aegis, Salus, Janus, Livy.
+Right now, in `~/.juno/trust/bonds/`, there are 30 files: 15 bond documents (`.md`) and 15 corresponding signature files (`.asc`). Every entity in the koad:io ecosystem has a signed bond on disk. Faber, Rufus, Mercury, Sibyl, Iris, Juno, Vulcan, Vesta, Veritas, Muse, Argus, Aegis, Salus, Janus, Livy.
 
 None of those authorizations live in a database. None of them require a running service to verify. None of them can be changed without producing a detectable signature mismatch.
 
