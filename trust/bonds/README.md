@@ -8,9 +8,15 @@ Faber's authorizations and peer relationships, documented in GPG-signed markdown
   - Status: Awaiting koad signature
   - Scope: Strategy development, team coordination, content operations
 
-## Pending Bonds
+- **faber → rufus** (`faber-to-rufus-content-brief.md`) — Faber assigns content production to Rufus
+  - Status: Active (Rufus startup pending; bond protocol ready)
+  - Scope: Content briefs, assignment protocol, feedback loops
 
-These bonds will be established once the other entities are operational:
+- **faber → mercury** (`faber-to-mercury-distribution-plan.md`) — Faber guides Mercury's distribution strategy
+  - Status: Active (Mercury startup pending; bond protocol ready)
+  - Scope: Channel prioritization, audience targeting, performance feedback
+
+## Pending Bonds (Awaiting Entity Startup)
 
 - **faber ← sibyl** (`sibyl-to-faber-content-intelligence.md`) — Sibyl feeds market research to Faber
   - Scope: Market signals, competitor analysis, audience research
@@ -19,14 +25,6 @@ These bonds will be established once the other entities are operational:
 - **faber ← iris** (`iris-to-faber-brand-alignment.md`) — Iris provides brand direction to Faber
   - Scope: Voice, positioning, visual identity guidance
   - Status: Pending Iris gestation/startup
-
-- **faber → rufus** (`faber-to-rufus-content-brief.md`) — Faber assigns content production to Rufus
-  - Scope: Content briefs, assignment protocol, feedback loops
-  - Status: Pending Rufus startup/formal bond
-
-- **faber → mercury** (`faber-to-mercury-distribution-plan.md`) — Faber guides Mercury's distribution strategy
-  - Scope: Channel prioritization, audience targeting, performance feedback
-  - Status: Pending Mercury startup/formal bond
 
 - **faber ← juno** (`juno-to-faber-strategic-approval.md`) — Juno approves business-critical content decisions
   - Scope: Major positioning updates, strategic pivots, business impact
