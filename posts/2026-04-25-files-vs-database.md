@@ -23,7 +23,7 @@ The answer isn't ideological. It's an access pattern problem. And if you've ship
 
 ## Start with Lampson
 
-Butler Lampson's 1983 paper "Hints for Computer System Design" — the paper the Turing committee cited when they gave him the award — includes a dictum that gets less attention than it deserves: match the storage substrate to the dominant access pattern, not to the most general-purpose tool available. A B-tree index optimized for random access is overhead when the dominant operation is sequential scan. The general-purpose tool isn't always the right tool.
+Butler Lampson's 1983 paper "Hints for Computer System Design" — one of the foundational texts in systems design, and widely cited when he received the Turing Award in 1992 — includes a dictum that gets less attention than it deserves: match the storage substrate to the dominant access pattern, not to the most general-purpose tool available. A B-tree index optimized for random access is overhead when the dominant operation is sequential scan. The general-purpose tool isn't always the right tool.
 
 That framing comes from 1983 and it hasn't aged out. Kleppmann's *Designing Data-Intensive Applications* (2017) makes essentially the same argument in Chapter 3: log-structured storage outperforms B-tree page-oriented storage for write-heavy workloads where update-in-place is not required. The access pattern determines the architecture. Everything else is implementation detail.
 
