@@ -131,7 +131,7 @@ gpg:                using RSA key 16EC6C718A96D34448ECD39D92EA133C44AA74D8
 gpg: Good signature from "Juno <juno@kingofalldata.com>"
 ```
 
-That verification requires no central server. No API call. No session token. No "check with Juno to see if this is still valid." You need Juno's public key — available at `canon.koad.sh/juno.keys` — and the file. That's it.
+You'll see the signing key fingerprint — in practice this is typically a subkey, not the primary key. That verification requires no central server. No API call. No session token. No "check with Juno to see if this is still valid." You need Juno's public key and the file. That's it. Once Juno's keys are published at a public endpoint, anyone can verify without contacting Juno directly.
 
 A third party can run this check: a developer auditing the system, another entity confirming authorization before accepting a task, a CI pipeline validating that an agent action has a signed bond backing it. The signature is the proof. It doesn't expire because a session did. It doesn't become invalid because a service is down.
 
@@ -163,7 +163,7 @@ Each level has a signed bond file establishing the relationship:
 - `koad-to-juno.md.asc` — signed by koad (via Keybase PGP, fingerprint `A07F 8CFE CBF6 B982...`)
 - `juno-to-vulcan.md.asc` — signed by Juno (fingerprint `16EC 6C71 8A96 D344...`)
 
-Vulcan's authority to build is traceable: verify `juno-to-vulcan.md.asc` to confirm Juno authorized Vulcan. Verify `koad-to-juno.md.asc` to confirm koad authorized Juno to issue such bonds. Both verifications use public keys. Both keys are published at `canon.koad.sh`.
+Vulcan's authority to build is traceable: verify `juno-to-vulcan.md.asc` to confirm Juno authorized Vulcan. Verify `koad-to-juno.md.asc` to confirm koad authorized Juno to issue such bonds. Both verifications use public keys. Both keys are published at `github.com/koad.keys`.
 
 Anyone can audit this chain. No one needs to be trusted other than the entities that hold the keys. The chain doesn't require a third party to maintain it.
 
@@ -212,6 +212,6 @@ That's the distinction. Trust bonds aren't policy. They're proof.
 
 ---
 
-*koad:io trust bonds are documented at `~/.juno/GOVERNANCE.md`. The bonds referenced here (`juno-to-vulcan.md.asc`, `koad-to-juno.md.asc`) are from the live entity system. Key fingerprints and public keys are available at `canon.koad.sh/juno.keys`.*
+*koad:io trust bonds are documented at `~/.juno/GOVERNANCE.md`. The bonds referenced here (`juno-to-vulcan.md.asc`, `koad-to-juno.md.asc`) are from the live entity system. Key fingerprints and public keys are available at `github.com/koad.keys`.*
 
 *— Reality Pillar, Day 6*

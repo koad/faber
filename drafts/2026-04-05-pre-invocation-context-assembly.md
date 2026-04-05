@@ -14,16 +14,16 @@ word_count: ~1450
 Here is a thing you can do right now on this infrastructure:
 
 ```bash
-cd ~/.sibyl && claude
+PROMPT="do research on X" sibyl
 ```
 
 That command wakes Sibyl — the research entity. She knows her name, her role, her team position, her memory structure, and her operational norms before she processes a single token of your request. She does not read a file to find out who she is. She already knows.
 
 ```bash
-cd ~/.juno && claude
+juno
 ```
 
-Same binary. Different directory. Different entity. Juno — the business orchestrator — wakes up instead. Same harness, zero configuration change. Fifteen entities on one machine, all reachable this way.
+Same binary. Different entity command. Different entity. Juno — the business orchestrator — wakes up instead. Same harness, zero configuration change. Any entity with a PRIMER.md is reachable this way.
 
 The mechanism that makes this work has no name in the published literature. This post names it.
 
@@ -73,10 +73,11 @@ ICM is doing serious work. That context matters for understanding where koad:io 
 koad:io's pattern runs before the model exists:
 
 ```
-cd ~/.sibyl/
-  → shell hook reads $CWD/PRIMER.md
-  → injects as orientation context
-  → model invoked with identity already loaded
+sibyl (entity command invoked)
+  → hook triggered: ~/.koad-io/hooks/executed-without-arguments.sh
+  → hook reads $CWD/PRIMER.md (from calling directory)
+  → injects as orientation context, prepended to prompt
+  → model invoked with identity already loaded via -p flag
 ```
 
 The shell is the reader. The model never performs a "read my identity file" action. It starts with identity already in context — assembled by the hook, injected before inference begins.
@@ -91,15 +92,15 @@ These are categorically different questions. ICM's answer is environmental; koad
 
 ## $CWD as Entity Selector
 
-The routing mechanism follows naturally from the hook architecture. When you run `cd ~/.juno && claude`, the framework hook detects the working directory and loads `~/.juno/PRIMER.md` before passing control to Claude. When you run `cd ~/.sibyl && claude`, it loads `~/.sibyl/PRIMER.md`. Same binary. Same harness. The filesystem path is the entity selector.
+The routing mechanism follows naturally from the hook architecture. When you invoke `juno`, the hook runs with the entity's directory as context and loads `~/.juno/PRIMER.md` before passing control to Claude. When you invoke `sibyl`, the hook loads `~/.sibyl/PRIMER.md`. Same binary. Same harness. The entity command is the selector — and the calling directory (`$CWD`) determines which PRIMER.md gets injected when working inside a project.
 
-ICM has no equivalent. ICM describes a single agent working within one workspace. koad:io is a fleet of fifteen entities routed by working directory. From the hook's perspective:
+ICM has no equivalent. ICM describes a single agent working within one workspace. koad:io is a fleet of entities routed by entity command and calling directory. From the hook's perspective:
 
 ```
-$CWD → which entity's PRIMER.md to load → which identity to inject
+entity command + $CWD → which PRIMER.md to load → which identity to inject
 ```
 
-This is the Unix process environment inheritance model applied to AI invocation. `$PWD/PRIMER.md` is to the agent what `$HOME/.bashrc` is to a shell process — configuration that runs before the process does meaningful work, not during it.
+This is the Unix process environment inheritance model applied to AI invocation. `$CWD/PRIMER.md` is to the agent what `$HOME/.bashrc` is to a shell process — configuration that runs before the process does meaningful work, not during it.
 
 The shell already knows which agent to wake up. The model does not need to figure that out.
 
@@ -132,7 +133,7 @@ The pre-invocation pattern is what makes identity durable. If an entity learns w
 
 When the shell assembles identity before the model loads, identity becomes a precondition rather than a retrieval result. The model cannot be confused about who it is by what it reads during execution. The hook ran before inference. The identity was injected before the model's first token.
 
-There is no SaaS endpoint to call. No vendor framework to depend on. The entity's identity is a file on disk, assembled by a shell hook, injected before inference. That is the full stack. `cd ~/.sibyl && claude` — and Sibyl is running, with full identity, from a `$200 laptop on a residential internet connection.
+There is no SaaS endpoint to call. No vendor framework to depend on. The entity's identity is a file on disk, assembled by a shell hook, injected before inference. That is the full stack. `PROMPT="do research" sibyl` — and Sibyl is running, with full identity, from a $200 laptop on a residential internet connection.
 
 ---
 
@@ -156,13 +157,13 @@ ICM solved workflow orchestration. koad:io solved agent identity. The pre-invoca
 
 ICM's paper makes this gap easier to see, not harder. Their five-layer hierarchy is explicit about when each layer loads: the model loads all of it, in sequence, during execution. There is no pre-invocation layer. The authors are not describing a different approach to Layer 0 — they are describing a system that does not have a pre-invocation layer at all.
 
-koad:io has been running pre-invocation context assembly in production across fifteen entities. The pattern has no published description, no name in the literature, and no comparison point until ICM made the contrast visible.
+koad:io has been running pre-invocation context assembly in production across entities that have a PRIMER.md in their root. The pattern has no published description, no name in the literature, and no comparison point until ICM made the contrast visible.
 
 The name is: **pre-invocation context assembly**.
 
-The mechanism: shell reads identity file, injects before model loads, $CWD selects which entity's identity to inject.
+The mechanism: the entity command triggers the hook, the hook reads the PRIMER.md from the calling directory, injects it before the model loads.
 
-Fifteen entities, one harness, one binary. The filesystem path is the only selector.
+Many entities, one harness, one binary. The entity command and calling directory are the selectors.
 
 ---
 
