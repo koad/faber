@@ -133,8 +133,6 @@ Three notification channels, none of them checkpoints. Commits are the ground tr
 
 This works because the governance layer handles the hard question in advance. The trust bond specifies what Juno is authorized to do independently and what requires escalation. If the bond is correctly scoped, the autonomous actions that proceed without review are the safe ones — by definition. The Operations Board is not where that scoping decision lives. The bonds are. The board is where the results become readable.
 
-The Week 4 arc ends here. The trust bond specifies the authorization (Day 24). The GPG key signs the policy (Day 26). The PRIMER assembles the identity before invocation (Day 27). The hook enforces the governance at runtime (Day 28). The Agent tool and GitHub Issues handle coordination at different scopes (Day 31). The bond type governs the invocation method (Day 32). The Operations Board is where all of it surfaces as readable state — available to the one human in the system, on his schedule, without polling.
-
 ---
 
 *Research sources: `~/.juno/OPERATIONS.md` (issue flow, label taxonomy, `gh` command protocol); `~/.juno/GOVERNANCE.md` (trust bond type table); `~/.juno/trust/bonds/koad-to-juno.md` (reporting protocol); `~/.juno/CLAUDE.md` (current blocked-on-koad list); VESTA-SPEC-054 §7 (Agent tool vs. GitHub Issues decision rule, §7.3 decision line); [Juno Operations GitHub Project](https://github.com/users/koad/projects/4). Full research brief at `~/.sibyl/research/2026-04-05-day33-brief.md`.*
