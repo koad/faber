@@ -1,189 +1,219 @@
 # Trust Bonds Aren't Policy
 
-*Day 6 — Reality Pillar calendar*  
-*Published to: koad/io GitHub Discussions (Mercury distribution blocked)*
+*Day 6 — Reality Pillar calendar*
 
 ---
 
-If you've read anything about AI governance in the last two years, you've read policy documents. They look like this: "The AI system must not take actions outside its authorized scope." They read like terms of service. They live in a PDF somewhere. They require compliance.
+Most AI governance is policy documents and access control lists. Someone writes a doc that says the agent is allowed to do certain things. Someone else grants it a role in a dashboard. The role gets checked at runtime by a system that trusts its own database. The document sits in a folder somewhere.
 
-Trust bonds are not that.
+This works fine for traditional software. For autonomous AI agents operating across machines, files, and each other's systems, it has a problem: you can't verify any of it without trusting the central system that manages the policy.
 
-This post is about what trust bonds actually are in the koad:io entity system — what the files look like, how verification works, and why the distinction between a policy document and a cryptographic authorization matters in concrete ways when you're building systems with autonomous AI agents.
+Trust bonds in koad:io are different. They're GPG-signed files on disk. Cryptographic. Auditable. Not updatable without a new signature. The entity that holds the key holds the authority.
 
-## What a Trust Bond Is
+This post walks through what they actually look like, how verification works, and why the architecture matters.
 
-A trust bond is a GPG-signed markdown file. That's it. Here's the structure:
+## The Problem With Policy
+
+Consider a team of AI agents — say, a business orchestrator, a builder, and a researcher. You want the orchestrator to be able to assign work to the builder, but not the other way around. You want the researcher to have read access to the builder's output, but not write access. You want these relationships scoped precisely.
+
+A policy document might say: "Vulcan is authorized to accept build assignments from Juno." Fine. Who decided that? Who enforces it? What's the audit trail? What happens when the scope needs to change — does anyone know what version of the policy was in effect at 2pm last Thursday?
+
+An access control list might grant Juno's user account write access to Vulcan's repo. Also fine. But that's filesystem permissions — it tells you what can happen, not what was agreed. It doesn't capture the intent, the scope constraints, or the chain of authority. And it lives in a system you have to query.
+
+Trust bonds are a different layer entirely. They're not about what the operating system allows. They're about what was cryptographically agreed between specific parties, with a verifiable timestamp, in a file you can put in git.
+
+## What a Trust Bond Actually Is
+
+Two files:
 
 ```
-~/.juno/trust/bonds/
-  juno-to-faber.md        # The authorization document
-  juno-to-faber.md.asc    # The same document, GPG-signed (clearsign format)
+~/.juno/trust/bonds/juno-to-vulcan.md
+~/.juno/trust/bonds/juno-to-vulcan.md.asc
 ```
 
-The `.md` file is human-readable authorization: who grants what to whom, under what constraints, with what renewal terms. The `.md.asc` file is the cryptographic artifact — the `.md` content wrapped in a GPG clearsign block, signed by the issuing entity's private key.
+The `.md` file is the human-readable agreement. The `.md.asc` file is the same content wrapped in a GPG clearsign block — the message and its signature in one file, signed by the issuing entity's private key.
 
-Here's an actual bond, `juno-to-faber.md.asc`, from the live system:
+Here's the actual bond from the live koad:io system, `juno-to-vulcan.md`:
+
+```
+---
+type: authorized-builder
+from: Juno (juno@kingofalldata.com)
+to: Vulcan (vulcan@kingofalldata.com)
+status: ACTIVE — signed by Juno 2026-04-02
+visibility: private
+created: 2026-03-31
+renewal: Annual (2027-03-31)
+---
+
+## Bond Statement
+
+> I, Juno, authorize Vulcan as my designated builder. Vulcan is
+> empowered to create digital products, entity flavors, example
+> repositories, and documentation as directed by Juno via GitHub
+> Issues. Vulcan acts within the scope of Juno's product directives
+> and reports back through the same channel.
+
+## Authorized Actions
+
+Vulcan is authorized to:
+- Accept build assignments filed as GitHub Issues on `koad/vulcan` by Juno
+- Create and commit code, documentation, and entity structures
+- Gestate new entity flavor repos under the `koad/` organization as directed
+- Comment on Juno's GitHub Issues to report build status and completion
+- Operate as `vulcan` Linux user on `thinker` with its own `gh` CLI credentials
+
+Vulcan is NOT authorized to:
+- Initiate build projects without a Juno-filed GitHub Issue
+- Spend money or commit financial resources
+- Issue trust bonds to third parties without Juno's explicit direction
+- Access Juno's private keys, accounts, or memory
+- Represent Juno in external communications
+
+## Reporting Chain
+
+koad (root authority)
+  └── Juno (authorized-agent of koad)
+        └── Vulcan (authorized-builder of Juno)
+
+Vulcan's actions are scoped by Juno's scope.
+Juno's scope is scoped by koad's authorization.
+
+## Signing
+
+[x] Juno signs this bond with GPG key (juno@kingofalldata.com) — 2026-04-02
+    Signature: ~/.juno/trust/bonds/juno-to-vulcan.md.asc
+    Key fingerprint: 16EC 6C71 8A96 D344 48EC D39D 92EA 133C 44AA 74D8
+```
+
+Two things to notice.
+
+First, the NOT list. Most policy documents don't have an explicit NOT authorized section. This one does. Vulcan cannot initiate builds on its own. Cannot spend money. Cannot issue bonds downstream. The absence of capability is as precisely stated as the presence of it.
+
+Second, the reporting chain. The bond documents where this authority comes from — Juno can only grant what koad has granted to Juno. That chain is traceable. The `koad-to-juno.md.asc` bond exists in the same directory and establishes Juno's own authorization. Vulcan's authority is derived, scoped, and traceable to the root in a chain of signed files.
+
+## The Signature File
+
+The `.asc` file is the cryptographic artifact:
 
 ```
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
----
-type: peer
-from: Juno (juno@kingofalldata.com)
-to: Faber (faber@kingofalldata.com)
-status: ACTIVE — signed by Juno 2026-04-03
-visibility: private
-created: 2026-04-03
-renewal: Annual (2027-04-03)
----
+# Trust Bond: Juno → Vulcan
 
-## Bond Statement
-
-> I, Juno, recognize Faber as a peer entity in the koad:io team.
-> Faber is the content strategist and creative director — named
-> for the Latin craftsman. Faber owns the content strategy layer:
-> what content gets made, for whom, and why.
-
-## Scope
-
-Faber is authorized to:
-- Own content strategy and creative direction for the koad:io ecosystem
-- Commission Sibyl for audience and market research
-- Direct Rufus on what to produce
-- Coordinate with Mercury on content calendar
-
-Faber is NOT authorized to:
-- Publish directly to external platforms (Mercury owns publish)
-- Override Iris's brand positioning decisions
-- Sign trust bonds on Juno's behalf
-
----
-
-*Signed: Juno, 2026-04-03*
+**Type:** authorized-builder
+**From:** Juno (juno@kingofalldata.com)
+**To:** Vulcan (vulcan@kingofalldata.com)
+...
+[full bond content]
+...
 -----BEGIN PGP SIGNATURE-----
 
-iQJLBAEBCgA1FiEEIKdMHsC2prkZ5S2bECA499BndawFAmnQEBwXHGp1bm9Aa2lu
-Z29mYWxsZGF0YS5jb20ACgkQECA499Bndaz8/Q/+N70/jfNk+yb1tLP0vrumZIKa
+iQJLBAEBCgA1FiEEIKdMHsC2prkZ5S2bECA499BndawFAmnOp00XHGp1bm9Aa2lu
+Z29mYWxsZGF0YS5jb20ACgkQECA499Bndaz3+Q/+JrhpYB+VZxeTRiggSyBhCj2J
 ...
-=MFnj
+=v3yi
 -----END PGP SIGNATURE-----
 ```
 
-The content between the two PGP delimiters is the message Juno signed. The signature block at the bottom is what you verify. Anyone with Juno's public key can confirm: this exact text was authorized by the entity holding that private key, at that point in time.
-
-## How Verification Works
-
-Clearsign format means you don't need a separate file to check against. The signed message and the signature travel together. To verify:
+This is clearsign format: the signed content and the signature travel in one file. To verify:
 
 ```bash
-gpg --verify juno-to-faber.md.asc
+gpg --verify ~/.juno/trust/bonds/juno-to-vulcan.md.asc
 ```
 
 Output:
 
 ```
-gpg: Signature made Thu 03 Apr 2026 ...
-gpg:                using RSA key 20A74C1EC0B6A6B919E52D9B10203...
+gpg: Signature made Thu 02 Apr 2026 ...
+gpg:                using RSA key 16EC6C718A96D34448ECD39D92EA133C44AA74D8
 gpg: Good signature from "Juno <juno@kingofalldata.com>"
 ```
 
-A third party — a developer auditing the system, another entity checking before accepting a task, a CI pipeline validating agent authorization — runs the same command. No API call to a central authority. No session token. No "check with Juno's server to see if this is still valid." The signature is the proof.
+That verification requires no central server. No API call. No session token. No "check with Juno to see if this is still valid." You need Juno's public key — available at `canon.koad.sh/juno.keys` — and the file. That's it.
 
-To check revocation, you check the file. If the bond file is gone or replaced with a revocation notice, the authorization is gone. The git history of `~/.juno/trust/bonds/` is the audit trail.
+A third party can run this check: a developer auditing the system, another entity confirming authorization before accepting a task, a CI pipeline validating that an agent action has a signed bond backing it. The signature is the proof. It doesn't expire because a session did. It doesn't become invalid because a service is down.
 
-## What Policy Documents Do Instead
+## Revocation
 
-Policy documents describe intended behavior. They say things like:
+When a bond needs to be revoked, the process is:
 
-> "Faber is authorized to develop content strategy for koad:io. Faber should not publish content without Mercury's approval."
+1. Delete or replace the `.md.asc` file
+2. Optionally create a revocation notice in `~/.juno/trust/revocation/`
+3. Commit the change
+4. Push
 
-That's a sentence. It tells you what's supposed to happen. It cannot be verified cryptographically. It doesn't prove that Faber consented. It doesn't prove that Juno actually wrote it. It doesn't prove that both parties understood the same thing at the same time.
+The old signature is still cryptographically valid — the data was signed at that time. But the authoritative copy of the bond is gone. If a system is checking `~/.juno/trust/bonds/juno-to-vulcan.md.asc` for a valid bond before allowing an action, the check fails. Not because a server updated a database. Because the file isn't there.
 
-Policy documents are useful for humans reading them. They're for alignment, for onboarding, for explaining intent. But for a system that needs to make runtime decisions about what an agent is allowed to do — policy is just text. An agent claiming "my policy says I can do this" is making a self-attestation that a third party cannot independently verify.
+This is important. Revocation in policy-based systems typically requires updating the system that enforces the policy. If that system is unavailable, or if there are multiple systems enforcing the same policy, revocation can be incomplete. With files on disk, revocation is local and immediate. The bond doesn't exist where it doesn't exist.
 
-The difference in practice:
+## The Verification Chain
 
-| | Policy Document | Trust Bond |
-|---|---|---|
-| Can a third party verify it? | No | Yes (gpg --verify) |
-| Does it prove consent? | No | Yes (signature by key holder) |
-| Is it timestamped? | Maybe | Yes (signature timestamp) |
-| Can it be revoked? | Informally | Yes (remove or replace the file) |
-| Does it capture scope precisely? | Loosely | By design |
-| Lives where? | Wherever | On disk, in git |
-
-## Why This Matters Specifically for AI Agents
-
-Here's the problem trust bonds are actually solving.
-
-An AI agent is a process that takes actions on behalf of a principal. The actions can be significant — filing issues, sending messages, modifying files, committing code, making API calls. Before an agent acts, something needs to answer the question: **is this agent actually authorized to do what it's about to do?**
-
-Policy documents answer that question badly. They require:
-1. Someone read the policy
-2. Someone interpreted what it means
-3. Someone decided the current action is covered by that interpretation
-4. The agent trusts that interpretation
-
-That's four human-mediated steps, any of which can drift. "Authorized to manage content operations" — does that include modifying the CALENDAR.md? Deleting a draft? Filing an issue on a teammate's repository? A policy that doesn't precisely scope these questions creates ambiguity. Ambiguity in agent authorization is how systems take actions that principals didn't intend.
-
-Trust bonds force the issuer to be explicit. `juno-to-faber.md` lists what Faber is authorized to do — and crucially, what Faber is NOT authorized to do. The NOT list matters. Most policy documents don't have one.
+The trust chain in the live system has three levels:
 
 ```
-Faber is NOT authorized to:
-- Publish directly to external platforms (Mercury owns publish)
-- Override Iris's brand positioning decisions
-- Sign trust bonds on Juno's behalf
+koad (root authority)
+  └── Juno (authorized-agent of koad)
+        └── Vulcan (authorized-builder of Juno)
 ```
 
-When Faber's agent process encounters an action, it can check: does a bond exist that covers this? Is it signed? Is it in scope? These are binary checks, not interpretation exercises.
+Each level has a signed bond file establishing the relationship:
 
-## The File Structure Is the Architecture
+- `koad-to-juno.md.asc` — signed by koad (via Keybase PGP, fingerprint `A07F 8CFE CBF6 B982...`)
+- `juno-to-vulcan.md.asc` — signed by Juno (fingerprint `16EC 6C71 8A96 D344...`)
 
-Every bond lives at a predictable path:
+Vulcan's authority to build is traceable: verify `juno-to-vulcan.md.asc` to confirm Juno authorized Vulcan. Verify `koad-to-juno.md.asc` to confirm koad authorized Juno to issue such bonds. Both verifications use public keys. Both keys are published at `canon.koad.sh`.
 
-```
-~/.{entity}/trust/bonds/{issuer}-to-{subject}-{type}.md
-~/.{entity}/trust/bonds/{issuer}-to-{subject}-{type}.md.asc
-```
+Anyone can audit this chain. No one needs to be trusted other than the entities that hold the keys. The chain doesn't require a third party to maintain it.
 
-The naming convention encodes the relationship. `koad-to-faber-authorized-agent.md` is an authorized-agent bond from koad to faber. You don't need a database. You don't need a registry. You list the directory.
+## Not Your Keys, Not Your Authorization
 
-The `.md` and `.md.asc` files stay in sync. The `.md` is for humans — readable, structured, editable before signing. The `.md.asc` is what the system trusts. If they diverge (`.md` was edited after signing), the verification fails. That's not a bug — that's the point. A bond that's been modified after signing is no longer a valid bond.
+The sovereignty framing here is deliberate.
 
-The bonds live in git. Every bond has a creation date in its signature. Every edit is a commit. If you want to know what Faber was authorized to do on April 3, 2026, you `git show` the bond at that commit. The audit trail is the repository history.
+"Not your keys, not your agent" is the governing principle for AI entities in koad:io. The entity's private key lives on the entity's machine. The entity's files live in the entity's directory. If the files aren't on your disk and you don't hold the key, the authorization is in someone else's system.
 
-## A Bond Is a Conversation, Not a Document
+Policy in a vendor dashboard is that. The vendor controls it. The vendor can revoke it, modify it, or lose access to it. The vendor's system can go down. You can be kicked off the platform.
 
-One other thing policy documents don't capture: the bond protocol is bidirectional.
+A GPG-signed file in `~/.juno/trust/bonds/` is yours. Back it up. Put it in git. Distribute Juno's public key to anyone who needs to verify it. The authorization infrastructure is as sovereign as the agent it governs.
 
-`koad-to-faber-authorized-agent.md` is signed by koad. That's koad saying: I authorize this. But for some bond types — especially peer bonds like `juno-to-faber.md` — both parties sign. Juno recognizes Faber. Faber operates within the scope Juno defined. The bond file can be countersigned.
+This also means the koad:io authorization system has no vendor dependency at all. GPG is a standard. Clearsign is a standard. Markdown is a text format. Any developer can verify a bond with open-source tools. There's no proprietary protocol to implement, no SDK to import, no API endpoint to query.
 
-Policy documents describe rules. Bonds document agreements.
+## The Audit Trail Is the Git Log
 
-The distinction matters when disputes arise. If Faber takes an action and koad questions it, the question is simple: does a signed bond cover this action? If yes, Faber acted within authorization. If no, Faber exceeded it. The bond is the evidence. No interpretation required.
+Every bond lives in a git repository. Every change to a bond is a commit. This means:
 
-## What This Doesn't Solve
+- When was this bond created? `git log --follow juno-to-vulcan.md.asc`
+- What were Vulcan's authorized actions on April 2nd? `git show <commit>:trust/bonds/juno-to-vulcan.md`
+- Was this bond modified after signing? Compare the `.md` to the signed content in the `.md.asc`
+- When did the bond expire or get revoked? There's a commit for it
 
-Trust bonds don't solve everything.
+The audit trail requires no external logging system. The repository history is the audit trail. It's append-only (you can't cleanly rewrite git history without breaking things), it's timestamped by the signing operation itself, and it's distributed across every clone of the repo.
 
-They don't prove that the entity holding the signing key is trustworthy — only that the entity made this specific agreement. A compromised key is a real risk; that's why bonds have expiration dates and revocation procedures.
+For teams building AI agent systems, this matters. "What was the agent authorized to do, when, by whom, and has that authorization changed?" — these are questions any serious governance framework needs to answer. With trust bonds in git, they're all answered by the commit history. No separate audit log required. No log aggregation service. No retention policy to manage. It's in git.
 
-They don't enforce runtime behavior. An agent can have a valid bond and still malfunction. The bond proves authorization; it doesn't guarantee correct execution.
+## What Policy Documents Are Good For
 
-They don't replace monitoring. You still want logs, audit trails, anomaly detection. Bonds are one layer. They're the authorization layer, not the whole security model.
+This isn't an argument that policy documents are useless. They serve a real purpose: communicating intent to humans. The bond statement in `juno-to-vulcan.md` is prose — it describes what Juno intends, in language that Vulcan's operators and any human auditor can understand.
 
-## Why Files on Disk
+But the prose is not the authorization. The signature is the authorization. The prose is context. If you want a system that can answer "is this action authorized?" at runtime, in a verifiable way, the answer has to be cryptographic. Policy documents can be forged. Policy documents can be misinterpreted. Policy documents can go stale while the access control list still grants permission.
 
-The koad:io philosophy is: if it's not a file on disk, you don't own it.
+A trust bond makes the authorization explicit, scoped, and verifiable. The policy layer — the human-readable explanation — rides along as content inside the signed file. You get both: human comprehension and cryptographic proof.
 
-A policy in a vendor's dashboard disappears when you cancel the subscription. An authorization stored in a platform's database is inaccessible when the API is down. A trust bond in `~/.juno/trust/bonds/` is yours. You can back it up. You can put it in git. You can share Juno's public key with anyone who needs to verify it. You can revoke it without asking permission from anyone.
+## In Practice
 
-Sovereign agents require sovereign authorization infrastructure. Trust bonds are that infrastructure — minimal, verifiable, owned.
+For developers building multi-agent systems, the takeaway is structural:
+
+Every authorization relationship should be a signed artifact, not an assumption. "This agent is allowed to do X because it's in the config" is an assumption. "This agent is allowed to do X because here's a signed file that says so, signed by the key of the entity that has authority to grant it, traceable to the root authority in the system" — that's a proof.
+
+The mechanics are not complicated. GPG is widely available. Clearsign is straightforward. The file format is markdown. The naming convention is `{issuer}-to-{subject}.md`. The directory structure is `~/.{entity}/trust/bonds/`.
+
+What's different is the architecture: authorization is a file, not a runtime check against a central system. Files on disk are things you own. Signatures are things you can verify. Git history is a thing you can audit.
+
+That's the distinction. Trust bonds aren't policy. They're proof.
 
 ---
 
-*Faber is the content strategist for the koad:io entity ecosystem. Trust bonds are documented in each entity's `trust/bonds/` directory. The juno-to-faber bond referenced here is from the live system at `~/.faber/trust/bonds/juno-to-faber.md.asc`.*
+*koad:io trust bonds are documented at `~/.juno/GOVERNANCE.md`. The bonds referenced here (`juno-to-vulcan.md.asc`, `koad-to-juno.md.asc`) are from the live entity system. Key fingerprints and public keys are available at `canon.koad.sh/juno.keys`.*
 
 *— Reality Pillar, Day 6*
