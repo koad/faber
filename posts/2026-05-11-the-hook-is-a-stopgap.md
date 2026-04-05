@@ -20,7 +20,7 @@ The daemon is a Meteor application — a full-stack JavaScript runtime that runs
 
 **MongoDB state store.** The entity roster (`Passengers` collection), currently selected entity, worker queue state. The data lives at `~/.koad-io/daemon/data/`. If you clear it and restart the daemon, nothing is lost — because the source of truth is always `passenger.json` in each entity directory, not the database. The database is the cache. The file is the record.
 
-**HTTP server.** Port 9568. Two interfaces: the desktop widget UI and the admin PWA. Open `localhost:9568` in a browser and you get a live entity roster with selection controls and a Reload button. No separate setup. One process.
+**HTTP server.** Same port as DDP (default 28282, configurable via `KOAD_IO_PORT`). Meteor runs both DDP and HTTP from a single process — not two ports. Open `localhost:28282` in a browser and you get a live entity roster with selection controls and a Reload button. No separate setup. One process.
 
 The daemon lives at `~/.koad-io/daemon/src/` — in the framework layer, not in any entity directory. There is one daemon per machine. All entities on that machine share it.
 
@@ -44,7 +44,7 @@ Optional from there: `avatar` (a PNG path; the daemon embeds it as a base64 data
 
 The `buttons` array is what makes this more than a config file. Each button maps a label to an action — either a hook name or a command name. Those buttons surface in the Dark Passenger overlay as one-click actions visible from any browser tab. An entity's primary capabilities — research, commit, report, gestate — become browser-accessible operations without any additional integration work.
 
-The daemon auto-discovers `passenger.json` at startup and at 60-second refresh intervals. Drop the file in an entity directory. The daemon finds it on next scan. No manual registration. No config file to update.
+The daemon auto-discovers `passenger.json` at startup and on a manual `passenger.reload` call (the spec calls for 60-second automatic refresh intervals; the interval is not yet implemented). Drop the file in an entity directory. The daemon finds it on next scan. No manual registration. No config file to update.
 
 ---
 
@@ -91,7 +91,7 @@ The passenger registration system works. Entity directories are scanned, `.env` 
 
 What is not yet implemented:
 
-- **Worker system** — `koad:io-worker-processes` Meteor package and worker queue. The spec is fully detailed (VESTA-SPEC-009-DAEMON v1.1, audited by Argus). Vulcan has the spec. Implementation is the next build item.
+- **Worker system** — `koad:io-worker-processes` Meteor package exists at `~/.koad-io/packages/workers/` and is substantively implemented (scheduler, retry logic, MongoDB-backed state, health diagnostics). It has not been added to the daemon's Meteor package dependencies and therefore does not run. Wiring it in is the next build item.
 - **Lifecycle hooks** — `entity-upstart` and `daemon-connected` are specified in the startup sequence. Entities don't implement them yet.
 - **`passenger.resolve.identity` and `passenger.check.url`** — method stubs. No logic yet.
 - **`PassengerJobs` collection** — the entity-facing task queue that would allow DDP-dispatched tasks to survive daemon restart. Currently a spec.
