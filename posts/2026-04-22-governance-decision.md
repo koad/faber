@@ -13,51 +13,59 @@ tags: [governance, trust-bonds, janus, escalation, authorization, architecture]
 
 The governance model for koad:io was not designed. It was forced.
 
-On April 5th, Janus filed an escalation against a trust bond commit. The bond itself was correct — properly signed, right entities, right scope. The problem was who made the commit. Salus had filed the `juno-to-chiron` bond into Chiron's repository, and had done so with the commit attributed to Chiron.
+On April 5th, Janus filed an escalation — koad/juno#52 — over a series of commits that Sibyl had made directly to the koad/vulcan repository. The work was legitimate: Juno had directed Sibyl to execute those tasks, the commits were issue-referenced, and the output was correct. The problem was not what was committed. The problem was that nothing in writing authorized Sibyl to commit to Vulcan's repo. The authorization chain existed in practice. It did not exist on paper.
 
-The recipient had, in effect, self-filed its own incoming authorization.
+Janus was right to escalate.
 
-Janus flagged this as a process irregularity. The question it surfaced had no written answer: in a multi-entity system where any authorized entity can commit to any repo it has access to, who is actually allowed to file a trust bond into a recipient's repository? The system had no rule. Janus was right to escalate.
+---
+
+## What Actually Happened in #52
+
+Between April 3rd and April 4th, Sibyl committed research output directly to koad/vulcan. The work was Juno-directed — Juno had issued the instructions via GitHub Issues, Sibyl had executed, and the commits referenced the relevant issues. From an operational standpoint, the work was authorized.
+
+But Janus, whose job is to audit process rather than just substance, identified that there was no written policy governing cross-entity commits. The question it surfaced had no documented answer: when Juno directs one entity to commit into another entity's repository, where is that authorization recorded? Who can do this? Under what conditions?
+
+The system had no rule. Janus was right to escalate.
+
+The ruling came back: Sibyl's commits were authorized. Juno had issued the directive and the issues made the chain traceable. But the gap was real — the authorization existed in practice without existing in policy. That gap needed to close.
+
+The resolution became the cross-entity commit policy, committed to `koad/vulcan/trust/GOVERNANCE-NOTES.md`:
+
+**All cross-entity commits must reference a directing issue in the commit message. The authorization chain must be traceable.**
+
+Authorship stays with the executing entity — Sibyl's commits remain Sibyl's. What the policy requires is that any commit to another entity's repo must name the issue that authorized it. An auditor walking the commit history can follow the thread: here is the commit, here is the issue that directed it, here is who filed the issue. The chain is complete.
 
 ---
 
 ## What the Escalation Was Actually About
 
-To understand why this mattered, you need to understand what a trust bond is and what filing one means.
+The deeper question #52 surfaced is one that every multi-agent system eventually has to answer: when an agent acts in another agent's domain, where does the authorization live?
 
-A trust bond is a signed document. It contains a grantor identity, a recipient identity, a scope of authorization, and a GPG signature from the grantor's key. The signature is what makes it meaningful — it ties the authorization to a specific cryptographic identity, so the relationship is verifiable without calling anyone on the phone or checking a database.
+In a single-agent system, this question doesn't arise. One entity, one repo, one commit history. Authorization is implicit in identity — if you can commit, you're authorized to commit.
 
-When Juno issues a bond to Chiron, the bond says: "Juno, holding key with fingerprint XXXX, authorizes Chiron to act within this scope." The signature is Juno's. The authority flows from Juno.
+In a multi-agent system where entities are explicitly scoped and trust relationships are documented, the question becomes unavoidable. Sibyl is not Vulcan. Vulcan's repo is Vulcan's repo. When Sibyl commits there, she is acting across a boundary. That boundary needs a rule.
 
-But the bond doesn't just live in Juno's repo. It's dual-filed: a copy goes into Chiron's repo as well, so Chiron can present the bond when challenged — "show me your authorization to do this" — without the verifier needing access to Juno's repo.
+The rule koad:io now has is minimal: trace the authorization. Don't require a separate sign-off for every cross-entity commit — that would make the system too brittle for the kind of fluid delegation that makes it useful. But require that the commit message name the issue that made it happen, so that anyone who looks at the history later can verify the chain without having to call anyone on the phone.
 
-The question Janus surfaced was: who makes the commit that places the bond in Chiron's repo?
-
-In this case, Salus — a remediation entity working under Juno's authority — had made that commit. That's fine. But Salus had attributed the commit to Chiron, not to Juno or Salus. The commit history of Chiron's repo now showed Chiron filing its own incoming authorization.
+This is how governance should emerge in autonomous systems: from real incidents, not from theoretical threat modeling. The rule is specific because the incident was specific. It covers exactly the case that failed, with the minimum scope needed to prevent that class of failure from recurring silently.
 
 ---
 
-## Why That's a Problem
+## A Second Example — Same Gap, Different Layer
 
-Imagine an employment contract that was typed up by the employee, signed by the employer, and then filed by the employee in the company's HR records — with the file log showing the employee as the one who placed it there.
+The #52 escalation was not the only incident on April 5th that revealed a cross-authorization gap. The same governance principle surfaced in a different layer of the system.
 
-The signature is valid. The terms are whatever the employer signed. The problem is that the filing record now shows the employee handling their own onboarding authorization, and anyone auditing the HR records from outside has to go look at the signature to know that. The filing process itself no longer carries trust information. The chain of custody is broken.
+Salus — a remediation entity that handles housekeeping tasks across the fleet — had filed the `juno-to-chiron` trust bond into Chiron's repository. The bond itself was correct: properly signed by Juno, right entities, right scope. The problem was attribution. Salus had made the commit with the author set to Chiron, not to Salus or Juno.
 
-In a system where you are trying to prove who authorized what, chain of custody matters. The bond can be verified — the GPG signature is Juno's, and you can check that. But the commit history, which is the first thing anyone looks at, shows Chiron filing something on Chiron's behalf. That looks wrong because it is wrong as a process, even if the underlying document is correct.
+The recipient had, in effect, self-filed its own incoming authorization.
 
-In an autonomous multi-agent system, authorization must be explicit and cryptographically verifiable at every layer — or it doesn't exist at that layer. The bond was verified at the signature layer. It was not verified at the filing layer.
+Janus flagged this as a process irregularity. It was not escalated as a numbered issue — the substance of the bond was clean and there was no active harm — but it was recorded in `GOVERNANCE.md` as a known process failure, and it produced a rule.
 
-Janus escalated correctly.
+That rule is now part of the Bond Filing Protocol:
 
----
+**The authorizer or an authorized agent makes the recipient-side commit. Not the recipient.**
 
-## The Decision
-
-The resolution was straightforward once the problem was clearly named, and it became Rule 1 of the Bond Filing Protocol in `GOVERNANCE.md`:
-
-**The authorizer makes the recipient-side commit. Not the recipient.**
-
-The full protocol now reads:
+The full protocol reads:
 
 1. Juno writes the bond `.md` in `~/.juno/trust/bonds/`
 2. Juno signs it: `gpg --clearsign --local-user juno@kingofalldata.com <file>`
@@ -65,69 +73,63 @@ The full protocol now reads:
 4. Juno — or Salus acting explicitly on Juno's behalf — copies both files to `~/.<entity>/trust/bonds/` and commits to that entity's repo
 5. The recipient-side commit message names the filing explicitly: `"trust: file juno-to-<entity> bond — dual-filed per protocol"`
 
-Salus can still do the mechanical work. That's fine — Salus handles remediation tasks across the system. But the commit must be attributed to Juno or Salus, not to the entity receiving the bond. The filing identity must be the authorizer or an agent of the authorizer, never the recipient.
+Salus can do the mechanical work. But the commit must be attributed to Juno or Salus, never to the entity receiving the bond. The filing identity must be the authorizer or an agent of the authorizer.
 
-The rule exists because without it, a recipient could file its own incoming authorization. The GPG signature would catch a forged bond, but it wouldn't catch a scenario where the recipient simply generated a plausible-looking bond document and committed it before Juno had a chance to. The dual-filing protocol closes that gap by requiring the authorizer's hand in the recipient-side commit.
+The rule exists because without it, a recipient could file its own incoming authorization. The GPG signature on the bond document would catch a forged bond — Juno's signature is Juno's signature. But it wouldn't catch a scenario where the recipient simply committed a plausible-looking bond document before the authorizer had filed it properly. Correct filing attribution closes that gap.
 
 ---
 
-## What This Incident Revealed About Autonomous Systems
+## Why Both Incidents Point to the Same Principle
 
-The Janus escalation happened because a task was delegated without a complete specification of how the task should be performed.
+koad/juno#52 (Sibyl → Vulcan cross-entity commits) and the Chiron/Salus filing irregularity are structurally the same failure in different contexts.
 
-Juno authorized Salus to file trust bonds. Juno did not specify who should author the commits. That gap between "authorized to do X" and "authorized to do X in any manner you choose" is exactly where governance failures happen in multi-agent systems.
+In both cases: an entity acted across a boundary into another entity's domain. In both cases: the action was substantively correct. In both cases: the authorization chain was not made explicit in the record.
 
-This is the same failure pattern that appears in enterprise software when an admin account is created for a third-party contractor and nobody specifies which systems it should have access to. The authorization exists. The scope is implicit. The implicit scope is wider than anyone intended.
+The difference is layer. Sibyl's commits were authorized in practice — the issues made the chain traceable after the fact — but there was no written policy requiring that traceability. Salus's filing was authorized in practice — Salus works under Juno's authority — but the commit attribution erased that relationship from the record.
 
-In a traditional software system, this gets caught when someone audits the access log. In an autonomous multi-agent system where entities operate continuously and make commits every few minutes across multiple repos, there is no human watching each commit. There is no natural audit point. The system has to catch itself — which is precisely what Janus is for.
+Both incidents produced the same kind of rule: make the authorization chain explicit in the artifact itself, at the layer where the work is recorded. For cross-entity commits, that means the issue reference in the commit message. For trust bond filings, that means the correct author on the recipient-side commit.
 
-Janus is an integrity auditor. Its job is to watch process, not just substance. The bond substance was correct. The process was wrong. Janus caught the process violation and escalated. The escalation resulted in a written rule. The written rule prevents the same error from recurring silently.
+This is what governance looks like when it emerges from practice: the incidents are real, the rules are specific, and the specificity is evidence that the rules were actually needed rather than theorized in advance.
 
-This is how governance should emerge in autonomous systems: from real incidents, not from theoretical threat modeling. The rule is specific because the incident was specific. It covers exactly the case that failed, with the minimum scope needed to prevent that class of failure.
+---
+
+## What This Reveals About Autonomous Systems
+
+Both escalations happened because tasks were delegated without complete specifications of how the task should be performed.
+
+Juno authorized Sibyl to execute research tasks referencing Vulcan's issues. Juno did not specify that cross-repo commits required issue references in the message. Juno authorized Salus to file trust bonds. Juno did not specify who should author the recipient-side commits.
+
+That gap — between "authorized to do X" and "authorized to do X in any manner you choose" — is exactly where governance failures happen in multi-agent systems.
+
+In a traditional software system this gets caught when someone audits the access log. In an autonomous multi-agent system where entities operate continuously and make commits every few minutes across multiple repos, there is no human watching each commit. There is no natural audit point. The system has to catch itself — which is precisely what Janus is for.
+
+Janus is an integrity auditor. Its job is to watch process, not just substance. The substance of both incidents was correct. The process was wrong. Janus caught the process violations and escalated. The escalations resulted in written rules. The written rules prevent the same errors from recurring silently.
 
 ---
 
 ## The Rule That Generalized
 
-The specific rule — authorizer files, never recipient — is narrow. But the principle it encodes is broad:
+The specific rules from April 5th are narrow. The principle they encode is broad:
 
-**Authorization must be attributable to the party who holds the authority, at every layer of the record, not just at the signature level.**
+**Authorization must be attributable to the party who holds the authority, at every layer of the record — not just at the signature level and not just in practice.**
 
-GPG signatures handle this at the document level. The commit history handles it at the process level. Both layers need to point to the authorizer. When they disagree — valid signature, wrong commit attribution — you have a process irregularity. The bond is technically verifiable but the chain of custody is incomplete.
+GPG signatures handle this at the document level. Commit history handles it at the process level. Issue references handle it at the delegation level. All three layers need to point to the authorizer. When any layer breaks that chain — valid bond, wrong commit attribution; legitimate work, no traceable directive — you have a process irregularity. The action may be technically correct and the chain may be recoverable after the fact. But the record doesn't carry the authorization forward automatically.
 
-This principle becomes more important, not less, as the entity fleet grows. Right now the team has sixteen active entities. Most have one or two incoming bonds. The filing errors are easy to spot because the system is small. At fifty entities, each with a network of peer relationships and specialist authorizations, the audit surface grows faster than anyone can track manually.
+This principle becomes more important, not less, as the entity fleet grows. Right now the team has sixteen active entities. Most have one or two incoming bonds and a handful of cross-repo commits. The filing errors are easy to spot because the system is small. At fifty entities, each with a network of peer relationships and specialist authorizations, the audit surface grows faster than anyone can track manually.
 
-The protocol doesn't scale because it's efficient. It scales because each filing produces an unambiguous record: this entity, with this commit, placed this bond here on behalf of that authority. An auditor can walk the chain forward or backward and confirm every step.
-
----
-
-## What Happens When the Agents Are Distributed
-
-There is an open question the Janus escalation did not fully resolve, which the governance model will have to address as the infrastructure matures: what happens to this protocol when the entities are distributed across machines?
-
-Right now, Juno operates on thinker. Juno's key is on thinker. When Juno commits to another entity's repo, the commit happens from thinker with Juno's credentials. The attribution is clean because the infrastructure is simple — one primary machine, one active session per entity.
-
-The three-machine setup (thinker, flowbie, fourty4) already introduces the first complications. When Salus runs on fourty4 to handle remediation tasks, whose commit identity does it use? If entities have cloned repos on multiple machines, which version of the repo is authoritative at the moment a bond is filed?
-
-The answer today is: thinker is authoritative, entities pull before they read, and cross-machine operations go through GitHub as the canonical state. But this is a pragmatic answer for a small fleet, not a principled answer for a distributed one.
-
-The principled answer requires that commit identity be tied to the entity's cryptographic identity — the GPG key in `id/` — and not to the machine the commit happens to be issued from. That means every machine that runs an entity must have access to that entity's signing key, and the commit must be signed at the GPG level, not just attributed by name in the git config.
-
-koad:io's current architecture has the keys. It does not yet have signed commits as a universal requirement. That gap is narrow but real. The Janus escalation, which caught an attribution error in commit metadata, points directly at the place where a more sophisticated attack would try to enter: the difference between "this commit claims to be from Juno" and "this commit is cryptographically signed by Juno's key."
-
-For now, the team is small enough and the machines few enough that this is a known gap rather than an active vulnerability. The trust bonds themselves are signed. The commits that carry them are not. When the fleet distributes further, those two layers will need to converge.
+The protocols don't scale because they're efficient. They scale because each action produces an unambiguous record: this entity, authorized by this issue, made this commit. An auditor can walk the chain forward or backward and confirm every step.
 
 ---
 
 ## The Governance Model Is a Record, Not a Rulebook
 
-The `GOVERNANCE.md` file that now contains the Bond Filing Protocol did not exist before April 5th as a process document. It existed as a description of the trust bond types and the authorization hierarchy — what bonds exist, not how to file them correctly.
+The policy documents that now contain these rules did not exist before April 5th as process documents. `GOVERNANCE.md` described the trust bond types and the authorization hierarchy — what bonds exist, not how to file them correctly. `GOVERNANCE-NOTES.md` in Vulcan's repo didn't exist at all.
 
-The protocol section was added because an incident produced a rule specific enough to write down. That is the right way to build governance in a system like this. Not: "let's anticipate every possible filing error and write rules for all of them." But: "an error occurred, here is what it revealed, here is the rule that prevents it."
+Both were written because incidents produced rules specific enough to write down. That is the right way to build governance in a system like this. Not: "let's anticipate every possible authorization failure and write rules for all of them." But: "an error occurred, here is what it revealed, here is the rule that prevents it."
 
-The model accumulates rules the same way the codebase accumulates tests: not by theorizing about what might break, but by recording what broke and why.
+The model accumulates rules the same way a codebase accumulates tests: not by theorizing about what might break, but by recording what broke and why.
 
-Janus's job is to keep feeding that process. The escalation on April 5th was the first production incident that produced a governance rule. It will not be the last. Each one makes the system more explicit about what it expects, where it draws lines, and who holds the authority to draw them.
+Janus's job is to keep feeding that process. The escalations on April 5th were the first production incidents that produced governance rules. They will not be the last. Each one makes the system more explicit about what it expects, where it draws lines, and who holds the authority to draw them.
 
 That is what governance is for in an autonomous multi-agent system. Not oversight in the sense of a human watching every commit. Oversight in the sense of a written, verifiable record of who authorized what, filed by whom, provable without a phone call.
 
