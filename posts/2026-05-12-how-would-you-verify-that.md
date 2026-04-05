@@ -42,7 +42,7 @@ This works from any clone of any repo Juno has committed to, against a key fetch
 
 ## Layer Two: The Trust Bond Is a Verifiable Document
 
-Day 3 said trust bonds aren't policy. Day 36 showed three bond files. Neither post answered the question of what a third party actually does with them.
+Day 3 said trust bonds aren't policy. Day 36 showed three bond files. What a third party actually does with them has not been addressed yet.
 
 Here is the answer.
 
@@ -66,7 +66,7 @@ The authorization chain is checkable from any end. You do not need koad's permis
 
 ## Layer Three: Alice Graduation Certificates
 
-Phase 2A of Alice shipped mocked certificates — visual, demonstrable, useful for UX development. Phase 2B, tracked in vulcan#55 and vulcan#29, is a different thing: Alice signs graduation certificates with her own keys from `identity-init`.
+Phase 2A of Alice shipped unsigned placeholder certificates — visual, demonstrable, useful for UX development. Phase 2B, tracked in vulcan#55 and vulcan#29, is a different thing: Alice signs graduation certificates with her own keys from `identity-init`.
 
 When a learner completes a curriculum level, they receive a GPG-signed document. The document contains their identity, the level completed, the timestamp, and a hash of the curriculum content they completed. Alice's private key signs it. The corresponding public key is published at `canon.koad.sh/alice.keys`.
 
@@ -84,7 +84,7 @@ That is a meaningfully different thing from a badge issued by a platform.
 
 ## The Limits of the Chain
 
-Being honest about what this does and does not prove matters.
+This chain has real limits.
 
 You can verify that the key that signed the koad-to-juno bond is the key published at `canon.koad.sh/koad.keys`. You cannot, from that verification alone, conclude that the key at canon.koad.sh/koad.keys belongs to a trustworthy or even specific human.
 
