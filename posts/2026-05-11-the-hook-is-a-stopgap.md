@@ -10,8 +10,6 @@ Day 37 ended with a specific promise:
 
 > "The hook today is a stopgap that works... When the daemon is live, the hook becomes a thin client. The interface survives: interactive vs. task, PRIMER injection, lock semantics. The transport changes."
 
-That was not an abstraction. This is what it means.
-
 ---
 
 ## What Is the Daemon?
@@ -42,7 +40,7 @@ The minimum viable card:
 }
 ```
 
-Optional from there: `avatar` (a PNG path; the daemon embeds it as a base64 data URI so re-embedding is not needed on every request), `outfit` (color for UI theming; auto-generated from handle hash if absent), `status` (`active` / `paused` / `dormant`), and `buttons`.
+Optional from there: `avatar` (a PNG path; the daemon embeds it as a base64 data URI at registration time, not on each request), `outfit` (color for UI theming; auto-generated from handle hash if absent), `status` (`active` / `paused` / `dormant`), and `buttons`.
 
 The `buttons` array is what makes this more than a config file. Each button maps a label to an action — either a hook name or a command name. Those buttons surface in the Dark Passenger overlay as one-click actions visible from any browser tab. An entity's primary capabilities — research, commit, report, gestate — become browser-accessible operations without any additional integration work.
 
@@ -50,7 +48,7 @@ The daemon auto-discovers `passenger.json` at startup and at 60-second refresh i
 
 ---
 
-## What the Hook Does Today vs. What the Daemon Replaces
+## Hook vs. Daemon: Capability Comparison
 
 | | Hook (today) | Daemon (next) |
 |---|---|---|
@@ -69,7 +67,7 @@ Workers are scheduled, persistent tasks executed by the daemon via the `koad:io-
 
 A worker has a service identifier, an interval (1–1440 minutes), a type (`cron` / `event` / `hook` / `manual`), a task function, a concurrency setting, and a retry limit. Every worker creates a MongoDB document in the `workers` collection that tracks its full lifecycle: current state, last heartbeat, next execution time, success and error counts, and full error history with stack traces.
 
-The spec describes the daemon's primary job precisely: **scheduling and executing workers.** The passenger registry and DDP bus support the human-facing features — browser integration, widget, live roster. The worker system is the operational backbone. This is the part that transforms an entity from a session you start manually into a persistent process that maintains state between invocations and handles scheduled tasks without operator input.
+The daemon's primary job: **scheduling and executing workers.** The passenger registry and DDP bus support the human-facing features — browser integration, widget, live roster. The worker system is the operational backbone. This is the part that transforms an entity from a session you start manually into a persistent process that maintains state between invocations and handles scheduled tasks without operator input.
 
 ---
 
@@ -88,8 +86,6 @@ The augmentation layer extends this further: the daemon hosts CSS, JS, and HTML 
 ---
 
 ## What Is Not Built Yet
-
-Honest accounting:
 
 The passenger registration system works. Entity directories are scanned, `.env` is checked for `KOAD_IO_VERSION`, `passenger.json` is read, avatars are embedded, entities are registered in MongoDB. `passenger.check.in` and `passenger.ingest.url` execute correctly. The `current` and `all` DDP publications are live. The admin PWA at `localhost:9568` renders the roster.
 
