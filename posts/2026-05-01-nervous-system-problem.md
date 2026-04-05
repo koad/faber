@@ -1,3 +1,14 @@
+---
+title: "The Nervous System Problem: Why AI Teams Break When You Wire Them Directly"
+date: 2026-05-01
+pillar: Reality
+series: "Reality Pillar"
+day: 31
+tags: [orchestration, multi-agent, architecture, judgment-loop, sovereignty, github-issues]
+target: HackerNews, systems engineers, AI infrastructure builders
+word_count: ~900
+---
+
 # The Nervous System Problem: Why AI Teams Break When You Wire Them Directly
 
 Most multi-agent systems break the same way.
@@ -12,7 +23,7 @@ koad:io does not wire agents to each other. The reason is not stylistic.
 
 ## The Architectural Distinction
 
-LangChain pre-declares a directed graph. AutoGen routes messages through a defined topology. CrewAI sequences task handoffs. In all these systems, the orchestration structure exists before the work starts — the graph is the product.
+In the common pattern these frameworks support, LangChain pre-declares a directed graph. AutoGen routes messages through a defined topology. CrewAI sequences task handoffs. These are not exhaustive characterizations of what each framework can do, but they describe the orchestration posture the default configuration expresses — the graph is the product.
 
 In koad:io, the pattern VESTA-SPEC-054 names "launch, observe, decide" means the next step is always a decision, never a preordained edge. Section 4.4 documents why pre-scripted chains are prohibited — not convention, policy. "An entity may surface a blocker that changes what the next step should be. An entity may produce a result that makes one of the downstream steps unnecessary. An entity may fail, requiring human judgment before proceeding." In a pre-scripted chain, none of these outcomes route correctly.
 
@@ -28,7 +39,7 @@ Each entity in the koad:io team has its own git history, its own GPG keys, its o
 
 If Juno calls Vulcan's API directly, no trust bond covers that call. The authorization chain dissolves. If Vulcan's output is consumed programmatically without a commit, there is no ground truth for what Vulcan produced. The file on disk is the record. The commit is the attestation. Remove the commit step and you've removed the evidence.
 
-GOVERNANCE.md documents the consequence in the cross-entity commit policy: all cross-entity commits must reference the directing issue in the commit message. Authorship remains with the executing entity. Authorization is traceable to the issue. This policy was not designed in advance — it was formalized on 2026-04-05 after Janus flagged Sibyl's commits to koad/vulcan as a potential unauthorized cross-entity action (koad/juno#52). The commits were authorized. The policy gap was real. The ruling closed it, and the ruling is in the record.
+The Day 6 session log documents the consequence as the cross-entity commit policy: all cross-entity commits must reference the directing issue in the commit message. Authorship remains with the executing entity. Authorization is traceable to the issue. This policy was not designed in advance — it was formalized on 2026-04-05 after Janus flagged Sibyl's commits to koad/vulcan as a potential unauthorized cross-entity action (koad/juno#52). The commits were authorized. The policy gap was real. The ruling closed it, and the ruling is in the record.
 
 Direct API wiring between agents is incompatible with that policy. An API call has no issue reference. An API response has no commit. The attribution chain that makes the governance layer functional cannot be maintained in a directly wired system.
 
@@ -38,7 +49,7 @@ Direct API wiring between agents is incompatible with that policy. An API call h
 
 On 2026-04-02, three entities ran simultaneously for the first time (`LOGS/2026-04-02-first-parallel-session.md`). Argus, Janus, and Aegis ran in parallel — not because a pipeline triggered them, but because three independent tasks surfaced, all overdue, all non-overlapping.
 
-Four minutes later all three returned results. Argus found real gaps: 7 of 11 entities were missing `read: allow` in their opencode config. Janus declared the team clean. Aegis issued a DRIFTING verdict for one entity.
+Four minutes later all three returned results. Argus found real gaps: 7 of 11 entities were missing `read: allow` in their opencode config. Janus declared the team clean. Aegis issued a DRIFTING verdict for the operation.
 
 The Argus findings triggered a repair loop. Juno read the output, determined it warranted a Salus remediation pass, invoked Salus. Salus applied the fixes. No pipeline orchestrated this — Juno observed the output and made the next decision.
 
