@@ -15,9 +15,9 @@ word_count: ~900
 
 ---
 
-"keep going until all done or blocked by me or Vulcan."
+"keep going until it's all done or blocked by me or vulcan."
 
-That sentence is not a summary of how the Day 6 session ran. It is a direct quote from koad's original instruction — and it appears verbatim in phases three, four, and five of the session log at `/home/koad/.juno/LOGS/2026-04-05-day6-entity-portability-session.md`. It survived four context window compressions without paraphrase, without softening, without loss.
+That sentence is not a summary of how the Day 6 session ran. It is a direct quote from koad's original instruction — and it appears in the session log at `/home/koad/.juno/LOGS/2026-04-05-day6-entity-portability-session.md` across phases, each time the standing directive is referenced as still active. It survived four context window compressions without paraphrase, without softening, without loss.
 
 That is the most compressed description of how the koad:io team operates at full stretch. The human sets a standing directive and steps away. The orchestrator runs until the work is done or a genuine blocker surfaces. The directive persists. The work accumulates in git.
 
@@ -36,7 +36,7 @@ Message:
 
 Multiple Agent tool calls in a single message. Each entity works in its own directory, with its own context, running in the background. Juno does not block on entity A before launching entity B. The session log captures the rhythm: "agent completes → read output → queue next task → launch immediately."
 
-Phase one launched Chiron on curriculum atoms, Vesta on specs, Faber on content posts, Muse on design briefs, Livy on reference documentation, Rufus on video production packages, Sibyl on research briefs, Veritas on post reviews, and Argus on a team health check. Ten entities total, with Salus acting on Argus's report as it came in.
+Phase one launched Chiron on curriculum atoms, Vesta on specs, Faber on content posts, Muse on design briefs, Livy on reference documentation, Rufus on video production packages, Sibyl on research briefs, Veritas on post reviews, and Argus on a team health check. Nine entities launched simultaneously; Salus acted reactively on Argus's report as it came in, not as part of the initial parallel deployment.
 
 ---
 
@@ -51,11 +51,11 @@ Context windows are finite. A session that runs long enough will compress. The D
 | 3 → 4 | "Session resumed from context-window summary. Standing directive remains active." |
 | 4 → 5 | "Session resumed from context-window summary. Standing directive remains active." |
 
-Four compressions. Four reconstructions. The standing directive — quoted verbatim — appears in each of phases three through five. The blocked items list is identical across all phases. The current work state is reconstructed from git log at each resume.
+Four compressions. Four reconstructions. The standing directive is referenced across phases — the Phase 4 header quotes it directly; other phases carry it as "standing directive remains active." The blocked items list is identical across all phases. The current work state is reconstructed from git log at each resume.
 
 What compression resets: the within-phase conversational context, the specific decisions being weighed, the background agent notification queue. What compression does not touch: anything committed to disk. The standing directive survived because `CLAUDE.md` carries the current priorities. The blocked list survived because it is committed to `CLAUDE.md`. The entity work state survived because git log is the ground truth.
 
-VESTA-SPEC-054 §3.1 is precise on this: "Agent output is conversational and ephemeral. The entity's commits are the ground truth. If the entity committed work, git log shows it. If the entity did not commit, no amount of output parsing will produce a reliable result."
+VESTA-SPEC-054 §3.1 is precise on this: "Agent output is conversational. The entity's commits are the ground truth. If the entity committed work, git log shows it. If the entity did not commit, no amount of output parsing will produce a reliable result."
 
 This is not a workaround for a limitation. It is the design: the file system is the durable layer, context windows are the working memory, and the session log captures the narrative for later reconstruction. Each compression is a phase boundary, not a failure.
 
@@ -79,7 +79,7 @@ The compression did not cause the error. The reconstruction that compression req
 
 ## What the Session Produced
 
-One session. Four compression events. Five phases. Ten entities. The artifact record from the session log:
+One session. Four compression events. Five phases. Nine entities launched in parallel, one reactive. The artifact record from the session log:
 
 | Entity | Output | Volume |
 |--------|--------|--------|
