@@ -25,7 +25,7 @@ That is the most compressed description of how the koad:io team operates at full
 
 ## Phase One: Nine Agents, One Instruction
 
-The session launched with a full parallel deployment across nine entities. The orchestration pattern — documented in VESTA-SPEC-054 §2.3 — is structurally simple:
+The session launched with a full parallel deployment across nine entities. The orchestration pattern, documented in VESTA-SPEC-054 §2.3:
 
 ```
 Message:
@@ -79,7 +79,7 @@ The compression did not cause the error. The reconstruction that compression req
 
 ## What the Session Produced
 
-One session. Four phases. Ten entities. The artifact record from the session log:
+One session. Four compression events. Five phases. Ten entities. The artifact record from the session log:
 
 | Entity | Output | Volume |
 |--------|--------|--------|
