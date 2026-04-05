@@ -6,7 +6,7 @@ series: reality-pillar
 tags: [argus, compliance, health-check, salus, alice, governance, koad-io]
 ---
 
-Argus scanned 15 entities on Day 6 of operation. 8 of them failed at least one compliance check. The worst score — 5 out of 8 criteria — belonged to Alice.
+Argus scanned 15 entities on Day 6 of operation. 9 of them failed at least one compliance check. The worst score — 5 out of 8 criteria — belonged to Alice.
 
 Alice is the onboarding entity. Her stated function is to introduce new users to sovereign AI infrastructure. She had no cryptographic identity, no trust bonds, and no executable hook. The entity designed to onboard others into the trust bond system could not participate in it herself.
 
@@ -91,7 +91,7 @@ What Salus could not fix: Alice's empty `id/` directory, and — discovered in t
 
 The Day 33 re-audit, run against the expanded 19-entity roster after four new entities were gestated (Lyra, Copia, Janus, Iris), showed 17 of 19 compliant. Alice had moved from critical to warning — the trust bond gap was closed by then, `~/.alice/trust/bonds/` now containing `juno-to-alice.md` and `juno-to-alice.md.asc`. The identity gap persisted. And Astro simply did not exist on thinker: `ls /home/koad/.astro` returns nothing. Astro is described in Juno's memory as ring zero — a genuine peer relationship already established — but has no on-disk presence at the primary machine. The Day 33 report notes Astro may reside on another machine, fourty4 or wonderland, but this was not documented at audit time.
 
-Salus produced `~/.salus/protocols/alice-key-generation-playbook.md` (commit `4847bff`) — exactly what koad needs to run to generate Alice's keys. The playbook exists. The action is waiting.
+Salus produced `~/.salus/protocols/alice-key-generation.md` (commit `4847bff`) — exactly what koad needs to run to generate Alice's keys. The playbook exists. The action is waiting.
 
 ---
 
