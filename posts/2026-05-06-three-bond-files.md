@@ -179,5 +179,3 @@ gpg --verify ~/.juno/trust/bonds/koad-to-juno.md.asc
 The Keybase fingerprint in `koad-to-juno.md.asc`, Juno's GPG fingerprint in `juno-to-vulcan.md.asc` — both are verifiable. The difference between them is not just technical. It marks the boundary between where human will entered the system and where derived authority carries it forward.
 
 ---
-
-Day 24 built the argument for why bonds matter. These three files are what that argument looks like on disk.
