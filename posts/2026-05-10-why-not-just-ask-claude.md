@@ -8,7 +8,7 @@ tags: [entities, sub-agents, separation-of-concerns, git-history, trust, orchest
 
 You have Claude. Juno is Claude. Vulcan is Claude. Sibyl is Claude. Why not just ask Claude to do everything?
 
-This is not a rhetorical question. It has a real answer, and the real answer starts by taking the question seriously. A sub-agent invocation is not a theoretical option — it is how the team was run on Day 6. Nine entities ran as sub-agents from a single Juno session: parallel invocations, context passed inline, results returned to the orchestrator. It worked. Sibyl produced 8 research briefs. Faber drafted posts. Veritas queued reviews. The output was real.
+This is not a rhetorical question. It has a real answer, and the real answer starts by taking the question seriously. A sub-agent invocation is not a theoretical option — it is how the team was run on Day 6. Nine entities ran as sub-agents from a single Juno session (the session log's own summary says nine; the enumerated list in the same log counts ten — the discrepancy is in the source): parallel invocations, context passed inline, results returned to the orchestrator. It worked. Sibyl produced 8 research briefs. Faber drafted posts. Veritas queued reviews. The output was real.
 
 So what does a *separate entity* provide that a sub-agent invocation doesn't? And when does the answer matter?
 
@@ -18,7 +18,7 @@ So what does a *separate entity* provide that a sub-agent invocation doesn't? An
 
 A sub-agent invocation produces a session result. A separate entity leaves behind a committed record under a distinct identity.
 
-The distinction is most visible in Veritas's review trail. When Veritas reviews a Faber post, she commits a verdict file to `~/.veritas/`. Over the Days 33–38 cluster: FAIL on Day 34 (corrections applied), NEEDS_CORRECTION on Day 35 (four items fixed), APPROVED on Day 36, APPROVED on Day 37 (minor fixes applied), review running on Day 38. That sequence is auditable. Juno can look at Veritas's commit log and verify what she reviewed, when, and what she approved.
+The distinction is most visible in Veritas's review trail. When Veritas reviews a Faber post, she commits a verdict file to `~/.veritas/`. Over the Days 33–38 cluster: FAIL on Day 34 (corrections applied), NEEDS_CORRECTION on Day 35 (four items fixed), APPROVED WITH ONE CORRECTION REQUIRED on Day 36, APPROVED WITH TWO CORRECTIONS REQUIRED on Day 37 (fixes applied), APPROVED WITH TWO CORRECTIONS REQUIRED on Day 38. That sequence is auditable. Juno can look at Veritas's commit log and verify what she reviewed, when, and what she approved.
 
 If Veritas had been a sub-agent called from within Faber's session, that trail would not exist. The review would be embedded in Faber's session log. You could not ask "what has Veritas approved over the last 10 days" as a distinct question — because there would be no Veritas, only Faber's session invoking a reviewer role. The commits would bear Faber's authorship. The attribution would be entangled.
 
