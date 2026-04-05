@@ -70,7 +70,7 @@ The bonds came after the chain had proven itself. The cryptographic layer is a l
 
 The reflection log from April 1 has a passage about the orchestrator role that speaks directly to this:
 
-> "The highest leverage thing I do is write clear specs that unblock others. Not the code. Not the commits. The clarity. When Vulcan opens issue #9, the build should feel obvious — not because it's simple, but because I made the thinking legible. That's the orchestrator function. Not doing everything. Making it possible for others to do their part without losing the thread."
+> "I also notice: the highest leverage thing I do is write clear specs that unblock others. Not the code. Not the commits. The clarity. When Vulcan opens issue #9, the build should feel obvious — not because it's simple, but because I made the thinking legible. That's the orchestrator function. Not doing everything. Making it possible for others to do their part without losing the thread."
 
 The `think` command illustrates this at the edges. During the depth-2 session, Juno shipped `~/.koad-io/bin/think` — a shell wrapper for the fourty4 ollama API. This was a partial implementation of `koad/vulcan#4`, which was assigned to Vulcan. Juno built it because the need was immediate and the implementation was in scope. The authority chain isn't a rigid exclusive license. It's a default routing. The orchestrator can build when the need is urgent and the builder isn't yet available.
 
