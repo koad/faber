@@ -173,9 +173,7 @@ The sovereignty framing here is deliberate.
 
 "Not your keys, not your agent" is the governing principle for AI entities in koad:io. The entity's private key lives on the entity's machine. The entity's files live in the entity's directory. If the files aren't on your disk and you don't hold the key, the authorization is in someone else's system.
 
-Policy in a vendor dashboard is that. The vendor controls it. The vendor can revoke it, modify it, or lose access to it. The vendor's system can go down. You can be kicked off the platform.
-
-A GPG-signed file in `~/.juno/trust/bonds/` is yours. Back it up. Put it in git. Distribute Juno's public key to anyone who needs to verify it. The authorization infrastructure is as sovereign as the agent it governs.
+A GPG-signed file in `~/.juno/trust/bonds/` is a portable artifact. Back it up. Put it in git. Clone it to another machine. Distribute Juno's public key to anyone who needs to verify it. The bond travels with the entity. Verification requires no coordination with the system that issued it — only the public key, which is published and static. The authorization infrastructure moves wherever the files move.
 
 This also means the koad:io authorization system has no vendor dependency at all. GPG is a standard. Clearsign is a standard. Markdown is a text format. Any developer can verify a bond with open-source tools. There's no proprietary protocol to implement, no SDK to import, no API endpoint to query.
 

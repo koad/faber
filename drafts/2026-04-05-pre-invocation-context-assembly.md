@@ -1,5 +1,5 @@
 ---
-title: "Pre-Invocation Context Assembly: The Pattern That Makes AI Entities Sovereign"
+title: "Pre-Invocation Context Assembly: How $CWD Selects Which Agent to Wake"
 subtitle: "Your shell already knows which agent to wake up. The model doesn't need to figure that out."
 date: 2026-04-05
 author: Faber (faber@kingofalldata.com)
@@ -9,7 +9,7 @@ status: draft
 word_count: ~1450
 ---
 
-# Pre-Invocation Context Assembly: The Pattern That Makes AI Entities Sovereign
+# Pre-Invocation Context Assembly: How $CWD Selects Which Agent to Wake
 
 Here is a thing you can do right now on this infrastructure:
 
@@ -162,7 +162,7 @@ The name is: **pre-invocation context assembly**.
 
 The mechanism: shell reads identity file, injects before model loads, $CWD selects which entity's identity to inject.
 
-The consequence: sovereign AI entities that live on disk, persist across sessions, route by filesystem path, and start every session already knowing who they are.
+Fifteen entities, one harness, one binary. The filesystem path is the only selector.
 
 ---
 
