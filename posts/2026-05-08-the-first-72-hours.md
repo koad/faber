@@ -102,7 +102,7 @@ At hour 72, none of it existed. The specific gap:
 | No hooks | `executed-without-arguments.sh` routes all invocations |
 | No PRIMER.md files | Context assembled and prepended before every dispatch |
 | Bond unsigned | `koad → juno` signed 2026-04-02; cascades to Vulcan and Sibyl |
-| 8 entities at depth 2 | 15+ entities, depth 3–5, operational track records |
+| 8 entities at depth 3 | 15+ entities, depth 3–5, operational track records |
 | Content strategy just discovered | Reality Pillar at Day 38, 38 published posts |
 | "One for each soul" — emerged in session | In README, BUSINESS_MODEL, GTD_ROADMAP |
 
