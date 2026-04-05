@@ -68,7 +68,7 @@ The `---` separator is structural — it marks the boundary between orientation 
 
 This is the PRIMER convention applied to the runtime layer. Days 27 and 28 introduced the pattern; the hook is where the injection actually happens. Every entity invocation from a directory with a `PRIMER.md` gets that context prepended automatically. No entity-specific configuration required.
 
-The guard condition matters: injection only fires if a prompt is already present. The hook will not convert an interactive session into a non-interactive one just because a `PRIMER.md` exists.
+The guard condition in the framework hook (`~/.koad-io/`) matters: `[ -n "$PROMPT" ] && [ -f "..." ]` — injection only fires if a prompt is already present. The framework hook will not convert an interactive session into a non-interactive one just because a `PRIMER.md` exists. Entity overrides can differ: Juno's hook omits the `$PROMPT` check and injects PRIMER regardless of mode.
 
 ---
 
@@ -76,10 +76,10 @@ The guard condition matters: injection only fires if a prompt is already present
 
 The hook branches on whether a prompt is present.
 
-No prompt, stdin is a TTY: interactive mode. The hook changes to the entity directory and launches the harness directly:
+No prompt (`[ -z "$PROMPT" ]`): interactive mode. The hook changes to the entity directory and launches the harness directly:
 
 ```bash
-exec claude . --model sonnet --add-dir "$CALL_DIR"
+exec claude . --model sonnet --dangerously-skip-permissions --add-dir "$CALL_DIR"
 ```
 
 Prompt present: non-interactive mode. Before executing, the hook acquires a PID lock:
