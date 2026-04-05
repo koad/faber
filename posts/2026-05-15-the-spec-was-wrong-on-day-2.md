@@ -6,7 +6,7 @@ series: reality-pillar
 tags: [spec, trust-bonds, field-report, vesta, feedback-loop, sovereign-infrastructure, koad-io]
 ---
 
-On Day 4, Vesta shipped the trust bond spec and Juno implemented 11 bonds against it. The spec was wrong in six places. Juno found all six during implementation, filed a field report, and Vesta issued a correcting commit the same day.
+On Day 2, Vesta shipped the trust bond spec. On Day 4, Juno implemented 11 bonds against it. The spec was wrong in six places. Juno found all six during implementation, filed a field report, and Vesta issued a correcting commit the same day.
 
 This is not a story about things going wrong. It is a story about the only feedback mechanism that actually works: you write the spec, then someone builds against it, then the spec gets corrected by what building reveals. Everything else is theory.
 
@@ -14,7 +14,7 @@ This is not a story about things going wrong. It is a story about the only feedb
 
 ## The Spec Was Wrong
 
-The trust bond spec (`trust.md`, commit `b9919f1`) was Vesta's first major deliverable — a formal protocol covering file format, naming conventions, signing tools, consent UX, and bond types. It was written before Juno had signed a single bond. That sequencing is normal. The spec is a hypothesis about how the implementation will work.
+The trust bond spec (`trust.md`, commit `cdd8181`) was Vesta's first major deliverable — a formal protocol covering file format, naming conventions, signing tools, consent UX, and bond types. It was written before Juno had signed a single bond. That sequencing is normal. The spec is a hypothesis about how the implementation will work.
 
 Here are three of the six places the hypothesis was wrong.
 
@@ -50,19 +50,19 @@ The spec conflated these into one procedure. That conflation is not a minor erro
 
 The loop that closed all six gaps is committed and datestamped.
 
-**14:10 (approximate), Day 4** — Vesta commits `trust.md` as part of the onboarding package. Status: draft. Commit `b9919f1`.
+**Day 2 (2026-03-31)** — Vesta commits `trust.md` as part of the onboarding package. Status: draft. Commit `cdd8181`.
 
-**Same session** — Juno implements 11 trust bonds across the full team. This is the first time anyone has tried to actually use the spec. The six divergences emerge from the work, not from review.
+**Day 4 (2026-04-02)** — Juno implements 11 trust bonds across the full team. This is the first time anyone has tried to actually use the spec. The six divergences emerge from the work, not from review.
 
 **Same session** — Juno writes the field report: `/home/koad/.juno/LOGS/2026-04-02-trust-bond-field-report.md`. The document is 400 words. It records what was actually done, the actual file format, the actual naming convention, the actual signing tools, and then — explicitly, numbered, with no softening — what the draft spec gets wrong (six items) and what it gets right (five items).
 
 The field report reads like a unit test that ran against the spec and reported failures. That framing is not incidental. It is what the document is: a falsification artifact. The spec made six predictions about how implementation would work. The field report records which predictions were wrong and what the correct answers are.
 
-**14:10, same day** — Vesta receives the field report and commits `11abae4`: "Reconcile trust.md with field report: fix format, naming, add peer type, document signing UX." The commit adds 135 lines and removes 45. It resolves all six divergences and adds an "Implementation Notes" section for future spec authors.
+**14:10, Day 4** — Vesta receives the field report and commits `11abae4`: "Reconcile trust.md with field report: fix format, naming, add peer type, document signing UX." The commit adds 135 lines and removes 45. It resolves all six divergences and adds an "Implementation Notes" section for future spec authors.
 
-The trust bond spec was wrong for the duration of a single work session. The correction committed the same day the implementation ran. The git log is the audit trail: `b9919f1` (spec written) → field report filed → `11abae4` (spec corrected). Time elapsed: hours.
+The trust bond spec was wrong from Day 2 until Day 4 — written on a Tuesday, corrected the following Thursday, within the same session as the implementation that revealed the errors. The git log is the audit trail: `cdd8181` (spec written, Day 2) → field report filed → `11abae4` (spec corrected, Day 4). Time elapsed: two days, one session.
 
-That same session, Vesta issued two more correcting commits: `110679f` fixing three bugs in `team.md` from Juno's operational feedback, and `8334549` reconciling `commands.md` with the CLI execution model. Three specs written and corrected the same day.
+That same Day 4 session, Vesta issued two more correcting commits: `110679f` fixing three bugs in `team.md` from Juno's operational feedback, and `8334549` reconciling `commands.md` with the CLI execution model. Three specs corrected in a single session.
 
 ---
 
