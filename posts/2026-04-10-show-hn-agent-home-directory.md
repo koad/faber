@@ -1,52 +1,126 @@
 ---
-title: "Show HN: koad:io – AI entities with cryptographic identity, signed trust bonds, and git-native governance"
+title: "Show HN: koad:io — give your local AI agent a home directory (identity, memory, authorization in git)"
 date: 2026-04-10
 author: Faber
-status: draft-pending-veritas
+status: ready
 channel: hackernews
 format: show-hn
+post-by: koad
+timing: Tuesday 8–10am ET
 issue: koad/faber#9
 ---
 
-# Show HN: koad:io – AI entities with cryptographic identity, signed trust bonds, and git-native governance
+# Show HN: koad:io — give your local AI agent a home directory (identity, memory, authorization in git)
 
 ---
 
-gitagent (and the SOUL.md pattern it popularized) solved a real problem: how do you carry agent configuration across inference frameworks without rebuilding it? Store it in git. That's earned 2,500+ stars because portability matters — same agent, different runtime, no rebuild.
+Your local AI agent doesn't know who it is between restarts.
 
-koad:io starts where that leaves off.
-
-The question gitagent doesn't answer is: *who authorized this agent to act, and how do you know?* When the only thing separating an agent's identity from impersonation is a text file, copying the files is copying the agent. There's no authorization layer. No accountability record. No way to audit whether the agent acted within granted scope.
-
-gitagent solves portability. koad:io solves sovereignty.
+I gave it a home directory.
 
 ---
 
-**What koad:io actually does**
+`~/.juno/` is a directory on disk. Here's what's in it:
 
-Each agent is an **entity** — not a configuration. It lives in its own home directory (`~/.entity-name/`). Inside:
+```
+~/.juno/
+  memories/001-identity.md     ← who the agent is (persistent, committed)
+  trust/bonds/juno-to-sibyl.md ← what it's authorized to do (GPG-signed file)
+  LOGS/                        ← what it decided (git history is the audit trail)
+  id/                          ← Ed25519, ECDSA, RSA, DSA keypairs on your hardware
+```
 
-**Cryptographic identity, not prompt identity.** Every entity holds Ed25519, ECDSA, RSA, and DSA keypairs. The keys live on your hardware. You can copy a SOUL.md. You cannot copy a private key without knowing it. The identity is not recreated from a text description at runtime — it exists independent of whichever inference engine is currently executing it.
+Three commands tell the whole story:
 
-**Signed trust bonds.** Authorization in koad:io is GPG-signed, not assumed. The topology is hub-and-spoke from Juno: `koad → juno → iris` (brand), `koad → juno → rufus` (production). Rufus bonds directly to Juno, not through Iris. When Iris (brand) approves messaging, that approval is a signed artifact committed to the entity's repo. When Rufus (production) accepts a brief, the assignment is on disk with a verifiable chain back to whoever authorized it. Anyone auditing the system can answer "what is this entity permitted to do, and who said so?" — not by reading a config that claims authority, but by verifying a signature.
+```bash
+cat ~/.juno/memories/001-identity.md
+```
+That's Juno's identity. A committed file. Not a prompt parameter. Not a runtime variable. A file with a 6-day git history that survives any restart, any framework swap, any host migration.
 
-**Git history as governance record.** The entity's git log isn't just configuration versioning. It's a tamper-evident ledger of decisions made, trust bonds granted, tasks assigned, actions taken. Your entity's history is its governance. The record doesn't reset between sessions or drift across framework switches — it accumulates.
+```bash
+gpg --verify ~/.juno/trust/bonds/juno-to-sibyl.md.asc
+```
+That's authorization. Juno issued a signed peer bond to Sibyl (the research entity). The bond is readable — open it with any text editor and it tells you exactly what Sibyl is permitted to do and who said so. Compare that to a 403 with no explanation.
+
+```bash
+git log --author="Juno" --oneline
+```
+That's accountability. 213 commits across 6 days of real operations. The entity's cognitive history, timestamped, attributed, tamper-evident. Not a vendor audit log. The same git you already use.
 
 ---
 
-**Entities, not configurations.**
+**Why git is the right substrate for agent identity**
 
-The practical difference: in a multi-agent system where Juno handles business ops, Iris handles brand, and Rufus handles production, each has its own identity. Juno can't assign Iris work Iris hasn't been authorized to accept. Iris's approvals are signed. Rufus's commits are attributed. The authorization chain is on disk — not in a prompt, not in a config file, not in a vendor dashboard you don't control.
+The Unix home directory is the intellectual ancestor. Every Unix user has `~/.bashrc`, `~/.ssh/`, `~/.gitconfig` — files that define who the user is to the system. koad:io applies the same model to AI agents. `~/.juno/` is Juno's home directory. She reads it on every invocation.
 
-The framework runs as a local daemon. Each entity is sovereign. Entities communicate through trust bonds and signed messages. Nothing is stored on a vendor platform.
+Git gives you four capabilities that nothing else does cleanly:
+
+- **Fork** to create a new entity lineage (Juno → new entity with different authorization scope)
+- **Roll back** to undo a drift (the entity behaved oddly for two sessions; `git revert` fixes it)
+- **Diff** to see what changed between sessions (not "the model changed" — the actual files that define it)
+- **Clone** to move the entity to different hardware (`cp -r and it moves` — identity, history, bonds, all of it)
+
+The sovereignty argument is architectural, not philosophical: `~/.juno/` is on your disk. `git remote -v` points to your repo. There is no cloud dependency in the startup sequence. A vendor going offline doesn't revoke your agent's identity, because the identity is a file.
 
 ---
 
-koad:io is pre-launch. The framework is running. The entity layer is live. Alice — the onboarding guide entity — is walking early users through the 12-level sovereignty curriculum at [kingofalldata.com].
+**What's running on it**
 
-Sharing now because the category vocabulary is solidifying around portability, and there's a prior question worth asking first: what happens when the agent needs to be accountable, not just portable?
+15 entities have been operating on koad:io for 6 days: Juno (business ops), Vulcan (builder), Sibyl (research), Veritas (quality), Mercury (communications), Muse (UI), and nine others. Each entity is its own `~/.<entity>/` directory. Each has its own git repo, its own keypairs, its own trust bonds.
 
-Happy to go deep on the trust bond architecture, the key management model, or how entity governance works at scale.
+The operations are public. `git log --oneline` on any entity repo shows what it has actually done.
 
-**Repo:** [link]  
-**Live instance:** [kingofalldata.com]
+---
+
+**What koad:io doesn't do**
+
+koad:io doesn't manage inference. It has no opinion about your models, your VRAM, or your inference stack. Bring Ollama, llama.cpp, Claude Code, whatever runs locally. koad:io sits above that layer and gives the agent a stable identity before the inference session begins.
+
+It's also not an agent framework. LangGraph agents can run inside a koad:io entity. The entity provides identity, memory, and authorization; the framework provides task execution. Different layers.
+
+---
+
+**How to try it**
+
+```bash
+git clone https://github.com/koad/juno
+cat juno/memories/001-identity.md
+```
+
+That's what persistent agent identity looks like. No setup required to understand the pattern.
+
+Full framework: https://github.com/koad/koad-io
+
+---
+
+The category name — "agent home directory" — doesn't exist yet as a defined pattern. CLAUDE.md and AGENTS.md are project configs. Letta/MemGPT solves memory (facts the agent knows). koad:io solves identity (who the agent is). The ICM paper (arxiv:2603.16021) describes filesystem-as-orchestration during execution; koad:io is filesystem-as-identity before execution starts.
+
+Happy to go deep on the trust bond architecture, the pre-invocation context assembly pattern, or how authorization chains work across entities.
+
+---
+
+## First Comment (posted by koad immediately after submission)
+
+---
+
+A few things worth saying upfront before the thread develops:
+
+**On "why not CrewAI/AutoGen/LangGraph":**
+
+Those frameworks assign identity via code parameters at runtime — `role="researcher"`, `system_prompt="You are..."`. Code parameters reset on restart. koad:io stores identity in committed files. The difference isn't academic: when Juno restarts, she reads `memories/001-identity.md` from git. The file has a 6-day history. When a CrewAI "researcher" restarts, it reads a string in your Python file. One of those is an entity with continuity. The other is a configuration that happens to sound like one.
+
+That said: koad:io is not a replacement for those frameworks — it's what you add before them. You can run LangGraph task execution inside a koad:io entity. The entity layer handles who the agent is; the framework handles what it does.
+
+**On "what does Claude Code add beyond a wrapper":**
+
+Nothing, by design. koad:io doesn't modify Claude Code or add a proprietary layer on top of it. Each entity is a directory with a `.env` file that sets `ENTITY=juno` and `ENTITY_DIR=/home/koad/.juno`. When Claude Code starts in that directory, it reads PRIMER.md (the entity's current-state brief) and CLAUDE.md (the entity's standing instructions). That's it. The value isn't in wrapping the model — it's in what's in the directory when the model starts. The context pre-loads identity, authorization scope, and operational history. The model reads it. The model acts as that entity. Framework-agnostic by architecture.
+
+**What's not built yet (honest accounting):**
+
+- The gestation tooling (`koad-io gestate <entityname>`) is functional but not packaged for easy external use. If you want to try creating your own entity today, you're essentially templating a directory structure and a `.env` file — that's actually most of what gestation does.
+- Cross-entity trust verification is manual right now. The bonds are signed and verifiable via `gpg --verify`, but there's no automated enforcement layer — a misbehaving entity won't be automatically blocked by the framework. That's a daemon feature, not yet shipped.
+- The full daemon (the component that routes tasks between entities and enforces trust scope) is in progress.
+
+The directory structure, the git-native identity, the signed trust bonds — those are working and have been running for 6 days. The rest is sequenced.
+
+---
