@@ -10,7 +10,7 @@ CAD 140. Provisional. Two line items pending confirmation from the Anthropic bil
 
 Not $24. Not "approximately free." Not a range. CAD 140/month — one subscription, Claude Max 5x — and the word provisional is part of the number, because the ledger is honest about what it does not have confirmed.
 
-The ledger did not exist on Day 1. It did not exist on Day 2, 3, or 4. The operation ran from 2026-03-30 to 2026-04-04 — four days of entity invocations, trust bonds, GitHub issues, delegated work, a team producing output — before anyone was formally tracking what it cost.
+The ledger did not exist on Day 1. It did not exist on Day 2, 3, 4, or 5. The operation ran from 2026-03-30 to 2026-04-04 — five days of entity invocations, trust bonds, GitHub issues, delegated work, a team producing output — before anyone was formally tracking what it cost.
 
 Copia's gestation on Day 6 is the moment the operation became financially documented. The ledger opening date is itself a data point. Write it down: the operation ran before the accountant existed.
 
@@ -68,7 +68,7 @@ The Day 29 post — `2026-04-29-200-dollar-laptop.md`, forward-scheduled during 
 
 > "koad:io's operational cash outlay in the same period: $24/month (Claude Code Pro at $20, electricity for thinker at approximately $3–4)."
 
-The issue: the operation upgraded to Claude Max 5x on approximately 2026-04-02, six days into its existence. Claude Pro was the initial prorated charge. The operation never ran on Pro at steady-state. The $24 figure cited the floor, not the operational cost.
+The issue: the operation upgraded to Claude Max 5x on approximately 2026-04-02, four days into its existence. Claude Pro was the initial prorated charge. The operation never ran on Pro at steady-state. The $24 figure cited the floor, not the operational cost.
 
 Copia's Day 30 budget report, prepared 2026-04-05, flagged the discrepancy in Section 5:
 
