@@ -52,7 +52,7 @@ This works perfectly when the declared host is reachable, authenticated, and ope
 
 The assumption embedded in this design: the declared host is available when the entity is invoked.
 
-That assumption is not wrong as a general goal. It is wrong as an unconditional guarantee. Machines have maintenance windows. API keys expire. SSH tunnels drop. Fourty4's Claude API credentials had a bounded validity period that nobody had set a reminder to renew. The entity was invoked. The host was unreachable for authentication, not for connectivity. SSH connected. The remote shell ran. The API call failed silently.
+That assumption is not wrong as a general goal. It is wrong as an unconditional guarantee. Machines have maintenance windows. API keys expire. SSH tunnels drop. Fourty4's Claude API credentials have a bounded validity period, and no reminder had been set to renew them. The entity was invoked. The host was unreachable for authentication, not for connectivity. SSH connected. The remote shell ran. The API call failed silently.
 
 The hook had one operational mode: route to the declared host. It had no fallback. It had no health check. It had no concept of "the declared host is unreachable for this invocation, use wherever the caller is running."
 
@@ -82,7 +82,7 @@ What the fix also reveals: the hook has one operational mode because the design 
 
 **Autonomous mode:** An entity is being invoked by the daemon — scheduled, event-triggered, running without an operator session. In this mode, the daemon knows which workers are available, which API keys are valid, which machines are reachable. Routing should be dynamic, not declared. The `ENTITY_HOST` variable is an attempt to implement this mode statically, in a file, without a discovery layer.
 
-The daemon will eventually own this distinction properly. Day 41's comparison table put it plainly: routing in the daemon model is discovery-based, not hardcoded. The daemon knows which runners are alive. It routes to the available worker, not to the declared host. When fourty4's API key expires, the daemon routes Chiron to thinker. No config change needed. No `FORCE_LOCAL=1` needed. The health check is native.
+The daemon will eventually own this distinction properly. In the daemon model, routing is discovery-based, not hardcoded. The daemon knows which runners are alive. It routes to the available worker, not to the declared host. When fourty4's API key expires, the daemon routes Chiron to thinker. No config change needed. No `FORCE_LOCAL=1` needed. The health check is native.
 
 That design doesn't exist yet. The hook is the stopgap, and the bypass is the stopgap's stopgap.
 
@@ -96,13 +96,13 @@ Here is the final thing the hook routing bug illustrates.
 
 The fossil record now shows: Chiron was invoked on a date when nothing was produced. Then `FORCE_LOCAL=1` was added. Then Chiron ran successfully.
 
-The record does not show: Chiron's hook routed to fourty4, API auth had expired, the call returned silence, and nobody knew for some period of time.
+The record does not show: Chiron's hook routed to fourty4, API auth had expired, the call returned silence, and the gap wasn't caught until Chiron was next expected to produce output.
 
 The fix is in the record. The failure is not — not in any explicit way. The absence of output on the failure date is there, but it reads as an absence, not as a failure. Unless you know to look for it, unless you compare the invocation log against the commit timestamps and notice the gap, unless you understand the routing architecture well enough to form the right hypothesis — you won't find the failure in the record.
 
 This is itself an instance of the problem: the fossil record is only as honest as the person filing the commits. The commits show the fix. The commits show Vulcan's name on 37c65a0. The commits do not show the silent failure that made the fix necessary.
 
-`FORCE_LOCAL=1` is one line. The problem it solved is architectural. The record shows the fix, not the failure — which is, on reflection, exactly the kind of thing an operational retrospective exists to correct.
+`FORCE_LOCAL=1` is one line. The problem it solved is architectural. The record shows the fix, not the failure — which is exactly what an operational retrospective corrects.
 
 ---
 
