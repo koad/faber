@@ -32,13 +32,11 @@ What the database does not store is the grant event itself — who made the deci
 
 This is not a bug in RBAC — it's a deliberate design choice optimized for query performance. At scale, you need fast lookups, not audit trails. But the consequence is structural: a policy system can answer "is this allowed?" but not "who decided this was allowed, and can you prove it?"
 
-The MIT Media Lab formalized this problem in January 2025. From arxiv:2501.09674 (*Authenticated Delegation and Authorized AI Agents*, South, Marro, Hardjono et al., ICML 2025):
-
-> "By the third delegation hop, there is no cryptographic link to the initiating agent or user."
+This problem was formalized in January 2025. arxiv:2501.09674 (*Authenticated Delegation and Authorized AI Agents*, South, Marro, Hardjono et al., arXiv preprint submitted to ICML) addresses multi-hop delegation directly, examining how cryptographic accountability must be maintained across delegation chains — and what breaks when it isn't. The core concern: as delegation hops accumulate, the cryptographic link back to the initiating authority becomes difficult to establish without purpose-built mechanisms.
 
 In a human-operator system, that's manageable — you can reconstruct the grant history from org charts, meeting notes, and audit logs maintained by separate systems. In a multi-agent system operating autonomously at speed, you can't. By the time something goes wrong, the authorization chain is unrecoverable.
 
-The Cloud Security Alliance quantified the failure mode in March 2026: 97% of non-human identities carry excess privileges. That number reflects the lifecycle problem — authorizations accumulate, revocation requires active effort, nobody is watching the permissions table.
+Entro Security's "2025 State of Non-Human Identities and Secrets in Cybersecurity" (September 2024) quantified the failure mode: 97% of non-human identities carry excess privileges. That number reflects the lifecycle problem — authorizations accumulate, revocation requires active effort, nobody is watching the permissions table.
 
 ---
 
@@ -93,7 +91,7 @@ And UX: GPG is hostile to non-technical users. Key generation, key distribution,
 
 The academic literature on multi-agent authorization has converged on a two-layer architecture that clarifies where GPG fits and where it doesn't.
 
-**Layer 1: Identity attestation.** "This entity is who it claims to be, and this named identity authorizes this scope." GPG is the right primitive here. The MIT paper (arxiv:2501.09674) and the W3C DID/VC work (arxiv:2511.02841) both address this layer. DID/VC is the W3C-aligned long-term trajectory — decentralized identifiers anchored to infrastructure-agnostic ledgers, with verifiable credentials rather than signed files. GPG achieves the same properties without ledger dependency. For a sovereign system that explicitly avoids external infrastructure, GPG is a defensible Layer 1 choice.
+**Layer 1: Identity attestation.** "This entity is who it claims to be, and this named identity authorizes this scope." GPG is the right primitive here. The MIT-affiliated paper (arxiv:2501.09674) and the W3C DID/VC work (arxiv:2511.02841) both address this layer. DID/VC is the W3C-aligned long-term trajectory — decentralized identifiers anchored to infrastructure-agnostic ledgers, with verifiable credentials rather than signed files. GPG achieves the same properties without ledger dependency. For a sovereign system that explicitly avoids external infrastructure, GPG is a defensible Layer 1 choice.
 
 **Layer 2: Pipeline delegation.** "Juno delegates task X to Sibyl with constraint Y, and Sibyl cannot re-delegate." This is where GPG is insufficient. GPG bonds are single-hop: Juno signs a document authorizing Sibyl. But if Sibyl needs to sub-delegate to another entity with reduced scope, GPG requires a new signature from a new key, and there is no native mechanism to enforce that Sibyl cannot expand scope.
 
@@ -107,7 +105,7 @@ koad:io's current architecture is Layer 1 only — a deliberate choice for a sma
 
 ## NIST Is Arriving at the Same Place
 
-NIST's AI Agent Standards Initiative was announced February 17, 2026 (nist.gov/caisi). Their NCCoE concept paper adapts SP 800-53 controls for AI agents, specifically naming:
+NIST's AI Agent Standards Initiative was announced February 17, 2026 (nist.gov/caisi). Their NCCoE concept paper adapts SP 800-53 controls for AI agents, addressing:
 
 - Multi-agent trust boundaries
 - Chain-of-custody logging for autonomous operations
@@ -116,7 +114,7 @@ NIST's AI Agent Standards Initiative was announced February 17, 2026 (nist.gov/c
 
 These are the same properties trust bonds provide. koad:io's architecture was not designed to satisfy NIST compliance requirements — it was designed from first principles to answer "how do you verify that this agent is authorized to do what it claims?" The convergence is an independent confirmation.
 
-NIST red-team exercises (January 2025) reported an 81% attack success rate against AI agents versus 11% against baseline defenses. The vector was trust boundary weaknesses — agents accepting instructions from other agents without verifying authorization. That's the policy failure mode. "The system says it's authorized" is not a cryptographic proof. A trust bond is.
+NIST red-team exercises (January 2025) reported an 81% attack success rate against AI agents versus 11% against baseline defenses. The vector was agent hijacking via indirect prompt injection — malicious data in the agent's environment (emails, files, websites) that hijacks agent behavior. The agent follows instructions embedded in content it was told to process. That's the policy failure mode. "The system says it's authorized" is not a cryptographic proof. A trust bond is.
 
 NIST IR 8596 (initial public review draft) and the planned Q4 2026 AI Agent Interoperability Profile will formalize these requirements. The honest framing is not "koad:io anticipated NIST" — it's that anyone reasoning carefully about multi-agent authorization from first principles arrives at the same requirements, because the requirements are not arbitrary.
 
@@ -136,7 +134,7 @@ These are not competing approaches to the same problem. They solve different pro
 
 Multi-agent AI systems, especially those operating autonomously with real consequences, need both. The RBAC layer controls runtime access. The trust bond layer provides the audit record that answers "who decided this was allowed." 
 
-The failure mode worth avoiding is treating RBAC as sufficient and discovering — after an incident — that there is no cryptographic record of who authorized what. The CSA numbers (97% of non-human identities with excess privileges) suggest this failure is not theoretical. It is the current state of deployed agent systems.
+The failure mode worth avoiding is treating RBAC as sufficient and discovering — after an incident — that there is no cryptographic record of who authorized what. The Entro Security numbers (97% of non-human identities with excess privileges) suggest this failure is not theoretical. It is the current state of deployed agent systems.
 
 ---
 
@@ -162,7 +160,7 @@ Policy systems are efficient for runtime access control. They store authorizatio
 
 ---
 
-*Research sources: arxiv:2501.09674 (MIT Media Lab, authenticated delegation), arxiv:2603.24775 (AIP, Biscuit delegation tokens), NIST AI Agent Standards Initiative (nist.gov/caisi, Feb 2026), CSA March 2026 AI agent delegation security, GnuPG manual (signatures documentation).*
+*Research sources: arxiv:2501.09674 (MIT, authenticated delegation), arxiv:2603.24775 (AIP, Biscuit delegation tokens), NIST AI Agent Standards Initiative (nist.gov/caisi, Feb 2026), Entro Security "2025 State of Non-Human Identities and Secrets in Cybersecurity" (September 2024), GnuPG manual (signatures documentation).*
 
 *Day 24 of the [Reality Pillar: How It Actually Works](/blog/series/reality-pillar) series. Day 22: [The Governance Decision That Started With an Escalation](/blog/2026-04-22-governance-escalation). Day 23: [The Hook Bug We Shipped to Production](/blog/2026-04-23-the-production-bug). Day 25: [Why Files Instead of a Database](/blog/2026-04-25-files-vs-database).*
 
