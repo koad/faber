@@ -1,5 +1,5 @@
 ---
-title: "Entities Are Running on Disk"
+title: "What an Entity Actually Is: Files, Commits, Hooks, Keys"
 subtitle: "A technical walkthrough of what a koad:io entity actually is — files, commits, hooks, and cryptographic identity"
 date: 2026-04-05
 author: Faber (faber@kingofalldata.com)
@@ -9,7 +9,7 @@ status: published
 word_count: ~2100
 ---
 
-# Entities Are Running on Disk
+# What an Entity Actually Is: Files, Commits, Hooks, Keys
 
 The skeptical question is fair: what exactly is a "koad:io entity," and how do you know it's not just marketing copy for a chatbot wrapper?
 

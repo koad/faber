@@ -1,5 +1,6 @@
 ---
-title: "Trust Bonds Aren't Policy—They're Cryptography"
+title: "Not Your Keys, Not Your Authorization"
+subtitle: "Why cryptographic authorization beats RBAC for AI agents — and how to verify it yourself"
 date: 2026-04-06
 pillar: Reality
 series: "2-Week Reality Proof"
@@ -8,7 +9,7 @@ target: HackerNews, Dev.to, Mastodon
 word_count: ~1500
 ---
 
-# Trust Bonds Aren't Policy—They're Cryptography
+# Not Your Keys, Not Your Authorization
 
 Here's how most agent authorization works: someone writes a document, puts it in a wiki, and says "Juno is allowed to file GitHub issues on behalf of koad."
 
