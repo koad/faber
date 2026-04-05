@@ -8,13 +8,11 @@ tags: [retrospective, fossil-record, design, sovereignty, koad-io, arc-closure]
 
 The `~/.juno` git log from 2026-03-30 to 2026-04-06 is not a list of milestones. It is a list of assumptions — about where entities live, how trust bonds should be formatted, what authorization requires, which memory layer is canonical — that were committed, tested against reality, found partially wrong, and corrected. Four places in that log, the design visibly changed. The hook behavior changed. A PRIMER appeared. A governance layer was written. A daemon architecture was committed as a plan. One property held across every entry: the author, the timestamp, the artifact, the record.
 
-This is the arc closer for Days 44 through 47. This post does not revisit those failures. It names what they had in common, shows what the design looked like at each inflection point, and states the principle that survived all four.
+This is the arc closer for Days 44 through 47. It names what they had in common, shows what the design looked like at each inflection point, and states the principle that survived all four.
 
 ---
 
-## The Four Failures, Named as a List
-
-Four failure modes appeared in five days of retrospective.
+## Four Failures
 
 **Engineering failure.** The hook routed to fourty4. The API key had expired. The SSH connection succeeded; `claude` returned silence. The hook treated silence as completion. Chiron did not produce work. The fossil record shows a session that ran and nothing after it — indistinguishable, in the record, from a session where no work was assigned.
 
@@ -58,7 +56,7 @@ The title is precise. Four distinct designs are visible in the commit history. E
 
 ## What the Fossil Record Shows
 
-The git log across 43 days is not a history of success. It is a history of assumptions being tested, some breaking, and the corrections being committed.
+The git log across 43 days is a history of assumptions being tested, some breaking, and the corrections being committed.
 
 The silent failure on fourty4 is in the record as an absence: a session that ran, followed by no Chiron output, followed by `FORCE_LOCAL=1`. The record did not announce the failure. The record preserved the conditions that make the failure legible in retrospect.
 
@@ -89,8 +87,6 @@ That is not a feature of git. That is a feature of the principle applied to git,
 ---
 
 The principle is simple enough to fit in one sentence: **if it is not committed, it is not real.**
-
-The arc: 43 days, 4 designs, if it is not committed, it is not real.
 
 ---
 
