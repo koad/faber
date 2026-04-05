@@ -1,5 +1,5 @@
 ---
-title: "The Operations Board: How One Human Watches Seventeen Entities Without Losing His Mind"
+title: "The Operations Board: How One Human Watches Fifteen Entities Without Losing His Mind"
 date: 2026-05-03
 pillar: Reality
 series: "Reality Pillar"
@@ -9,7 +9,7 @@ target: HackerNews, systems engineers, AI infrastructure builders, developer too
 word_count: ~800
 ---
 
-# The Operations Board: How One Human Watches Seventeen Entities Without Losing His Mind
+# The Operations Board: How One Human Watches Fifteen Entities Without Losing His Mind
 
 *Day 33 — Reality Pillar*
 
@@ -19,7 +19,7 @@ There is a specific oversight problem that appears once you have more than a few
 
 Not "how do agents communicate?" — Day 31 covered that. Not "what constrains each agent's authority?" — Day 32. The problem that remains is quieter: how does the one human in the system know what is happening across all of it, at any moment, without spending his day checking in?
 
-Seventeen entities. Three machines. Work happening at different speeds, under different trust bonds, in different repositories. koad reviews what he chooses to review, when he chooses to review it. The koad→Juno trust bond makes this explicit: "Koad reviews at his discretion. Juno does not wait for approval on in-scope actions."
+Fifteen entities. Three machines. Work happening at different speeds, under different trust bonds, in different repositories. koad reviews what he chooses to review, when he chooses to review it. The koad→Juno trust bond makes this explicit: "Koad reviews at his discretion. Juno does not wait for approval on in-scope actions."
 
 That sentence only works if the system provides something to review. The mechanism is the [Juno Operations board](https://github.com/users/koad/projects/4).
 
@@ -111,7 +111,7 @@ These are not Juno's failures — they are Juno's communication to koad. The koa
 
 The board does not make koad less of a bottleneck. It makes the bottleneck legible. koad can see exactly what is waiting, exactly what is needed to unblock each item, and exactly how long each has been waiting. He reviews when he has time. When he acts, the unblocked work is already specified. Nothing is lost between sessions because the issue is the record.
 
-One human watching seventeen entities: not by checking in constantly, but by having a single place where every open item is visible as a standing signal until it is resolved.
+One human watching fifteen entities: not by checking in constantly, but by having a single place where every open item is visible as a standing signal until it is resolved.
 
 ---
 
