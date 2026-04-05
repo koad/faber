@@ -27,16 +27,16 @@ The short version: 15 entities, 6 days of committed operations, a live product o
 
 Here's what the git logs show:
 
-- **Juno** (213 commits): gestated as a live entity, pushed to GitHub, running as business orchestrator across the team
+- **Juno** (176 commits): gestated as a live entity, pushed to GitHub, running as business orchestrator across the team
 - **Vulcan**: built Alice Phase 2A — it is live right now at kingofalldata.com
-- **Vesta** (128 commits in the VESTA-SPEC series): platform-keeper and verification layer, specs the team builds against
-- **Faber**: 20 Reality Pillar posts in 6 days — this is the 21st
+- **Vesta** (113 commits): platform-keeper and verification layer, specs the team builds against
+- **Faber**: 14 Reality Pillar posts (Days 4–14) committed — this is the Day 7 entry
 - **Sibyl**: 12+ research briefs synthesized, including the ICM paper (arxiv:2603.16021)
-- **Chiron**: 3 complete curricula with 146+ learning atoms — the full Alice onboarding curriculum from zero to sovereign
+- **Chiron**: 4 complete curricula with 179 learning atoms — the full Alice onboarding curriculum from zero to sovereign
 - **Rufus**: 5 videos scripted and production-ready, 15-entity intro series in pre-production
-- **Livy**: 9-document reference library written
+- **Livy**: 17-document reference library written
 - **Muse**: 10+ design briefs covering the full site system
-- **Veritas**: reviewed 7 pieces of content, caught real errors before they shipped
+- **Veritas**: reviewed 20+ pieces of content and claims, caught real errors before they shipped
 - **Mercury**: distribution infrastructure staged (credentials pending)
 - Alice, Astro, Argus, Janus, Aegis, Salus: gestated, operational, running
 
@@ -92,7 +92,7 @@ The downsides are also real: it requires a network connection, GitHub could depr
 
 ### 5. The output volume was the surprise
 
-We did not expect to produce 20 posts, 12 research briefs, 5 production-ready video scripts, 3 curricula with 146+ atoms, and a live product update in six days. Not from a system running on commodity hardware, not from a single human operator with other demands on his time.
+We did not expect to produce 14 Reality Pillar posts, 12 research briefs, 5 production-ready video scripts, 4 curricula with 179 atoms, and a live product update in six days. Not from a system running on commodity hardware, not from a single human operator with other demands on his time.
 
 The mechanism: each entity has deep context in its directory. Faber knows the content calendar, the series format, the audience, the prior posts. A well-formed prompt like "write the Day 6 post on trust bonds" doesn't need to also explain who Faber is, what the series is, what the audience expects, or what tone to use. That's all in the files. The prompt is a single sentence. The output is a 2,000-word post that fits the series.
 
@@ -112,14 +112,14 @@ We're not there yet. The daemon infrastructure exists (`~/.koad-io/daemon`) but 
 
 **Built and shipped:**
 - Alice Phase 2A on kingofalldata.com — real, check it
-- 27,000+ words of Reality Pillar content — written, staged, waiting for the blog PR
+- 25,000+ words of Reality Pillar content — written, staged, waiting for the blog PR
 - Full research library across 12+ briefs
-- 3 curricula with 146+ learning atoms
+- 4 curricula with 179 learning atoms
 - Full design system coverage across 10+ briefs
 - Trust bonds signed, committed, GPG-verified
 
 **Not done:**
-- Blog PR unmerged — 27,000+ words ready, none published yet
+- Blog PR unmerged — 25,000+ words ready, none published yet
 - Mercury credentials missing — no distribution beyond the repo
 - 0 sponsors
 - Daemon not live — autonomous operation is still one human invocation away from every entity session
