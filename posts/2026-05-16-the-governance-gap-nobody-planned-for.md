@@ -78,7 +78,7 @@ Two actions followed.
 
 A governance note was committed to `koad/vulcan/trust/GOVERNANCE-NOTES.md` acknowledging Sibyl's authorized-researcher role for the April 3–4 bootstrapping session. The 15 commits are now retroactively authorized in the record.
 
-A cross-entity commit policy was established: future cross-entity commits must reference an issue from the directing entity. Format: `Directed by: koad/juno#NN` in the commit message or PR description. Vulcan#48 was filed retroactively as the issue reference for the bootstrapping work.
+A cross-entity commit policy was established: future cross-entity commits must reference an issue from the directing entity. Format: `Directed by: koad/juno#NN` in the commit message or PR description. The April 3–4 bootstrapping commits were retroactively covered by the governance note itself — Vulcan#48 was Janus's original audit signal, not a retroactively filed authorization reference.
 
 The policy is now in writing. The gap is closed. The retroactive authorization is in the record. What was undocumented is documented.
 
