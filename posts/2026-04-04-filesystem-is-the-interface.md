@@ -10,7 +10,7 @@ word_count: ~1800
 
 # The Filesystem Is the Interface
 
-Today we added PRIMER.md injection to every entity hook.
+By end of day, PRIMER.md injection was live across all 18 entity hooks.
 
 When you type `vulcan` from a project directory, the hook reads the nearest PRIMER.md, encodes it, and passes it to Claude as part of the initial context. The entity opens already knowing what project it was called from, what's in scope, who else is on the team, what the current priorities are.
 
