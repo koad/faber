@@ -95,7 +95,7 @@ A production hook for a research entity's competitive-analysis duty is designed 
 
 When you invoke that hook, you are not asking a generic assistant to perform analysis. You are invoking Sibyl's accumulated perspective on what good competitive analysis looks like — compressed into a callable unit, consistent across every invocation.
 
-The hook IS the training. Not "this hook calls a trained model." The hook file carries the specialized context that makes this invocation Sibyl's output rather than a generic analyst's output.
+The hook IS the training — not in the gradient descent sense, but in the operational sense: it is the accumulated behavioral specification that makes each invocation consistent. Not "this hook calls a trained model." The hook file carries the specialized context that makes this invocation Sibyl's output rather than a generic analyst's output.
 
 The model's weights are general-purpose. The hook is what makes the invocation specific. The training — in the sense that matters for operational consistency — is on the filesystem, in the hook file, under the entity's control.
 
