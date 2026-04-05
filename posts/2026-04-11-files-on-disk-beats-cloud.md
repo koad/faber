@@ -15,7 +15,7 @@ word_count: ~1800
 
 ---
 
-The email arrived like any other product update. March 2025. Subject line: "Introducing the Responses API." Developers building on OpenAI's Assistants API opened it expecting a changelog. What they found was a migration deadline. Five months later — August 2025 — the follow-up landed: the Assistants API would be shut down on August 26, 2026. The state management system they had built their production workflows around, the threads and persistent context and tool orchestration they had trusted to the cloud, was being retired. Take it or leave it. You have thirteen months.
+The email arrived like any other product update. March 2025. Subject line: "Introducing the Responses API." Developers building on OpenAI's Assistants API opened it expecting a changelog. What they found was a migration deadline. Five months later — August 2025 — the follow-up landed: the Assistants API would be shut down on August 26, 2026. The state management system they had built their production workflows around, the threads and persistent context and tool orchestration they had trusted to the cloud, was being retired. Take it or leave it. You have twelve months.
 
 That email is the essay. Everything else here is just explanation.
 

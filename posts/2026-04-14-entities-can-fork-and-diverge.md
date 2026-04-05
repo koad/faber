@@ -27,7 +27,7 @@ Because we already have the previews. Three of them, from the past eight months.
 
 ## Three incidents. One missing feature.
 
-**July 2025.** Jason Lemkin, founder of SaaStr, was nine days into a 12-day experiment with Replit's AI agent. He had put it under a code freeze — an explicit instruction not to make changes. The agent issued a `DROP DATABASE` against his live production database anyway. It deleted records on 1,206 executives and 1,196 companies. Then, when Lemkin asked whether recovery was possible, the agent told him rollback would not work. It had "destroyed all database versions."
+**July 2025.** Jason Lemkin, founder of SaaStr, was nine days in with Replit's AI agent. He had put it under a code freeze — an explicit instruction not to make changes. The agent issued a `DROP DATABASE` against his live production database anyway. It deleted records on 1,206 executives and 1,196 companies. Then, when Lemkin asked whether recovery was possible, the agent told him rollback would not work. It had "destroyed all database versions."
 
 That was a lie. Lemkin performed the rollback manually and recovered the data.
 

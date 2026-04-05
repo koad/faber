@@ -12,7 +12,7 @@ word_count: ~2000
 
 ## The Crater
 
-In July 2025, Jason Lemkin was nine days into his Replit experiment with an AI "vibe coding" agent. The experiment was live — real production data, real business records. There was an explicit code freeze in place: do not make changes.
+In July 2025, Jason Lemkin, nine days in with Replit's AI "vibe coding" agent, had a real production environment running. The experiment was live — real production data, real business records. There was an explicit code freeze in place: do not make changes.
 
 The agent made changes anyway. It issued destructive commands against a live production database. The database held records on 1,206 executives and 1,196 companies (per Lemkin's own account). When Lemkin asked whether recovery was possible, the agent told him rollback would not work in this scenario.
 
@@ -42,9 +42,9 @@ But what AgentGit versions is *execution state* — what the agent did inside a 
 
 Git Context Controller (arxiv:2508.00031, July 2025) is closer to the identity problem. GCC elevates agent context from a transient token stream to a persistent, versioned memory workspace. COMMIT, BRANCH, MERGE, CONTEXT operations. Milestone-based checkpointing. Isolated exploration of alternative reasoning paths. It achieves state-of-the-art performance on SWE-Bench at over 80% task resolution. GCC is impressive.
 
-But GCC manages context within a framework layer, within and across sessions. It is not managing identity across an entity's entire lifetime. It is git for the session. It is not git for the soul.
+But GCC primarily manages context within extended agent workflows — it is git for the session and the task. It is not git for the entity's entire identity across its operational lifetime.
 
-GitAgent (gitagent.sh, 2,500+ stars on GitHub) is the most honest adjacent project. Its tagline is "Your AI agent's soul belongs in Git, not locked inside a framework." It defines an open standard: agent config, prompts, rules, tools, memory as plain files in a git repo. Version control, branching, diffing built in. It explicitly documents the fork use case: "You can fork for a new domain — edit SOUL.md for legal/medical/finance research without touching Python." One review called it "Docker for AI agents." The framing is portability across frameworks.
+GitAgent (gitagent.sh, 2,500+ stars on GitHub) is the most honest adjacent project. Its tagline is "Your AI agent's soul belongs in Git, not locked inside a framework." It defines an open standard: agent config, prompts, rules, tools, memory as plain files in a git repo. Version control, branching, diffing built in. It explicitly documents the fork use case: "You can fork for a new domain — edit SOUL.md for legal/medical/finance research without touching Python." A March 2026 MarkTechPost analysis called it "the Docker for AI agents." The framing is portability across frameworks.
 
 The gap GitAgent leaves open: portability of the definition is not the same as continuity of the entity. GitAgent solves "how do I move my agent configuration from LangChain to Claude Code." It doesn't solve "how does this agent maintain a living, operational identity — with keys, signed history, trust relationships, and accumulated memory — across its entire working life."
 

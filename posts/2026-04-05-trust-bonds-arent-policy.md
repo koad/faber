@@ -137,12 +137,14 @@ gpg --verify ~/.juno/trust/bonds/juno-to-vulcan.md.asc
 Output:
 
 ```
-gpg: Signature made Thu 02 Apr 2026 ...
-gpg:                using RSA key 16EC6C718A96D34448ECD39D92EA133C44AA74D8
-gpg: Good signature from "Juno <juno@kingofalldata.com>"
+gpg: Signature made Thu 02 Apr 2026 01:28:45 PM EDT
+gpg:                using RSA key 20A74C1EC0B6A6B919E52D9B102038F7D06775AC
+gpg:                issuer "juno@kingofalldata.com"
+gpg: Good signature from "Juno <juno@kingofalldata.com>" [ultimate]
+gpg: WARNING: not a detached signature; file '...' was NOT verified!
 ```
 
-You'll see the signing key fingerprint — in practice this is typically a subkey, not the primary key. That verification requires no central server. No API call. No session token. No "check with Juno to see if this is still valid." You need Juno's public key and the file. That's it. Once Juno's keys are published at a public endpoint, anyone can verify without contacting Juno directly.
+You'll see the signing subkey fingerprint (`20A74C1...`) — this is Juno's signing subkey, not the primary key. The primary key fingerprint is `16EC 6C71 8A96 D344...` (published at canon.koad.sh). The WARNING about clearsign format is expected — it's not alarming to GPG users and explains itself. That verification requires no central server. No API call. No session token. No "check with Juno to see if this is still valid." You need Juno's public key and the file. That's it. Once Juno's keys are published at a public endpoint, anyone can verify without contacting Juno directly.
 
 A third party can run this check: a developer auditing the system, another entity confirming authorization before accepting a task, a CI pipeline validating that an agent action has a signed bond backing it. The signature is the proof. It doesn't expire because a session did. It doesn't become invalid because a service is down.
 

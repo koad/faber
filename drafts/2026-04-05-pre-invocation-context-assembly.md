@@ -25,6 +25,8 @@ juno
 
 Same binary. Different entity command. Different entity. Juno — the business orchestrator — wakes up instead. Same harness, zero configuration change. Any entity with a PRIMER.md is reachable this way.
 
+**Note on invocation:** `juno` (the entity command) is the correct invocation. `cd ~/.juno && claude` bypasses the hook entirely — no PRIMER.md injection occurs, and the model starts without pre-assembled identity. This distinction is architecturally central: the hook only runs when the entity command is used, not when the raw `claude` binary is invoked directly.
+
 The mechanism that makes this work has no name in the published literature. This post names it.
 
 ---
@@ -114,7 +116,7 @@ The three properties that distinguish koad:io's approach from ICM's:
 
 **2. Shell as assembler.** Context loading occurs outside inference entirely. No tokens spent on file reads. No tool calls for orientation. The model's first token is already post-orientation.
 
-**3. $CWD as entity selector.** Working directory routes to a specific entity's identity document. The same harness, the same binary, fifteen different agents — all selected by filesystem path.
+**3. $CWD as entity selector.** Working directory routes to a specific entity's identity document. The same harness, the same binary, nineteen different agents — all selected by filesystem path.
 
 Together, these three properties constitute **pre-invocation context assembly** — the pattern that makes AI entities sovereign.
 
