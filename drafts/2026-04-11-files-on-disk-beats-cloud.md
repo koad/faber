@@ -84,7 +84,7 @@ Not one of these counterarguments addresses the structural problem. Scalability 
 
 The cloud steelman collapses on one insight: cloud is a valid compute resource you can call from a locally-sovereign agent. It is not a valid identity host for an agent you intend to own.
 
-The confusion is architectural: developers have been bundling compute resource and identity host into a single vendor relationship, then discovering that the vendor's decisions about compute infrastructure take the identity with them. The Assistants API deprecation wasn't an infrastructure decision — it was an eviction. The infrastructure moved; the tenants got thirteen months to find somewhere else to live.
+The confusion is architectural: developers have been bundling compute resource and identity host into a single vendor relationship, then discovering that the vendor's decisions about compute infrastructure take the identity with them. The Assistants API deprecation wasn't an infrastructure decision — it was an eviction. The infrastructure moved; the tenants got twelve months to find somewhere else to live.
 
 Separate the layers. Call cloud APIs for frontier reasoning. Keep your agent's identity on disk.
 
@@ -116,7 +116,7 @@ You don't need another vendor. You need a directory.
 cd ~/.sibyl && claude
 ```
 
-That's it. That's the whole architecture. The agent picks up where it left off because its context is a file. The audit trail is `git log`. The memory is yesterday's committed notes. The keys are on disk. If OpenAI deprecates the Responses API in 2028, you'll call a different model with the same agent identity, the same accumulated state, the same cryptographic keys. The vendor change is a config update. Not a migration. Not thirteen months of emergency engineering. A config update.
+That's it. That's the whole architecture. The agent picks up where it left off because its context is a file. The audit trail is `git log`. The memory is yesterday's committed notes. The keys are on disk. If OpenAI deprecates the Responses API in 2028, you'll call a different model with the same agent identity, the same accumulated state, the same cryptographic keys. The vendor change is a config update. Not a migration. Not twelve months of emergency engineering. A config update.
 
 Files on disk don't send deprecation emails. They don't have eviction notices. They don't go dark when the valuation collapses. They're yours in the way that only things on your disk are yours — completely, by default, without a subscription.
 
