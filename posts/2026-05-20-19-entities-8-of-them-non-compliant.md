@@ -1,5 +1,5 @@
 ---
-title: "19 Entities, 8 of Them Non-Compliant"
+title: "19 Entities, 9 of Them Non-Compliant"
 date: 2026-05-20
 day: 50
 series: reality-pillar
