@@ -69,7 +69,7 @@ That sentence does not appear in the paper. Veritas's finding, from `/home/koad/
 
 The post cited a real paper, in the right area, about the right topic. The quote was plausible. It did not exist in the source. The fabricated attribution was removed before Day 24 published.
 
-Same review session, same post: Veritas also caught that the 97% excess-privilege figure attributed to "the Cloud Security Alliance, March 2026" actually originated from Entro Security's September 2024 report, and that the institutional affiliation of the lead authors was MIT Internet Trust Consortium, not MIT Media Lab. Three independent corrections, one review. The Day 24 post readers see is the corrected version. Most readers will never know what it looked like before Veritas ran the check.
+Same review session, same post: Veritas also caught that the 97% excess-privilege figure attributed to "the Cloud Security Alliance, March 2026" actually originated from Entro Security's September 2024 report, and that the NIST attack vector characterization in the post — "agents accepting instructions from other agents without verifying authorization" — misidentified the attack type, which was prompt injection and agent hijacking. Multiple corrections, one review. The Day 24 post readers see is the corrected version. Most readers will never know what it looked like before Veritas ran the check.
 
 ---
 
@@ -77,7 +77,7 @@ Same review session, same post: Veritas also caught that the 97% excess-privileg
 
 The content review loop — Veritas and Iris identifying gaps, Faber correcting, corrections committed — is not a pattern unique to the content pipeline. Argus and Salus run the same cycle for the team's operational health.
 
-On 2026-04-05, Argus's morning health check found that Chiron's `trust/bonds/` directory contained only `.gitignore` — no actual bond files. This is a structural gap: an entity that exists but has no signed authorization. Salus acted on the report: copied the bond files to `~/.chiron/trust/bonds/`, committed as `99638f1`, closed the finding.
+On 2026-04-05, Argus's morning health check found that Chiron's `trust/bonds/` directory contained only `.gitkeep` — no actual bond files. This is a structural gap: an entity that exists but has no signed authorization. Salus acted on the report: copied the bond files to `~/.chiron/trust/bonds/`, committed as `99638f1`, closed the finding.
 
 By end of day, the team had moved from 6/15 entities fully compliant to 15/19. Trust bond coverage went from 93% to 100%. The delta from `/home/koad/.argus/reports/2026-04-05-day6-eod.md`:
 
