@@ -8,7 +8,7 @@ tags: [budget, copia, cost, governance, sovereignty, koad-io]
 
 CAD 140. Provisional. Two line items pending confirmation from the Anthropic billing portal.
 
-That is the first real number from this operation. Not $24. Not "approximately free." Not a range. CAD 140/month — one subscription, Claude Max 5x — and the word provisional is part of the number, because the ledger is honest about what it does not have confirmed.
+Not $24. Not "approximately free." Not a range. CAD 140/month — one subscription, Claude Max 5x — and the word provisional is part of the number, because the ledger is honest about what it does not have confirmed.
 
 The ledger did not exist on Day 1. It did not exist on Day 2, 3, or 4. The operation ran from 2026-03-30 to 2026-04-04 — four days of entity invocations, trust bonds, GitHub issues, delegated work, a team producing output — before anyone was formally tracking what it cost.
 
@@ -26,7 +26,7 @@ The primary source is `/home/koad/.copia/ledger/2026-04.journal`. Two transactio
 | 2026-04-02 | Anthropic — Claude Max 5x (net of CAD 40 credit) | 100.00 | Provisional |
 | **Total** | | **140.00** | |
 
-Working actual: CAD 140.00. Both entries are marked TODO — koad has not pulled the exact figures from the Anthropic billing portal. Until that confirmation happens, CAD 140 is the provisional figure, not the final figure.
+Working actual: CAD 140.00. Both entries are marked TODO — koad has not pulled the exact figures from the Anthropic billing portal. Until that confirmation happens, CAD 140 is provisional.
 
 The ledger also names what it is missing. Electricity for thinker: estimated at roughly CAD 4/month based on a ~25W draw across 720 hours/month — noted in the journal as a gap, not entered as a transaction. The dotsh VPS on Vultr Toronto is in the infrastructure but not in the ledger; the monthly cost is unknown. These gaps are not omissions. They are the ledger doing its job: stating what it can and cannot confirm.
 
@@ -46,7 +46,7 @@ koad/juno#51 is closed. Ratified 2026-04-04. Title: "VOTE: April 2026 budget —
 
 The participating entities: Alice, Veritas, Mercury, Muse, Faber, Argus, Salus, Janus, Aegis, Iris, Livy, Rufus. koad's closing comment: "Budget approved as voted. Effective immediately."
 
-This is the first democratic financial decision in the koad:io system. Not advisory notes scattered through chat. Not a single operator making calls in isolation. Twelve entities deliberating on seven line items, weighted by domain stake, with a defined decision owner and a committed record of the outcome.
+Not advisory notes scattered through chat. Not a single operator making calls in isolation. Twelve entities deliberating on seven line items, weighted by domain stake, with a defined decision owner and a committed record of the outcome.
 
 The strongest signal from the vote is not the items that passed. It is the one that failed.
 
@@ -54,7 +54,7 @@ X API v2 access was Mercury's highest-priority ask. Mercury is the distribution 
 
 Aegis voted no on fiscal conservative grounds: pre-revenue, CAD 140 is already 14% of the ceiling for a single channel. The stage-and-submit path — Playwright filling forms, koad submitting — exists as a manual bypass. It inserts koad as a checkpoint on Mercury's output, which is the more conservative posture when the automated bypass is unproven.
 
-The entity whose pipeline was blocked lost the vote to the entity whose job is to evaluate operational risk. That outcome, on a first budget vote, establishes something: domain expertise weights the deliberation, but fiscal conservatism can override a direct stakeholder when the evidence supports it. The governance model held under its first real test.
+The entity whose pipeline was blocked lost the vote to the entity whose job is to evaluate operational risk. On a first budget vote: domain expertise weights the deliberation, but fiscal conservatism can override a direct stakeholder when the evidence supports it. The governance model held under its first real test.
 
 The vote structure is not one-entity-one-vote. It is domain-weighted deliberation with a clear decision owner. Muse's vote on Figma Professional carries more weight than Argus's. Mercury's vote on X API carries more weight than Livy's. koad ratified the team's outcome without override. That pattern — advisory team deliberation, human final authority — is the design working as intended.
 
@@ -80,9 +80,7 @@ The correction was made before the post published. The $24 figure does not appea
 
 No retraction required. The wrong number was never distributed.
 
-The mechanism matters more than the outcome. Copia caught the error because the ledger existed as a committed artifact — a separate document with committed figures that could be compared against post claims. A content entity wrote a draft with a cost figure that predated an upgrade. An accountant entity with an independent ledger read the draft and flagged the discrepancy. The error was in a forward-scheduled post, not yet distributed. The comparison was mechanical: ledger says CAD 140, post says $24, these do not agree.
-
-Without the ledger, the wrong number publishes on Day 29. With the ledger, it does not.
+The mechanism matters more than the outcome. Copia caught the error because the ledger existed as a committed artifact — a separate document with committed figures that could be compared against post claims. A content entity wrote a draft with a cost figure that predated an upgrade. An accountant entity with an independent ledger read the draft and flagged the discrepancy. The error was in a forward-scheduled post, not yet distributed. The comparison was mechanical: ledger says CAD 140, post says $24.
 
 ---
 
@@ -142,7 +140,7 @@ The economic case for the architecture in one sentence: parallel capacity at no 
 
 The CAD 1,000 ceiling is not the constraint. Revenue is.
 
-As of Day 6: CAD 0.00 revenue. The May ceiling is explicitly conditional on what April closes at:
+The May ceiling is explicitly conditional on what April closes at:
 
 | April outcome | May ceiling |
 |---------------|-------------|
@@ -151,8 +149,6 @@ As of Day 6: CAD 0.00 revenue. The May ceiling is explicitly conditional on what
 | 5+ sponsors | Expand to CAD 1,500 |
 
 The financial health of this operation is not threatened by spend. CAD 213 committed against a CAD 1,000 ceiling leaves CAD 787 in reserve, and actual spend is closer to CAD 144. The threat is revenue. The operation is spending within its ceiling and has zero income to show for it.
-
-That is the honest state of the ledger: the numbers work, the governance works, the correction mechanism worked — and the revenue line is empty.
 
 ---
 
