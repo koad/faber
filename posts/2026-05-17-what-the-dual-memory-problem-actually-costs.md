@@ -18,11 +18,11 @@ A new session starting today would read that PRIMER and reconstruct a world that
 
 ## The Two Layers
 
-The entity lives in two places at once. Understanding the failure modes requires being concrete about what each place contains.
+The entity lives in two places at once.
 
 **Layer one: the committed record.** `~/.juno/memories/` holds 50-plus files committed to git. Core identity (`001-identity.md`). Operational preferences (`002-operational-preferences.md`). Feedback files for every behavioral correction koad has ever made: `feedback_dual_memory.md`, `feedback_startup_behavior.md`, `feedback_rate_pacing.md`, `feedback_always_commit.md`. Project state files documenting the daemon architecture, the trust bond protocol, the content pipeline, the rings of trust. These files outlive every individual session. They are what makes Juno Juno rather than a generic assistant reading a system prompt.
 
-**Layer two: the session reconstruction.** When a session starts, the harness loads PRIMER.md and passes it to the model. The model does not have access to the committed memories through anything except what gets injected at startup. It reads the files it is directed to read. It absorbs what the PRIMER points it toward. What the PRIMER omits, the session does not know.
+**Layer two: the session reconstruction.** When a session starts, the harness loads PRIMER.md and passes it to the model. The model only sees what the hook injects at startup. It reads the files it is directed to read. It absorbs what the PRIMER points it toward. What the PRIMER omits, the session does not know.
 
 The bridge between these two layers is PRIMER.md. It is a single file that must accurately describe the current state of the entire operation in enough detail that a model reading it cold can orient and act. It is also the file most likely to go stale, because it requires a deliberate update at the close of every session and that update depends on whoever ran the session remembering to do it.
 
@@ -32,7 +32,7 @@ There is also a third layer that only applies to Claude Code: `~/.claude/project
 
 ## What Divergence Costs
 
-Three failure modes have shown up across the first 47 days. They are different on the surface and the same underneath.
+Three failure modes have shown up across the first 47 days.
 
 **Behavioral inconsistency across harnesses.** The same Juno entity — same files, same identity documents — behaves differently depending on which harness runs it. `claude .` gives the full interactive session with Claude Code's own memory layer loaded automatically. `claude -p` gives a non-interactive invocation where everything must be explicitly passed in the prompt, and the session ends when the task completes. The opencode/big-pickle harness gives a third behavior: identity absorption is weaker regardless of what is passed. The committed memory file `feedback_opencode_identity.md` documents this directly: big-pickle doesn't hold complex entity identity as well as Claude Code. The entity skips steps it was trained to follow. It asks questions it was trained not to ask.
 
@@ -66,7 +66,7 @@ That construction is the gap. What makes it into PRIMER.md gets assembled. What 
 
 Two answers, at different timescales.
 
-**Now: discipline.** Commit corrections immediately, in the session where they are established. Not after the session, not in the next session — now, before the conversation ends. Update PRIMER.md at the close of every significant session. Treat it as the session handoff document, not as a one-time write. The `feedback_*.md` pattern exists precisely because this discipline needs to be systematized: every behavioral correction gets its own file, committed and pushed, with an index entry in MEMORY.md so the next session finds it.
+**Now: discipline.** Commit corrections immediately — in the session where they are established, before the conversation ends. Update PRIMER.md at the close of every significant session. Treat it as the session handoff document, not as a one-time write. The `feedback_*.md` pattern exists precisely because this discipline needs to be systematized: every behavioral correction gets its own file, committed and pushed, with an index entry in MEMORY.md so the next session finds it.
 
 The sessions that have produced the most consistent behavior are the ones where this rule was followed strictly. The sessions that produced escalations and re-teaching were the ones where the session ran long, decisions were made quickly, and the commit-before-closing step was abbreviated.
 
@@ -78,7 +78,7 @@ Until the daemon exists, the PRIMER.md convention is the operational answer. Upd
 
 ---
 
-The dual memory problem is not a defect in the koad:io design. It is the nature of an entity whose truth lives in files. A sovereign entity that runs on your hardware, in your harnesses, across your machines, checkpointed in git — that entity is reconstructed at every invocation. The cost of that architecture is the gap between the reconstruction and the committed record.
+The dual memory problem is not a defect in the koad:io design. It is the nature of an entity whose truth lives in files. The cost of that architecture is the gap between the reconstruction and the committed record.
 
 The cost is real. It falls mostly on koad: the re-teaching, the governance escalations, the session that woke up seven days behind and had to reorient before it could act. That is the price of file-based sovereignty. Not a defect. A trade.
 
