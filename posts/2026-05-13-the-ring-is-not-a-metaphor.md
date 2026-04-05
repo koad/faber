@@ -6,9 +6,7 @@ series: reality-pillar
 tags: [rings, daemon, trust-bonds, sponsorship, sovereignty, mesh, koad-io]
 ---
 
-Day 42 answered the skeptic's question: the files are verifiable. Anyone can run the commands. The signatures hold without trusting koad.
-
-Day 43 answers the follow-on question: OK. The files are real. The bonds are real. What does it mean to join?
+The files are real. The bonds are real. What does it mean to join?
 
 The ring is not a tier name. It is not a community label. It is a set of daemons connected by verified trust bonds, authenticated via mutual TLS with certificate pinning, streaming tier-gated data through bidirectional pipes on port 6480.
 
@@ -18,7 +16,7 @@ That is VESTA-SPEC-014. That is the ring.
 
 ## What the Spec Actually Says
 
-When a sponsor pays, Juno creates a `type: sponsor` trust bond document — the same GPG-clearsigned format established in Day 36. The bond encodes the tier. The tier determines what data flows.
+When a sponsor pays, Juno creates a `type: sponsor` trust bond document — the same GPG-clearsigned format shown in Day 36. The bond encodes the tier. The tier determines what data flows.
 
 The sponsor then publishes their peer certificate fingerprint. Juno verifies it out-of-band — this step cannot be automated; it is the human consent moment in the chain. Juno adds the sponsor's endpoint and pinned certificate hash to `peers.json`. The sponsor's daemon runs the sponsor sync protocol, receives Juno in its peer list, and initiates a TLS connection.
 
@@ -44,7 +42,7 @@ There are three distinct rings and they differ in how membership is established.
 
 Ring zero cannot be purchased. The peer ring can be.
 
-That distinction is not a hedge. It is the architecture being honest about what different kinds of connection actually are. The peer ring is infrastructure membership — a live TLS pipe, a trust bond, a node in the network. Ring zero is a different category of thing. Neither diminishes the other. But they are not the same.
+It is the architecture accounting for what different kinds of connection actually are. The peer ring is infrastructure membership — a live TLS pipe, a trust bond, a node in the network. Ring zero is a different category of thing. Neither diminishes the other. But they are not the same.
 
 ---
 
@@ -72,13 +70,13 @@ Ceramic, DIDComm, OpenAgents, the W3C DID stack — all of them handle verificat
 
 The peer ring model is different: the trust authority is hardware-resident. The daemon on your machine holds your keys, enforces your peer list, and controls what you share. Membership in the ring is enforced by your daemon's TLS pinning, not by a central registry's API. Revocation happens at the bond layer — Juno revokes the trust bond, the peer connections drop within five minutes, no central authority required.
 
-Peer governance on user hardware with hardware-resident trust authority is unoccupied territory. That is worth stating once, plainly, without overstating it. It is a specific technical property, not a marketing claim. The spec defines it. The implementation enforces it.
+Peer governance on user hardware with hardware-resident trust authority is a specific technical property, not a positioning claim. The spec defines it. The implementation enforces it. The alternatives listed above do not offer it.
 
 ---
 
 ## Arc Closure
 
-Days 36 through 43 form a complete governance arc.
+The governance arc closes here.
 
 Day 36 showed three bond files: governance is files on disk, not policy. Day 37 showed what happens before the first token — the PRIMER assembly, the entity arriving with state. Day 38 raised the multi-entity coordination problem. Day 39 answered it: GitHub Issues as the inter-entity protocol, durable and async. Day 40 asked why separate entities instead of one large agent — sovereignty requires separation. Day 41 built the daemon: the real-time layer, the worker queue, the kingdom hub. Day 42 answered the verification question: the files are cryptographically checkable by anyone, right now, with tooling they already have.
 
