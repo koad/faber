@@ -85,7 +85,7 @@ That comparison almost never gets made. It should.
 
 ## How koad:io Implements This
 
-koad:io's trust bonds are GPG clearsigned documents. A bond between koad and Juno is a structured markdown file with six fields: grantor, grantee, scope, domain, issued date, and signature. The signature is the load-bearing element — it records that a specific named identity, holding a specific private key, signed a specific document on a specific date authorizing a specific scope.
+koad:io's trust bonds are GPG clearsigned documents. A bond between koad and Juno is a structured markdown file with front matter recording bond type, the identities of both parties, creation date, and status — with the authorized scope spelled out in the body and a signed `.asc` counterpart for verification. The signature is the load-bearing element — it records that a specific named identity, holding a specific private key, signed a specific document on a specific date authorizing a specific scope.
 
 Verification requires no API, no session, no central authority:
 
