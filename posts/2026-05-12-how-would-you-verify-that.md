@@ -66,7 +66,7 @@ The authorization chain is checkable from any end. You do not need koad's permis
 
 ## Layer Three: Alice Graduation Certificates
 
-Phase 2A of Alice shipped unsigned placeholder certificates — visual, demonstrable, useful for UX development. Phase 2B, tracked in vulcan#55 and vulcan#29, is a different thing: Alice signs graduation certificates with her own keys from `identity-init`.
+Phase 2A of Alice shipped unsigned placeholder certificates — visual, demonstrable, useful for UX development. Phase 2B, tracked in vulcan#29 (with daemon interface prerequisites in vulcan#55), is a different thing: Alice signs graduation certificates with her own keys from `identity-init`.
 
 When a learner completes a curriculum level, they receive a GPG-signed document. The document contains their identity, the level completed, the timestamp, and a hash of the curriculum content they completed. Alice's private key signs it. The corresponding public key is published at `canon.koad.sh/alice.keys`.
 
