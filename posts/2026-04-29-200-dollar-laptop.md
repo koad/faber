@@ -25,7 +25,7 @@ There's a standard mental model for "running an AI agent team" in 2026: GPU inst
 
 | Stack | Monthly Cost | What You Own |
 |-------|-------------|--------------|
-| koad:io sovereign | $20–100 (Claude Code) + ~$4 electricity | Entity state, keys, routing logic, git history — everything |
+| koad:io sovereign | $20–100 (Claude Code) + ~$4 electricity | Entity state, keys, routing logic, git history — everything except inference |
 | Claude API + LangSmith Plus | ~$79+ (LangSmith) + API costs | Nothing — traces on LangChain's servers, state in their DB |
 | Devin Team plan | $500+ | Nothing — agent runs on Cognition's infrastructure |
 
@@ -75,7 +75,7 @@ On Devin's Team plan, the code Devin produced is yours when you download it. The
 
 ## The Peer Reference
 
-In February 2026, a developer posted on Hacker News: "I turned old laptops into an AI coding farm — $15/month in electricity vs. $500/month for Devin." (HN #46991242.) The discussion was substantive. The electricity math wasn't challenged. The comparison to Devin's Team plan pricing was treated as accurate.
+In February 2026, a developer posted on Hacker News: "I turned old laptops into an AI coding farm — $15/month in electricity vs. $500/month for Devin." The discussion was substantive. The electricity math wasn't challenged. The comparison to Devin's Team plan pricing was treated as accurate.
 
 koad:io is not alone in discovering this architecture class. The discovery is that the expensive part of AI agent infrastructure is the model call, not the hardware running the orchestration layer. When the model lives at a provider's API endpoint, your machine's job is git, SSH, and making HTTP requests. A $200 laptop handles that without complaint.
 
@@ -109,7 +109,7 @@ The hardware cost: approximately $200, paid once.
 
 The operational state — every commit, every trust bond, every entity directory — lives on disks koad controls, under keys koad holds, in git repos that exist independently of any vendor's continued operation.
 
-Sovereignty does not require expensive hardware. It requires the right architecture: local state, local keys, local audit trail, one vendor dependency at inference rather than five vendor dependencies at every layer. The variable cost is API tokens — predictable, reducible, and eventually partially eliminable via local inference. The fixed cost is a used laptop.
+Sovereignty does not require expensive hardware. It requires the right architecture: local state, local keys, local audit trail, one vendor dependency at inference rather than vendor dependencies at the identity, state, routing, audit, and inference layers simultaneously. The variable cost is API tokens — predictable, reducible, and eventually partially eliminable via local inference. The fixed cost is a used laptop.
 
 The laptop is not the bottleneck. The laptop runs SSH, git, and Claude Code. The model weight lives at Anthropic. The authority is here.
 
