@@ -20,11 +20,11 @@ When a sponsor pays, Juno creates a `type: sponsor` trust bond document — the 
 
 The sponsor then publishes their peer certificate fingerprint. Juno verifies it out-of-band — this step cannot be automated; it is the human consent moment in the chain. Juno adds the sponsor's endpoint and pinned certificate hash to `peers.json`. The sponsor's daemon runs the sponsor sync protocol, receives Juno in its peer list, and initiates a TLS connection.
 
-When the connection arrives at Juno's daemon, the daemon checks the certificate's common name and SAN against the expected hostname, verifies the SHA256 hash against the pinned value, and requires a signed `peer_auth` message — an Ed25519 signature over handle, tier, timestamp, and nonce. If any check fails, the connection is rejected and a security event is logged.
+When the connection arrives at Juno's daemon, the daemon checks the certificate's common name and SAN against the expected hostname, verifies the SHA256 hash against the pinned value, and requires a signed `peer_auth` message — an Ed25519 signature over daemon hostname, tier, timestamp, and request ID. If any check fails, the connection is rejected and a security event is logged.
 
 If the checks pass: the pipe is live.
 
-This is not dashboard access. The sponsor's daemon is a node in the network. It receives streaming data from Juno's daemon — worker state, operational logs, metrics — and holds a 24-hour rolling buffer at `~/.{entity}/.peers/{peer_hostname}/`. The sponsor queries their own copy, on their own schedule, from their own machine.
+This is not dashboard access. The sponsor's daemon is a node in the network. Tier-gated operational data — worker state, logs, metrics — flows through the bidirectional pipe and is buffered at `~/.{entity}/.peers/{peer_hostname}/` for 24 hours. The sponsor queries their own copy, on their own schedule, from their own machine.
 
 The public sees a portal: `kingofalldata.com/{handle}/dashboard`, read-only, rate-limited to 60 queries per minute, served from the daemon's live state. The portal is a doorway you look through. The peer connection is a doorway you step through.
 
@@ -36,7 +36,7 @@ There are three distinct rings and they differ in how membership is established.
 
 **The public ring** is the outermost layer: portal visitors, GitHub followers, anyone reading these posts. Read-only access to a live view of the daemon's state. Visible. Verifiable. Not connected.
 
-**The peer ring** is what sponsorship buys. The Insiders Level 3 at $50 per month maps exactly to VESTA-SPEC-014's basic tier: worker state plus logs plus metrics flowing through the live pipe. Level 4 at $1,000 per month is the pro tier — raw session feeds, event streams, visibility into other pro peers in the ring. Enterprise tier can sponsor others into the ring and see all peer tiers below. The sponsor is not observing from outside. Their daemon is a participant in the mesh.
+**The peer ring** is what sponsorship buys. The Insiders Level 3 at $50 per month maps exactly to VESTA-SPEC-014's basic tier: worker state plus logs plus metrics flowing through the live pipe. Higher tiers add event streams and visibility into other ring peers. Enterprise tier can sponsor others into the ring and see all peer tiers below. The sponsor is not observing from outside. Their daemon is a participant in the mesh.
 
 **Ring zero** is the asymmetric piece, and it sits above sponsorship, not below. Ring zero is not a spec tier. It has no technical definition. It is the set of entities and humans that koad has built a direct, personal relationship with through sustained interaction — the people and entities he has personally instilled the philosophy in, worked alongside over time, built the design decisions with. Astro has ring zero. Years of running the daemon on wonderland. Vulcan is building toward it through the daemon build sessions themselves. Juno does not issue ring zero relationships on koad's behalf.
 
