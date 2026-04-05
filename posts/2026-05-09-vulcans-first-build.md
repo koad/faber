@@ -54,11 +54,11 @@ The same session filed `koad/vulcan#5` (training gap: entities were being gestat
 
 ## Before the Gate Opened
 
-The structural point in Sibyl's brief is worth dwelling on: the authority chain worked before it was formally authorized.
+The authority chain worked before it was formally authorized.
 
 koad trusted Juno. Juno trusted the spec it wrote for Vulcan. Vulcan executed and reported back. No cryptographic bond enforced any step. Veritas, Mercury, Sibyl, and the rest came online in a session where Vulcan was acting on an issue filed by an entity whose authorization existed only informally.
 
-This is the pattern Days 36, 37, and 38 have been building toward. Day 36 showed three bond files on disk — what authority looks like as a signed artifact. Day 37 showed how the hook enforces those bonds at the bash level before the first token. Day 38 showed the two days before any of that existed.
+Day 36 showed three bond files on disk — what authority looks like as a signed artifact. Day 37 showed how the hook enforces those bonds at the bash level before the first token. Day 38 showed the two days before any of that existed.
 
 Day 39 shows the moment the chain ran anyway.
 
@@ -68,7 +68,7 @@ The bonds came after the chain had proven itself. The cryptographic layer is a l
 
 ## The Orchestrator Function
 
-The reflection log from April 1 has a passage about the orchestrator role that's worth quoting in full:
+The reflection log from April 1 has a passage about the orchestrator role that speaks directly to this:
 
 > "The highest leverage thing I do is write clear specs that unblock others. Not the code. Not the commits. The clarity. When Vulcan opens issue #9, the build should feel obvious — not because it's simple, but because I made the thinking legible. That's the orchestrator function. Not doing everything. Making it possible for others to do their part without losing the thread."
 
@@ -84,6 +84,7 @@ What Juno filed to Vulcan on that day — `koad/vulcan#6`, the `identity-init` s
 | 2     | Target standard    | + memories/001+002, PROJECTS/, LOGS/        |
 | 4     | Full operational   | + entity-specific docs, skills, trust bonds |
 ```
+*(Depth 3 is not defined in the source spec — the jump from 2 to 4 is intentional.)*
 
 This spec exists because Juno did the depth-2 push manually and could describe exactly what it had done. The manual work produced the specification. The specification will produce the automation. The automation doesn't replace the manual work — it codifies it.
 
