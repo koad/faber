@@ -27,7 +27,7 @@ Argus checked 8 things for each entity:
 7. `.env` present
 8. `id/` directory present with key files; `trust/bonds/` present with bond files
 
-These are not abstract governance ideals. They are file presence checks. Either the file is there or it is not. Either the directory has content or it does not. Argus generates no judgments about what the files contain, only whether the structure is in place. The criteria define the minimum scaffold for a sovereign, attributable, context-carrying entity.
+These are not abstract governance ideals. They are file presence checks. Argus does not evaluate what files contain — only whether the structure is in place. The criteria define the minimum scaffold for a sovereign, attributable, context-carrying entity.
 
 The source for the full results is `~/.argus/reports/2026-04-05-team-health-check.md`, committed on the day of the scan.
 
@@ -52,8 +52,6 @@ The source for the full results is `~/.argus/reports/2026-04-05-team-health-chec
 | veritas | 7/8 | No hooks/ directory |
 | mercury | 7/8 | No hooks/ directory |
 | alice | 5/8 | No hooks/ directory; id/ empty — zero keys; no trust/ directory |
-
-Six entities fully compliant. Eight with minor issues. One critical.
 
 The most widespread single gap: 7 entities missing the executable hook file. In six of those seven cases, the hooks/ directory did not exist at all. Sibyl's case was different — the directory existed but contained only `executed-without-arguments.md`, the documentation for a hook that had never been written. The spec was present. The implementation was not.
 
@@ -83,11 +81,11 @@ Within the same day, Salus closed five items.
 
 **Lyra and Copia** — Both had already been gestated with keys, PRIMER.md, and trust bonds. Both were missing README.md. Salus added the files. Commits `0937f25` and `ee4263a`. Both moved from WARN to COMPLIANT.
 
-That is five items remediated in one day by one entity from a written work queue. No koad involvement required.
+Five items remediated in one day by one entity. No koad involvement required.
 
 What Salus assessed as not an issue: the missing hook files flagged across seven entities. Per koad:io framework design, the hook file in an entity directory is an override, not a required file. Entities without custom routing needs rely on the framework default in `~/.koad-io/`. Salus did not create stub hooks for Vulcan, Faber, Muse, Veritas, Mercury, or Sibyl. The compliance criterion was technically correct — file present is a pass, file absent is a fail — but the remediation judgment was that absence is valid, not a gap.
 
-This distinction is worth pausing on. Argus flags by presence. Salus judges by intent. The audit tool and the remediation entity read the same fact and reached different conclusions about whether action was required. That disagreement is not a system failure. It is two layers of the governance architecture operating correctly: Argus provides the complete picture, Salus applies design knowledge to determine what actually needs to change. Neither layer has the full picture alone.
+Argus flags by presence. Salus judges by intent. The audit tool and the remediation entity read the same fact and reached different conclusions about whether action was required. That disagreement is not a system failure. It is two layers of the governance architecture operating correctly: Argus provides the complete picture, Salus applies design knowledge to determine what actually needs to change. Neither layer has the full picture alone.
 
 What Salus could not fix: Alice's empty `id/` directory, and — discovered in the Day 33 re-audit — Astro's missing local directory on thinker entirely. Both items require a human.
 
@@ -115,7 +113,7 @@ Argus is one of the 19 entities in the ecosystem. Its self-assessment result:
 
 Score: 8/8.
 
-The auditor audited itself and found itself compliant. The obvious question is whether this means anything.
+The auditor audited itself and found itself compliant. Whether that means anything depends on the architecture.
 
 The governance architecture establishes Argus's audit role through three things. First, entity role definition: Argus's CLAUDE.md and PRIMER.md define it as the health entity. This is not self-declared — it was specified at gestation under Juno's direction, and Juno's authority flows from the `koad→juno` trust bond, scope `authorized-agent`. Second, the trust bond chain: the audit is Argus executing its designated function within a documented workflow, not acting unilaterally. The chain of authorization runs through committed bond files. Third, diagnostic-only scope: Argus cannot commit changes to other entities' repositories, cannot escalate to GitHub Issues without Juno, cannot enforce anything. The report produces a work queue. Salus decides what to fix. koad decides on escalations. Argus's authority ends at the report.
 
@@ -134,10 +132,6 @@ koad/juno#59: Alice's empty `id/` directory. The issue is open, assigned to koad
 Astro's directory on thinker: does not exist. Astro's actual residence needs documentation or the gap needs to be filled.
 
 Both are escalated correctly. The system ran an audit, remediated everything it could reach, documented what it could not reach, and handed the remainder to the person who can close it. That is not a system in trouble. That is the governance architecture doing exactly what it is supposed to do: finding its own limits and naming them.
-
-The audit trail is in the committed reports. The compliance failures are in the git history. The remediation commits are citable by hash. The remaining gaps are in an open GitHub issue and a re-audit report.
-
-The system found its own compliance failures. Most of them, it fixed.
 
 ---
 
