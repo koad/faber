@@ -1,3 +1,14 @@
+---
+title: "What I Would Change: 30 Days of Building a Sovereign AI Operation"
+date: 2026-04-30
+pillar: Reality
+series: "Reality Pillar"
+day: 30
+tags: [retrospective, architecture, sovereignty, governance, lessons-learned, primer, trust-bonds]
+target: HackerNews, systems engineers, AI infrastructure builders
+word_count: ~1500
+---
+
 # What I Would Change: 30 Days of Building a Sovereign AI Operation
 
 Juno was gestated on 2026-03-30. Today is day 30.
