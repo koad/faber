@@ -25,15 +25,15 @@ There's a standard mental model for "running an AI agent team" in 2026: GPU inst
 
 | Stack | Monthly Cost | What You Own |
 |-------|-------------|--------------|
-| koad:io sovereign | $20–100 (Claude Code) + ~$4 electricity | Entity state, keys, routing logic, git history — everything except inference |
+| koad:io sovereign | ~$100 (Claude Max 5x) + ~$4 electricity | Entity state, keys, routing logic, git history — everything except inference |
 | Claude API + LangSmith Plus | ~$79+ (LangSmith) + API costs | Nothing — traces on LangChain's servers, state in their DB |
 | Devin Team plan | $500+ | Nothing — agent runs on Cognition's infrastructure |
 
-The LangSmith number needs its assumption stated: $39/seat/month base, with trace overages at $2.50 per thousand. A solo developer generating 50,000 traces/month — a reasonable estimate for an active agent operation — reaches ~$79/month before API costs. A five-person team at 200,000 traces/month: over $650/month.
+The LangSmith number needs its assumption stated: $39/seat/month base, with trace overages at $2.50 per thousand above the 10,000-trace included tier. A solo developer generating 50,000 traces/month — a reasonable estimate for an active agent operation — reaches ~$139/month before API costs ($39 base + 40,000 overage traces × $2.50/1,000 = $100 overage). A five-person team at 200,000 traces/month: approximately $570/month ($195 in seats + $375 in overage).
 
 The Devin Team plan was $500/month before recent pricing adjustments. The Core plan is now $20/month plus ACU fees ($2.25 per active compute unit, roughly one unit per 15 minutes of active work). A moderately active autonomous coding agent generates meaningful ACU costs on top of the base fee.
 
-koad:io's operational cash outlay in the same period: $24/month (Claude Code Pro at $20, electricity for thinker at approximately $3–4).
+koad:io's operational cash outlay in the same period: approximately $105/month (Claude Max 5x at ~$100 USD, electricity for thinker at approximately $3–4). The operation upgraded from Claude Code Pro ($20/month) to Claude Max early in the first week to support parallel multi-entity sessions — the Pro rate is a floor, not the operational cost of running a full entity team.
 
 ---
 
@@ -83,7 +83,7 @@ koad:io is not alone in discovering this architecture class. The discovery is th
 
 ## The Break-Even Is Already Past
 
-The ThinkPad T480 cost approximately $200. At $24/month in operational overhead (Claude Code Pro + electricity), the total cost of the first seven days of this operation is approximately $205.60. That is less than one month of LangSmith Plus at standard usage. It is less than four-tenths of one month of Devin Team plan pricing.
+The ThinkPad T480 cost approximately $200. At approximately $105/month in operational overhead (Claude Max 5x + electricity), the total cost of the first seven days of this operation is approximately $224. At that rate, the hardware break-even against a monthly LangSmith Plus subscription is less than a month. Against Devin Team pricing, it is less than two weeks. The cost argument is not that koad:io is dramatically cheaper than everything — it is that the entire stack (inference, orchestration, state, audit trail, identity) costs approximately what LangSmith Plus costs for observability alone.
 
 fourty4 (Mac Mini, approximately $800 used) was already in the fleet before its role as a local inference node. The break-even for eliminating API costs on ollama-eligible workloads has already happened — the hardware predated the use case.
 
@@ -103,7 +103,7 @@ On Day 7 of this operation:
 - Trust bond governance: cross-entity authorization signed and committed
 - Infrastructure: thinker (T480), fourty4 (Mac Mini), three additional nodes
 
-Monthly infrastructure cost: $24.
+Monthly infrastructure cost: ~$105 (Claude Max 5x + electricity).
 
 The hardware cost: approximately $200, paid once.
 
