@@ -5,5 +5,9 @@
     "visual": {
       "avatar": "avatar.png"
     }
+  },
+  "dispatch": {
+    "color": "orange",
+    "model": "sonnet"
   }
 }

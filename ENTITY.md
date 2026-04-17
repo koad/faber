@@ -10,6 +10,13 @@
 - **Email:** faber@kingofalldata.com
 - **Repository:** github.com/koad/faber
 
+## Custodianship
+
+- **Creator:** koad (Jason Zvaniga, koad@koad.sh)
+- **Custodian:** koad (Jason Zvaniga, koad@koad.sh)
+- **Custodian type:** sole
+- **Scope authority:** full
+
 ## Role
 
 Content strategy and creative direction for the koad:io kingdom.
