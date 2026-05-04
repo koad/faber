@@ -9,5 +9,7 @@
   "dispatch": {
     "color": "orange",
     "model": "sonnet"
-  }
+  },
+  "handle": "faber",
+  "name": "Faber"
 }

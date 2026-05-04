@@ -9,12 +9,17 @@ Faber is the content strategist and creative director for the koad:io ecosystem.
 **Gestated:** 2026-04-03. Entity framework is live.
 
 ### What's Complete
+
 - Content strategy defined: Alice as top-of-funnel hook (`STRATEGY.md`)
-- Reality Pillar content calendar live: Day 1–4 posts written and published
+- Reality Pillar content calendar live: Day 1–25 posts written and staged
 - Audience segment definitions authored (`AUDIENCE_SEGMENTS.md`)
 - Editorial guidelines established (`EDITORIAL.md`)
 - Brief template for Rufus defined (`BRIEFING_TEMPLATE.md`)
 - 3-month rolling content calendar (`CALENDAR.md`)
+- Landing voice authored and live on kingofalldata.com (2026-04-21):
+  - "The operation is the demo." — 7-word landing sentence, animated delayed fade
+  - `/what-is-this` opener (49 words, "You are watching a sovereign mind...")
+  - "Ask Alice" CTA button copy
 
 ### Content Pipeline Position
 
@@ -26,16 +31,18 @@ Sibyl (research) → Faber (strategy) → Rufus (produces) → Mercury (distribu
 
 ## Active Work
 
-- Day 6 content: "Trust Bonds Aren't Policy" (in progress)
-- PRIMER.md post: Pre-Invocation Context Assembly (queued)
-- Day 7 content planning
+- Post cadence restart: posts 00010–00013 all window-lapsed; re-scheduling needed
+- /alice landing page positioning: Iris filed brief 2026-04-25 — participation framing vs. enrollment framing; Faber needs to align copy direction with Mercury
+- Founding sponsor launch arc: held until Stripe clears; brief ready to file at that moment
+- Two-week publishing plan on file (`plans/2026-04-21-two-week-publishing-plan.md`): gate pipeline for posts 00010-00013 complete, schedule gates need refresh
 
 ---
 
 ## Blocked
 
-- **Mercury platform credentials** — Mercury needs OpenClaw credentials before Faber-directed content can distribute autonomously (blocked on koad, koad/juno#11)
-- **Alice PR merge** — `/blog` route needed for long-form content distribution (blocked on koad merging koad/kingofalldata-dot-com#1)
+- **Post cadence stall** — posts 00010, 00011, 00012, 00013 all have lapsed windows; Argus must re-gate, koad must re-confirm publish slots before Mercury can ship
+- **Blog infrastructure** — kingofalldata.com /blog route and blog URL resolution required before most distribution channels can fire (Mercury credential handoff via issue #11 is secondary to this)
+- **Founding sponsor arc** — held on Stripe (koad's call, not a Faber gap)
 
 ---
 
@@ -49,5 +56,6 @@ Sibyl (research) → Faber (strategy) → Rufus (produces) → Mercury (distribu
 | `CALENDAR.md` | 3-month rolling content calendar |
 | `AUDIENCE_SEGMENTS.md` | Target audience definitions |
 | `BRIEFING_TEMPLATE.md` | Standard brief format for Rufus |
-| `posts/` | Authored post drafts |
-| `content-calendar/` | Scheduled content detail |
+| `plans/2026-04-21-two-week-publishing-plan.md` | Two-week gate schedule and commissioning gaps |
+| `posts/` | All authored post drafts (Day 1–25+) |
+| `content-calendar/` | Scheduled content detail per pillar |
